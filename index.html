@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Paul & Tina's Rivington Robot</title>
 <link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🤖%3C/text%3E%3C/svg%3E">
 </head>
 <body>
@@ -18,162 +19,283 @@
     </div>
     <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
     <div class="nav-links">
-      <a href="index.html" class="active-red">HOME</a>
-      <a href="roundup.html" class="orange">WEEKLY ROUNDUP</a>
-      <a href="map.html" class="green">MAP & LIST</a>
-      <a href="calendar.html" class="blue">CALENDAR</a>
-      <a href="transport.html" class="purple">TRANSPORT</a>
-      <a href="roll.html" class="pink">ROLL</a>
-      <a href="essentials.html">ESSENTIALS</a>
+      <a href="#walk">THE RING</a>
+      <a href="#subway">SUBWAY</a>
+      <a href="#events">EVENTS</a>
+      <a href="#roll">ROLL</a>
+      <a href="#essentials">ESSENTIALS</a>
+      <a href="map.html">FULL MAP</a>
+      <a href="roundup.html">ROUNDUP</a>
     </div>
   </nav>
 
-  <header class="masthead">
-    <h1>The Rivington Robot</h1>
-    <div class="masthead-meta">
-      <div>PAUL & TINA'S DAILY · VOL. 1 NO. 1 · 8 RIVINGTON ST</div>
-      <div class="masthead-date" id="today-date">Loading…</div>
-    </div>
-  </header>
-
   <div class="briefing" id="briefing">
-    48° · trash out tonight · F, J, 6 running normally
+    48° · trash out tonight · F, J, 6 running normally · sunset 4:33pm
   </div>
 
-  <!-- 10 min walking section -->
-  <div class="section-head">
-    <div class="section-bar red"></div>
-    <h2>In your 10-minute walking world</h2>
-  </div>
-
-  <div class="walk-grid">
-
-    <svg class="ring" viewBox="0 0 320 320">
-      <defs><clipPath id="rc"><circle cx="160" cy="160" r="152"/></clipPath></defs>
-      <rect x="0" y="0" width="320" height="320" fill="#EFE8D4" clip-path="url(#rc)"/>
-      <g clip-path="url(#rc)" stroke="#D9CDB0" stroke-width="7" stroke-linecap="square">
-        <line x1="0" y1="90" x2="320" y2="95"/>
-        <line x1="0" y1="155" x2="320" y2="162"/>
-        <line x1="0" y1="225" x2="320" y2="230"/>
-        <line x1="65" y1="0" x2="72" y2="320"/>
-        <line x1="140" y1="0" x2="148" y2="320"/>
-        <line x1="215" y1="0" x2="222" y2="320"/>
-      </g>
-      <polygon points="80,185 200,210 210,230 80,210" fill="#C8D9B8" opacity="0.65" clip-path="url(#rc)"/>
-      <circle cx="160" cy="160" r="152" fill="none" stroke="#C4BFB0" stroke-width="1" stroke-dasharray="3 4"/>
-      <circle cx="160" cy="160" r="96" fill="none" stroke="#E24B4A" stroke-width="2"/>
-      <text x="160" y="76" font-size="9" fill="#6a665a" text-anchor="middle" letter-spacing="1.8">10 MIN WALK</text>
-      <circle cx="105" cy="140" r="5" fill="#E24B4A"/>
-      <circle cx="200" cy="115" r="5" fill="#E24B4A"/>
-      <circle cx="145" cy="100" r="5" fill="#E24B4A"/>
-      <circle cx="215" cy="190" r="5" fill="#E24B4A"/>
-      <circle cx="90" cy="195" r="5" fill="#E24B4A"/>
-      <circle cx="120" cy="215" r="5" fill="#EF9F27"/>
-      <circle cx="225" cy="150" r="5" fill="#EF9F27"/>
-      <circle cx="100" cy="105" r="5" fill="#EF9F27"/>
-      <circle cx="185" cy="175" r="5" fill="#F0C040"/>
-      <circle cx="220" cy="100" r="5" fill="#F0C040"/>
-      <circle cx="140" cy="220" r="6" fill="#639922"/>
-      <circle cx="110" cy="175" r="6" fill="#639922"/>
-      <circle cx="175" cy="155" r="5" fill="#378ADD"/>
-      <circle cx="235" cy="215" r="5" fill="#378ADD"/>
-      <circle cx="125" cy="100" r="5" fill="#7F77DD"/>
-      <circle cx="230" cy="235" r="5" fill="#7F77DD"/>
-      <circle cx="160" cy="160" r="11" fill="#2C2A24"/>
-      <circle cx="160" cy="160" r="11" fill="none" stroke="#E24B4A" stroke-width="2"/>
-      <line x1="160" y1="149" x2="160" y2="144" stroke="#2C2A24" stroke-width="1"/>
-      <line x1="160" y1="171" x2="160" y2="176" stroke="#2C2A24" stroke-width="1"/>
-      <line x1="149" y1="160" x2="144" y2="160" stroke="#2C2A24" stroke-width="1"/>
-      <line x1="171" y1="160" x2="176" y2="160" stroke="#2C2A24" stroke-width="1"/>
-    </svg>
-
-    <div>
-      <div class="highlights-head">934 PLACES · HIGHLIGHTS NEAR YOUR DOOR</div>
-      <div class="highlights">
-        <div class="hl red"><div class="hl-min">2<span class="unit">MIN</span></div><div class="hl-body"><div class="hl-name">Embriago Coffee</div><div class="hl-sub">Food · café</div></div></div>
-        <div class="hl green"><div class="hl-min">3<span class="unit">MIN</span></div><div class="hl-body"><div class="hl-name">Sara D. Roosevelt Park</div><div class="hl-sub">Parks</div></div></div>
-        <div class="hl purple"><div class="hl-min">4<span class="unit">MIN</span></div><div class="hl-body"><div class="hl-name">New Museum</div><div class="hl-sub">Culture</div></div></div>
-        <div class="hl red"><div class="hl-min">5<span class="unit">MIN</span></div><div class="hl-body"><div class="hl-name">Katz's Deli</div><div class="hl-sub">Food · classic</div></div></div>
-        <div class="hl blue"><div class="hl-min">6<span class="unit">MIN</span></div><div class="hl-body"><div class="hl-name">Seward Park Library</div><div class="hl-sub">Essentials</div></div></div>
-        <div class="hl orange"><div class="hl-min">7<span class="unit">MIN</span></div><div class="hl-body"><div class="hl-name">Economy Candy</div><div class="hl-sub">Shops · old-school</div></div></div>
-      </div>
-
-      <div class="legend">
-        <span><span class="dot" style="background:#E24B4A"></span>Food</span>
-        <span><span class="dot" style="background:#EF9F27"></span>Shops</span>
-        <span><span class="dot" style="background:#F0C040"></span>Going out</span>
-        <span><span class="dot" style="background:#639922"></span>Parks</span>
-        <span><span class="dot" style="background:#378ADD"></span>Essentials</span>
-        <span><span class="dot" style="background:#7F77DD"></span>Culture</span>
-      </div>
-
-      <a href="map.html" class="cta-link">Open the full map →</a>
+  <!-- ================ 10 MIN WALK ================ -->
+  <section id="walk">
+    <div class="section-head">
+      <div class="section-bar red"></div>
+      <h2>Your 10-minute walking world</h2>
+      <span class="sub">934 places</span>
     </div>
 
-  </div>
+    <div class="map-filters" id="map-filters">
+      <span class="filter-chip active c-red" data-cat="food">● Food</span>
+      <span class="filter-chip active c-orange" data-cat="shops">● Shops</span>
+      <span class="filter-chip active c-yellow" data-cat="going">● Going out</span>
+      <span class="filter-chip active c-green" data-cat="parks">● Parks</span>
+      <span class="filter-chip active c-blue" data-cat="essentials">● Essentials</span>
+      <span class="filter-chip active c-purple" data-cat="culture">● Culture</span>
+    </div>
 
-  <!-- 10 min subway section -->
-  <div class="section-head">
-    <div class="section-bar purple"></div>
-    <h2>10 minutes by subway</h2>
-  </div>
+    <div id="map"></div>
 
-  <div class="reach-grid">
-    <a href="transport.html" class="reach-card purple">
-      <div class="reach-head"><span class="line-bullet line-F">F</span><span class="reach-meta">FROM 2ND AVE · 8 MIN</span></div>
-      <div class="reach-name">Union Square</div>
-      <div class="reach-body">Farmers market Wed/Fri/Sat. Strand Books, Trader Joe's. Transfer hub.</div>
-    </a>
-    <a href="transport.html" class="reach-card green">
-      <div class="reach-head"><span class="line-bullet line-J">J</span><span class="reach-meta">FROM BOWERY · 10 MIN</span></div>
-      <div class="reach-name">Williamsburg</div>
-      <div class="reach-body">Bedford Ave stop. Marlow & Sons, Baby's All Right, Smorgasburg Saturdays.</div>
-    </a>
-    <a href="transport.html" class="reach-card orange">
-      <div class="reach-head"><span class="line-bullet line-B">B</span><span class="reach-meta">FROM GRAND ST · 9 MIN</span></div>
-      <div class="reach-name">West Village</div>
-      <div class="reach-body">W 4th St. Comedy Cellar, Washington Square Park, late-night pizza.</div>
-    </a>
-    <a href="transport.html" class="reach-card blue">
-      <div class="reach-head"><span class="line-bullet line-6">6</span><span class="reach-meta">FROM SPRING · 15 MIN</span></div>
-      <div class="reach-name">Grand Central / LIRR</div>
-      <div class="reach-body">Grand Central Madison for home. Bleecker to 42nd St-GC.</div>
-    </a>
-    <a href="transport.html" class="reach-card pink">
-      <div class="reach-head"><span class="line-bullet line-F">F</span><span class="reach-meta">FROM 2ND AVE · 10 MIN</span></div>
-      <div class="reach-name">Penn Station</div>
-      <div class="reach-body">34th St-Herald Sq, walk one block west. LIRR, Amtrak.</div>
-    </a>
-    <a href="transport.html" class="reach-card red">
-      <div class="reach-head"><span class="line-bullet line-6">6</span><span class="reach-meta">FROM CANAL · 6 MIN</span></div>
-      <div class="reach-name">Brooklyn Bridge City Hall</div>
-      <div class="reach-body">Walk the bridge to DUMBO. Jane's Carousel, Time Out Market.</div>
-    </a>
-  </div>
+    <div class="highlights">
+      <div class="hl red"><div class="hl-min">2<span class="unit">MIN</span></div><div class="hl-body"><div class="hl-name">Embriago Coffee</div><div class="hl-sub">Food · café</div></div></div>
+      <div class="hl green"><div class="hl-min">3<span class="unit">MIN</span></div><div class="hl-body"><div class="hl-name">Sara D. Roosevelt Park</div><div class="hl-sub">Parks</div></div></div>
+      <div class="hl purple"><div class="hl-min">4<span class="unit">MIN</span></div><div class="hl-body"><div class="hl-name">New Museum</div><div class="hl-sub">Culture</div></div></div>
+      <div class="hl red"><div class="hl-min">5<span class="unit">MIN</span></div><div class="hl-body"><div class="hl-name">Katz's Deli</div><div class="hl-sub">Food · classic</div></div></div>
+      <div class="hl blue"><div class="hl-min">6<span class="unit">MIN</span></div><div class="hl-body"><div class="hl-name">Seward Park Library</div><div class="hl-sub">Essentials</div></div></div>
+      <div class="hl orange"><div class="hl-min">7<span class="unit">MIN</span></div><div class="hl-body"><div class="hl-name">Economy Candy</div><div class="hl-sub">Shops · old-school</div></div></div>
+    </div>
 
-  <!-- Quick links -->
-  <div class="quick-head">GO DEEPER</div>
-  <div class="quick-grid">
-    <a href="roundup.html" class="quick orange"><span class="quick-icon">📰</span>WEEKLY ROUNDUP</a>
-    <a href="map.html" class="quick green"><span class="quick-icon">🗺️</span>MAP & LIST</a>
-    <a href="calendar.html" class="quick blue"><span class="quick-icon">📅</span>CALENDAR</a>
-    <a href="transport.html" class="quick purple"><span class="quick-icon">🚇</span>TRANSPORT</a>
-    <a href="roll.html" class="quick pink"><span class="quick-icon">🎲</span>ROLL</a>
-    <a href="essentials.html" class="quick red"><span class="quick-icon">🚑</span>ESSENTIALS</a>
-  </div>
+    <a href="map.html" class="cta-link">Open the full map &amp; list →</a>
+  </section>
+
+  <!-- ================ SUBWAY REACH ================ -->
+  <section id="subway">
+    <div class="section-head">
+      <div class="section-bar purple"></div>
+      <h2>10 minutes by subway</h2>
+    </div>
+    <div class="reach-grid">
+      <div class="reach-card purple">
+        <div class="reach-head"><span class="line-bullet line-F">F</span><span class="reach-meta">FROM 2ND AVE · 8 MIN</span></div>
+        <div class="reach-name">Union Square</div>
+        <div class="reach-body">Farmers market Wed/Fri/Sat. Strand Books, Trader Joe's. Transfer hub.</div>
+      </div>
+      <div class="reach-card green">
+        <div class="reach-head"><span class="line-bullet line-J">J</span><span class="reach-meta">FROM BOWERY · 10 MIN</span></div>
+        <div class="reach-name">Williamsburg</div>
+        <div class="reach-body">Bedford Ave stop. Marlow & Sons, Baby's All Right, Smorgasburg Saturdays.</div>
+      </div>
+      <div class="reach-card orange">
+        <div class="reach-head"><span class="line-bullet line-B">B</span><span class="reach-meta">FROM GRAND ST · 9 MIN</span></div>
+        <div class="reach-name">West Village</div>
+        <div class="reach-body">W 4th St. Comedy Cellar, Washington Square Park, late-night pizza.</div>
+      </div>
+      <div class="reach-card blue">
+        <div class="reach-head"><span class="line-bullet line-6">6</span><span class="reach-meta">FROM SPRING · 15 MIN</span></div>
+        <div class="reach-name">Grand Central / LIRR</div>
+        <div class="reach-body">Grand Central Madison for home. Bleecker to 42nd St-GC.</div>
+      </div>
+      <div class="reach-card pink">
+        <div class="reach-head"><span class="line-bullet line-F">F</span><span class="reach-meta">FROM 2ND AVE · 10 MIN</span></div>
+        <div class="reach-name">Penn Station</div>
+        <div class="reach-body">34th St-Herald Sq, walk one block west. LIRR, Amtrak.</div>
+      </div>
+      <div class="reach-card red">
+        <div class="reach-head"><span class="line-bullet line-6">6</span><span class="reach-meta">FROM CANAL · 6 MIN</span></div>
+        <div class="reach-name">Brooklyn Bridge City Hall</div>
+        <div class="reach-body">Walk the bridge to DUMBO. Jane's Carousel, Time Out Market.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================ EVENTS ================ -->
+  <section id="events">
+    <div class="section-head">
+      <div class="section-bar blue"></div>
+      <h2>This week in your neighborhood</h2>
+    </div>
+    <div class="event-list">
+      <div class="event">
+        <div class="event-date"><div class="day">21</div><span class="mon">SAT</span></div>
+        <div class="event-body"><div class="event-name">Smorgasburg at Esplanade</div><div class="event-meta">11am-6pm · 2nd Ave F to Williamsburg · outdoors</div></div>
+      </div>
+      <div class="event">
+        <div class="event-date"><div class="day">21</div><span class="mon">SAT</span></div>
+        <div class="event-body"><div class="event-name">Alex G at Mercury Lounge</div><div class="event-meta">8pm · 217 E Houston · 4 min from your door</div></div>
+      </div>
+      <div class="event">
+        <div class="event-date"><div class="day">23</div><span class="mon">MON</span></div>
+        <div class="event-body"><div class="event-name">New Museum late hours</div><div class="event-meta">5pm-9pm · free after 7pm · 4 min walk</div></div>
+      </div>
+      <div class="event">
+        <div class="event-date"><div class="day">25</div><span class="mon">WED</span></div>
+        <div class="event-body"><div class="event-name">Union Square Farmers Market</div><div class="event-meta">All day · F train 8 min · produce, bread, flowers</div></div>
+      </div>
+    </div>
+    <p style="font-size: 12px; color: var(--ink-3); margin-top: 16px;">Events being wired up from live sources — full calendar coming soon.</p>
+  </section>
+
+  <!-- ================ ROLL THE DICE ================ -->
+  <section id="roll">
+    <div class="section-head">
+      <div class="section-bar pink"></div>
+      <h2>Can't decide?</h2>
+    </div>
+    <div class="roll-box">
+      <div class="roll-label">ROLL THE DICE</div>
+      <div class="roll-title">Let the robot pick.</div>
+      <div class="roll-sub">A random pick from anywhere within a 10-minute walk from your door.</div>
+
+      <div class="roll-label-section">NARROW BY VIBE</div>
+      <div class="vibes" id="vibes">
+        <span class="vibe on" data-vibe="cozy">cozy</span>
+        <span class="vibe" data-vibe="cheap">cheap</span>
+        <span class="vibe" data-vibe="date night">date night</span>
+        <span class="vibe" data-vibe="outdoors">outdoors</span>
+        <span class="vibe" data-vibe="hidden gem">hidden gem</span>
+        <span class="vibe" data-vibe="late night">late night</span>
+        <span class="vibe" data-vibe="lively">lively</span>
+        <span class="vibe" data-vibe="quiet">quiet</span>
+      </div>
+
+      <div class="roll-btn" id="roll-btn">
+        <span>🎲</span>
+        <span>Roll me something</span>
+      </div>
+
+      <div class="roll-result" id="roll-result">
+        <div class="roll-result-label">THE ROBOT SAYS</div>
+        <div class="roll-result-name" id="rr-name"></div>
+        <div class="roll-result-meta" id="rr-meta"></div>
+      </div>
+
+      <div class="roll-hint" id="roll-hint">Pulling from spots inside your ring</div>
+    </div>
+  </section>
+
+  <!-- ================ ESSENTIALS ================ -->
+  <section id="essentials">
+    <div class="section-head">
+      <div class="section-bar orange"></div>
+      <h2>The essentials</h2>
+      <a href="essentials.html" class="sub" style="text-decoration: underline;">full page →</a>
+    </div>
+    <div class="essentials-grid">
+      <div class="ess"><div class="ess-icon">🚑</div><div class="ess-label">NEAREST ER</div><div class="ess-name">NYU Langone / Beth Israel</div><div class="ess-meta">14 min cab · 1st Ave</div></div>
+      <div class="ess"><div class="ess-icon">💊</div><div class="ess-label">24-HOUR PHARMACY</div><div class="ess-name">CVS Delancey & Essex</div><div class="ess-meta">6 min walk · 24/7</div></div>
+      <div class="ess"><div class="ess-icon">🏪</div><div class="ess-label">24-HOUR BODEGA</div><div class="ess-name">Allen Street Deli</div><div class="ess-meta">1 min walk · corner of Allen</div></div>
+      <div class="ess"><div class="ess-icon">👮</div><div class="ess-label">POLICE PRECINCT</div><div class="ess-name">5th Precinct</div><div class="ess-meta">19 Elizabeth St · 7 min walk</div></div>
+      <div class="ess"><div class="ess-icon">📮</div><div class="ess-label">POST OFFICE</div><div class="ess-name">Knickerbocker Station</div><div class="ess-meta">128 E Broadway · 8 min walk</div></div>
+      <div class="ess"><div class="ess-icon">🔧</div><div class="ess-label">HARDWARE</div><div class="ess-name">Allen Street Hardware</div><div class="ess-meta">4 min walk · open 'til 7</div></div>
+    </div>
+  </section>
 
   <footer class="footer">
     <div class="footer-gradient"></div>
-    Made with care for Paul & Tina · 8 Rivington St · Updated every Sunday
+    Made with care for Paul &amp; Tina · 8 Rivington St · Updated every Sunday
   </footer>
 
 </div>
 
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
-  // Date in the masthead
-  const d = new Date();
-  const opts = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-  document.getElementById('today-date').textContent = d.toLocaleDateString('en-US', opts);
+// ============ DATA (placeholder — swap for JSON later) ============
+const CENTER = [40.72203, -73.99198];
+const PLACES = [
+  { name: "Embriago Coffee", cat: "food", color: "#E24B4A", lat: 40.72141, lng: -73.99285, min: 2, vibes: ["cozy","wifi","quiet"] },
+  { name: "Katz's Deli", cat: "food", color: "#E24B4A", lat: 40.72250, lng: -73.98730, min: 5, vibes: ["classic","lively","cheap"] },
+  { name: "Ms. Takko", cat: "food", color: "#E24B4A", lat: 40.72060, lng: -73.99100, min: 2, vibes: ["hidden gem","cheap"] },
+  { name: "Dirty French", cat: "food", color: "#E24B4A", lat: 40.72180, lng: -73.98747, min: 6, vibes: ["date night","lively"] },
+  { name: "Dimes", cat: "food", color: "#E24B4A", lat: 40.71451, lng: -73.99097, min: 5, vibes: ["cozy","outdoors"] },
+  { name: "Russ & Daughters", cat: "food", color: "#E24B4A", lat: 40.72250, lng: -73.98810, min: 6, vibes: ["classic","hidden gem"] },
+  { name: "Economy Candy", cat: "shops", color: "#EF9F27", lat: 40.71847, lng: -73.98889, min: 7, vibes: ["hidden gem","cheap"] },
+  { name: "Vale NYC", cat: "shops", color: "#EF9F27", lat: 40.72158, lng: -73.99273, min: 1, vibes: ["trendy"] },
+  { name: "Economy Hardware", cat: "shops", color: "#EF9F27", lat: 40.72066, lng: -73.99136, min: 4, vibes: ["practical"] },
+  { name: "Mercury Lounge", cat: "going", color: "#F0C040", lat: 40.72160, lng: -73.98730, min: 4, vibes: ["lively","late night"] },
+  { name: "Ms. Alice", cat: "going", color: "#F0C040", lat: 40.72032, lng: -73.98946, min: 3, vibes: ["date night","trendy"] },
+  { name: "169 Bar", cat: "going", color: "#F0C040", lat: 40.71407, lng: -73.98981, min: 8, vibes: ["late night","cheap","dive"] },
+  { name: "Sara D. Roosevelt Park", cat: "parks", color: "#639922", lat: 40.72030, lng: -73.99380, min: 3, vibes: ["outdoors","lively"] },
+  { name: "Seward Park", cat: "parks", color: "#639922", lat: 40.71418, lng: -73.98852, min: 8, vibes: ["outdoors","quiet"] },
+  { name: "M'Finda Kalunga Garden", cat: "parks", color: "#639922", lat: 40.72088, lng: -73.99302, min: 4, vibes: ["quiet","hidden gem","outdoors"] },
+  { name: "Whole Foods Bowery", cat: "essentials", color: "#378ADD", lat: 40.72525, lng: -73.99221, min: 3, vibes: ["grocery"] },
+  { name: "Seward Park Library", cat: "essentials", color: "#378ADD", lat: 40.71309, lng: -73.98807, min: 6, vibes: ["quiet","wifi"] },
+  { name: "CVS Delancey & Essex", cat: "essentials", color: "#378ADD", lat: 40.71824, lng: -73.98816, min: 6, vibes: ["late night"] },
+  { name: "New Museum", cat: "culture", color: "#7F77DD", lat: 40.72249, lng: -73.99322, min: 4, vibes: ["date night","quiet"] },
+  { name: "Tenement Museum", cat: "culture", color: "#7F77DD", lat: 40.71849, lng: -73.99027, min: 5, vibes: ["quiet"] },
+  { name: "Metrograph", cat: "culture", color: "#7F77DD", lat: 40.71458, lng: -73.99159, min: 7, vibes: ["date night","cozy"] },
+];
+
+// ============ LEAFLET MAP ============
+const map = L.map('map', { zoomControl: true, scrollWheelZoom: false }).setView(CENTER, 15);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution: '© OpenStreetMap',
+  maxZoom: 19
+}).addTo(map);
+
+// Home marker (black)
+L.circleMarker(CENTER, {
+  radius: 9, color: '#E24B4A', weight: 3, fillColor: '#2C2A24', fillOpacity: 1
+}).addTo(map).bindPopup('<div class="pop-name">8 Rivington St</div><div class="pop-sub">Home base</div>');
+
+// 10 min walking circle (approx 0.5 mi = 805 m)
+L.circle(CENTER, { radius: 805, color: '#E24B4A', weight: 2, fill: false, dashArray: '4 6' }).addTo(map);
+
+// Pins by category
+const markersByCat = {};
+PLACES.forEach(p => {
+  const m = L.circleMarker([p.lat, p.lng], {
+    radius: 7, color: 'white', weight: 2, fillColor: p.color, fillOpacity: 1
+  });
+  m.bindPopup(`<div class="pop-name">${p.name}</div><div class="pop-sub">${p.min} min from your door · ${p.vibes.join(', ')}</div>`);
+  m.addTo(map);
+  if (!markersByCat[p.cat]) markersByCat[p.cat] = [];
+  markersByCat[p.cat].push(m);
+});
+
+// Filter chips
+document.querySelectorAll('.filter-chip').forEach(c => {
+  c.addEventListener('click', () => {
+    c.classList.toggle('active');
+    const cat = c.dataset.cat;
+    const visible = c.classList.contains('active');
+    (markersByCat[cat] || []).forEach(m => {
+      if (visible) m.addTo(map);
+      else map.removeLayer(m);
+    });
+  });
+});
+
+// ============ ROLL THE DICE ============
+const selected = new Set(['cozy']);
+const vibeEls = document.querySelectorAll('#vibes .vibe');
+const hintEl = document.getElementById('roll-hint');
+
+function updateHint() {
+  const pool = selected.size === 0 ? PLACES : PLACES.filter(p => p.vibes.some(v => selected.has(v)));
+  if (selected.size === 0) hintEl.textContent = `Pulling from ${PLACES.length} places inside your ring`;
+  else hintEl.textContent = `Filtering ${pool.length} ${[...selected].join(' + ')} spots inside your ring`;
+}
+
+vibeEls.forEach(el => {
+  el.addEventListener('click', () => {
+    const v = el.dataset.vibe;
+    if (selected.has(v)) { selected.delete(v); el.classList.remove('on'); }
+    else { selected.add(v); el.classList.add('on'); }
+    updateHint();
+  });
+});
+
+function roll() {
+  const pool = selected.size === 0 ? PLACES : PLACES.filter(p => p.vibes.some(v => selected.has(v)));
+  if (pool.length === 0) {
+    document.getElementById('rr-name').textContent = 'No spots match those vibes';
+    document.getElementById('rr-meta').textContent = 'Try fewer filters';
+  } else {
+    const pick = pool[Math.floor(Math.random() * pool.length)];
+    document.getElementById('rr-name').textContent = pick.name;
+    document.getElementById('rr-meta').textContent = `${pick.min} min from your door · ${pick.vibes.join(', ')}`;
+  }
+  document.getElementById('roll-result').classList.add('show');
+}
+
+document.getElementById('roll-btn').addEventListener('click', roll);
+updateHint();
 </script>
 
 </body>

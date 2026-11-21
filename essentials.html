@@ -17,26 +17,35 @@
     </div>
     <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
     <div class="nav-links">
-      <a href="index.html" class="red">HOME</a>
-      <a href="roundup.html" class="orange">WEEKLY ROUNDUP</a>
-      <a href="map.html" class="green">MAP & LIST</a>
-      <a href="calendar.html" class="blue">CALENDAR</a>
-      <a href="transport.html" class="purple">TRANSPORT</a>
-      <a href="roll.html" class="pink">ROLL</a>
-      <a href="essentials.html" class="active-gray">ESSENTIALS</a>
+      <a href="index.html">HOME</a>
+      <a href="map.html">FULL MAP</a>
+      <a href="roundup.html">ROUNDUP</a>
+      <a href="essentials.html" class="active">ESSENTIALS</a>
     </div>
   </nav>
 
-  <div class="stub">
-    <div class="stub-bar" style="background:#2C2A24"></div>
-    <h1>Essentials</h1>
-    <p>The practical stuff: nearest ER, urgent care, 24-hour pharmacy, 24-hour bodega, police precinct, post office, hardware store, locksmith, dry cleaner. Plus apartment-specific info that fills in over time — super's number, trash day, wifi, package pickup.</p>
-    <p style="font-size:12px;color:#8a8578;">Coming soon · enrichment pass runs Tuesday</p>
-  </div>
+  <section>
+    <div class="section-head">
+      <div class="section-bar orange"></div>
+      <h2>Essentials</h2>
+    </div>
+    <div class="essentials-grid">
+      <div class="ess"><div class="ess-icon">🚑</div><div class="ess-label">NEAREST ER</div><div class="ess-name">NYU Langone / Beth Israel</div><div class="ess-meta">14 min cab · 1st Ave</div></div>
+      <div class="ess"><div class="ess-icon">💊</div><div class="ess-label">24-HOUR PHARMACY</div><div class="ess-name">CVS Delancey & Essex</div><div class="ess-meta">6 min walk · 24/7</div></div>
+      <div class="ess"><div class="ess-icon">🏪</div><div class="ess-label">24-HOUR BODEGA</div><div class="ess-name">Allen Street Deli</div><div class="ess-meta">1 min walk</div></div>
+      <div class="ess"><div class="ess-icon">👮</div><div class="ess-label">POLICE PRECINCT</div><div class="ess-name">5th Precinct</div><div class="ess-meta">19 Elizabeth St · 7 min walk</div></div>
+      <div class="ess"><div class="ess-icon">📮</div><div class="ess-label">POST OFFICE</div><div class="ess-name">Knickerbocker Station</div><div class="ess-meta">128 E Broadway · 8 min walk</div></div>
+      <div class="ess"><div class="ess-icon">🔧</div><div class="ess-label">HARDWARE</div><div class="ess-name">Allen Street Hardware</div><div class="ess-meta">4 min walk · open 'til 7</div></div>
+      <div class="ess"><div class="ess-icon">🧺</div><div class="ess-label">LAUNDROMAT</div><div class="ess-name">Rivington Laundry</div><div class="ess-meta">3 min walk</div></div>
+      <div class="ess"><div class="ess-icon">🚒</div><div class="ess-label">FIRE STATION</div><div class="ess-name">Engine 55</div><div class="ess-meta">363 Broome St · 8 min walk</div></div>
+      <div class="ess"><div class="ess-icon">📦</div><div class="ess-label">PACKAGE PICKUP</div><div class="ess-name">Coming when you move in</div><div class="ess-meta">UPS access point TBD</div></div>
+    </div>
+    <p style="font-size: 12px; color: var(--ink-3); margin-top: 24px;">Apartment-specific info (super's number, trash day, wifi, Amazon lockers) will fill in here as Katie learns them after you move in.</p>
+  </section>
 
   <footer class="footer">
     <div class="footer-gradient"></div>
-    Made with care for Paul & Tina · 8 Rivington St · Updated every Sunday
+    Made with care for Paul &amp; Tina · 8 Rivington St
   </footer>
 
 </div>
