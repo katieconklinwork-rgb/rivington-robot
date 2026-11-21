@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Paul & Tina's Rivington Robot</title>
+<link rel="stylesheet" href="styles.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🤖%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+
+<div class="container">
+
+  <nav class="nav">
+    <div class="nav-brand">
+      <div class="nav-logo">🤖</div>
+      <div class="nav-title">Paul & Tina's Rivington Robot</div>
+    </div>
+    <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
+    <div class="nav-links">
+      <a href="index.html" class="active-red">HOME</a>
+      <a href="roundup.html" class="orange">WEEKLY ROUNDUP</a>
+      <a href="map.html" class="green">MAP & LIST</a>
+      <a href="calendar.html" class="blue">CALENDAR</a>
+      <a href="transport.html" class="purple">TRANSPORT</a>
+      <a href="roll.html" class="pink">ROLL</a>
+      <a href="essentials.html">ESSENTIALS</a>
+    </div>
+  </nav>
+
+  <header class="masthead">
+    <h1>The Rivington Robot</h1>
+    <div class="masthead-meta">
+      <div>PAUL & TINA'S DAILY · VOL. 1 NO. 1 · 8 RIVINGTON ST</div>
+      <div class="masthead-date" id="today-date">Loading…</div>
+    </div>
+  </header>
+
+  <div class="briefing" id="briefing">
+    48° · trash out tonight · F, J, 6 running normally
+  </div>
+
+  <!-- 10 min walking section -->
+  <div class="section-head">
+    <div class="section-bar red"></div>
+    <h2>In your 10-minute walking world</h2>
+  </div>
+
+  <div class="walk-grid">
+
+    <svg class="ring" viewBox="0 0 320 320">
+      <defs><clipPath id="rc"><circle cx="160" cy="160" r="152"/></clipPath></defs>
+      <rect x="0" y="0" width="320" height="320" fill="#EFE8D4" clip-path="url(#rc)"/>
+      <g clip-path="url(#rc)" stroke="#D9CDB0" stroke-width="7" stroke-linecap="square">
+        <line x1="0" y1="90" x2="320" y2="95"/>
+        <line x1="0" y1="155" x2="320" y2="162"/>
+        <line x1="0" y1="225" x2="320" y2="230"/>
+        <line x1="65" y1="0" x2="72" y2="320"/>
+        <line x1="140" y1="0" x2="148" y2="320"/>
+        <line x1="215" y1="0" x2="222" y2="320"/>
+      </g>
+      <polygon points="80,185 200,210 210,230 80,210" fill="#C8D9B8" opacity="0.65" clip-path="url(#rc)"/>
+      <circle cx="160" cy="160" r="152" fill="none" stroke="#C4BFB0" stroke-width="1" stroke-dasharray="3 4"/>
+      <circle cx="160" cy="160" r="96" fill="none" stroke="#E24B4A" stroke-width="2"/>
+      <text x="160" y="76" font-size="9" fill="#6a665a" text-anchor="middle" letter-spacing="1.8">10 MIN WALK</text>
+      <circle cx="105" cy="140" r="5" fill="#E24B4A"/>
+      <circle cx="200" cy="115" r="5" fill="#E24B4A"/>
+      <circle cx="145" cy="100" r="5" fill="#E24B4A"/>
+      <circle cx="215" cy="190" r="5" fill="#E24B4A"/>
+      <circle cx="90" cy="195" r="5" fill="#E24B4A"/>
+      <circle cx="120" cy="215" r="5" fill="#EF9F27"/>
+      <circle cx="225" cy="150" r="5" fill="#EF9F27"/>
+      <circle cx="100" cy="105" r="5" fill="#EF9F27"/>
+      <circle cx="185" cy="175" r="5" fill="#F0C040"/>
+      <circle cx="220" cy="100" r="5" fill="#F0C040"/>
+      <circle cx="140" cy="220" r="6" fill="#639922"/>
+      <circle cx="110" cy="175" r="6" fill="#639922"/>
+      <circle cx="175" cy="155" r="5" fill="#378ADD"/>
+      <circle cx="235" cy="215" r="5" fill="#378ADD"/>
+      <circle cx="125" cy="100" r="5" fill="#7F77DD"/>
+      <circle cx="230" cy="235" r="5" fill="#7F77DD"/>
+      <circle cx="160" cy="160" r="11" fill="#2C2A24"/>
+      <circle cx="160" cy="160" r="11" fill="none" stroke="#E24B4A" stroke-width="2"/>
+      <line x1="160" y1="149" x2="160" y2="144" stroke="#2C2A24" stroke-width="1"/>
+      <line x1="160" y1="171" x2="160" y2="176" stroke="#2C2A24" stroke-width="1"/>
+      <line x1="149" y1="160" x2="144" y2="160" stroke="#2C2A24" stroke-width="1"/>
+      <line x1="171" y1="160" x2="176" y2="160" stroke="#2C2A24" stroke-width="1"/>
+    </svg>
+
+    <div>
+      <div class="highlights-head">934 PLACES · HIGHLIGHTS NEAR YOUR DOOR</div>
+      <div class="highlights">
+        <div class="hl red"><div class="hl-min">2<span class="unit">MIN</span></div><div class="hl-body"><div class="hl-name">Embriago Coffee</div><div class="hl-sub">Food · café</div></div></div>
+        <div class="hl green"><div class="hl-min">3<span class="unit">MIN</span></div><div class="hl-body"><div class="hl-name">Sara D. Roosevelt Park</div><div class="hl-sub">Parks</div></div></div>
+        <div class="hl purple"><div class="hl-min">4<span class="unit">MIN</span></div><div class="hl-body"><div class="hl-name">New Museum</div><div class="hl-sub">Culture</div></div></div>
+        <div class="hl red"><div class="hl-min">5<span class="unit">MIN</span></div><div class="hl-body"><div class="hl-name">Katz's Deli</div><div class="hl-sub">Food · classic</div></div></div>
+        <div class="hl blue"><div class="hl-min">6<span class="unit">MIN</span></div><div class="hl-body"><div class="hl-name">Seward Park Library</div><div class="hl-sub">Essentials</div></div></div>
+        <div class="hl orange"><div class="hl-min">7<span class="unit">MIN</span></div><div class="hl-body"><div class="hl-name">Economy Candy</div><div class="hl-sub">Shops · old-school</div></div></div>
+      </div>
+
+      <div class="legend">
+        <span><span class="dot" style="background:#E24B4A"></span>Food</span>
+        <span><span class="dot" style="background:#EF9F27"></span>Shops</span>
+        <span><span class="dot" style="background:#F0C040"></span>Going out</span>
+        <span><span class="dot" style="background:#639922"></span>Parks</span>
+        <span><span class="dot" style="background:#378ADD"></span>Essentials</span>
+        <span><span class="dot" style="background:#7F77DD"></span>Culture</span>
+      </div>
+
+      <a href="map.html" class="cta-link">Open the full map →</a>
+    </div>
+
+  </div>
+
+  <!-- 10 min subway section -->
+  <div class="section-head">
+    <div class="section-bar purple"></div>
+    <h2>10 minutes by subway</h2>
+  </div>
+
+  <div class="reach-grid">
+    <a href="transport.html" class="reach-card purple">
+      <div class="reach-head"><span class="line-bullet line-F">F</span><span class="reach-meta">FROM 2ND AVE · 8 MIN</span></div>
+      <div class="reach-name">Union Square</div>
+      <div class="reach-body">Farmers market Wed/Fri/Sat. Strand Books, Trader Joe's. Transfer hub.</div>
+    </a>
+    <a href="transport.html" class="reach-card green">
+      <div class="reach-head"><span class="line-bullet line-J">J</span><span class="reach-meta">FROM BOWERY · 10 MIN</span></div>
+      <div class="reach-name">Williamsburg</div>
+      <div class="reach-body">Bedford Ave stop. Marlow & Sons, Baby's All Right, Smorgasburg Saturdays.</div>
+    </a>
+    <a href="transport.html" class="reach-card orange">
+      <div class="reach-head"><span class="line-bullet line-B">B</span><span class="reach-meta">FROM GRAND ST · 9 MIN</span></div>
+      <div class="reach-name">West Village</div>
+      <div class="reach-body">W 4th St. Comedy Cellar, Washington Square Park, late-night pizza.</div>
+    </a>
+    <a href="transport.html" class="reach-card blue">
+      <div class="reach-head"><span class="line-bullet line-6">6</span><span class="reach-meta">FROM SPRING · 15 MIN</span></div>
+      <div class="reach-name">Grand Central / LIRR</div>
+      <div class="reach-body">Grand Central Madison for home. Bleecker to 42nd St-GC.</div>
+    </a>
+    <a href="transport.html" class="reach-card pink">
+      <div class="reach-head"><span class="line-bullet line-F">F</span><span class="reach-meta">FROM 2ND AVE · 10 MIN</span></div>
+      <div class="reach-name">Penn Station</div>
+      <div class="reach-body">34th St-Herald Sq, walk one block west. LIRR, Amtrak.</div>
+    </a>
+    <a href="transport.html" class="reach-card red">
+      <div class="reach-head"><span class="line-bullet line-6">6</span><span class="reach-meta">FROM CANAL · 6 MIN</span></div>
+      <div class="reach-name">Brooklyn Bridge City Hall</div>
+      <div class="reach-body">Walk the bridge to DUMBO. Jane's Carousel, Time Out Market.</div>
+    </a>
+  </div>
+
+  <!-- Quick links -->
+  <div class="quick-head">GO DEEPER</div>
+  <div class="quick-grid">
+    <a href="roundup.html" class="quick orange"><span class="quick-icon">📰</span>WEEKLY ROUNDUP</a>
+    <a href="map.html" class="quick green"><span class="quick-icon">🗺️</span>MAP & LIST</a>
+    <a href="calendar.html" class="quick blue"><span class="quick-icon">📅</span>CALENDAR</a>
+    <a href="transport.html" class="quick purple"><span class="quick-icon">🚇</span>TRANSPORT</a>
+    <a href="roll.html" class="quick pink"><span class="quick-icon">🎲</span>ROLL</a>
+    <a href="essentials.html" class="quick red"><span class="quick-icon">🚑</span>ESSENTIALS</a>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-gradient"></div>
+    Made with care for Paul & Tina · 8 Rivington St · Updated every Sunday
+  </footer>
+
+</div>
+
+<script>
+  // Date in the masthead
+  const d = new Date();
+  const opts = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+  document.getElementById('today-date').textContent = d.toLocaleDateString('en-US', opts);
+</script>
+
+</body>
+</html>
