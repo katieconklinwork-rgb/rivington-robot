@@ -30,7 +30,13 @@ jobs:
           python-version: '3.12'
       - run: pip install pyarrow
       - name: Refresh places, events and roundup
+        if: github.event_name != 'push'
         run: SUMMARY=/tmp/summary.md bash tools/refresh/run.sh
+      - name: Probe event sources (setup test only)
+        if: github.event_name == 'push'
+        run: |
+          echo "https://www.nycgovparks.org/events https://www.boweryballroom.com/ https://www.mercuryloungenyc.com/ https://rockwoodmusichall.com/ https://www.tenement.org/ https://donyc.com/venues/bowery-ballroom https://www.theskint.com/feed/ https://www.newmuseum.org/ https://metrograph.com/" | python3 tools/refresh/probe_events.py
+          python3 tools/refresh/events.py /tmp/events.json
       - name: Open the pull request
         if: github.event_name != 'push'
         env:
@@ -48,6 +54,3 @@ jobs:
           gh pr create --base main --head "$branch" \
             --title "Weekly refresh: $(TZ=America/New_York date '+%b %-d')" \
             --body-file /tmp/summary.md
-      - name: Test run summary
-        if: github.event_name == 'push'
-        run: git diff --stat -- data; cat /tmp/summary.md

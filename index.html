@@ -103,25 +103,8 @@
       <div class="section-bar blue"></div>
       <h2>This week in your neighborhood</h2>
     </div>
-    <div class="event-list">
-      <div class="event">
-        <div class="event-date"><div class="day">21</div><span class="mon">SAT</span></div>
-        <div class="event-body"><div class="event-name">Smorgasburg at Esplanade</div><div class="event-meta">11am-6pm · 2nd Ave F to Williamsburg · outdoors</div></div>
-      </div>
-      <div class="event">
-        <div class="event-date"><div class="day">21</div><span class="mon">SAT</span></div>
-        <div class="event-body"><div class="event-name">Alex G at Mercury Lounge</div><div class="event-meta">8pm · 217 E Houston · 4 min from your door</div></div>
-      </div>
-      <div class="event">
-        <div class="event-date"><div class="day">23</div><span class="mon">MON</span></div>
-        <div class="event-body"><div class="event-name">New Museum late hours</div><div class="event-meta">5pm-9pm · free after 7pm · 4 min walk</div></div>
-      </div>
-      <div class="event">
-        <div class="event-date"><div class="day">25</div><span class="mon">WED</span></div>
-        <div class="event-body"><div class="event-name">Union Square Farmers Market</div><div class="event-meta">All day · F train 8 min · produce, bread, flowers</div></div>
-      </div>
-    </div>
-    <p style="font-size: 12px; color: var(--ink-3); margin-top: 16px;">Events being wired up from live sources — full calendar coming soon.</p>
+    <div class="event-list" id="event-list"><p class="event-empty">Loading this week's events…</p></div>
+    <p id="event-note" style="font-size: 12px; color: var(--ink-3); margin-top: 16px;"><a href="calendar.html">See the full calendar</a></p>
   </section>
 
   <!-- ================ ROLL THE DICE ================ -->
@@ -188,7 +171,9 @@
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="js/robot.js"></script>
+<script src="js/events.js"></script>
 <script>
+RobotEvents.initList({ listId: 'event-list', limit: 6 });
 Robot.initMap({ mapId: 'map', chipsId: 'map-filters', countId: 'ring-count' });
 Robot.initDice({ btnId: 'roll-btn', vibesId: 'vibes', hintId: 'roll-hint', nameId: 'rr-name', metaId: 'rr-meta', resultId: 'roll-result' });
 </script>

@@ -31,7 +31,8 @@
     <div class="stub-bar" style="background:#378ADD"></div>
     <h1>Social Calendar</h1>
     <p>Every event within walking distance — live music, gallery openings, farmers markets, pop-ups, street fairs. Each one has an "Add to calendar" button so it drops straight into Google or Apple calendar.</p>
-    <p style="font-size:12px;color:#8a8578;">Coming soon · sources being scouted this weekend</p>
+    <p style="font-size:12px;color:#8a8578;">Updated every Sunday from local venues and NYC Parks.</p>
+    <div id="cal-list"><p class="event-empty">Loading events…</p></div>
   </div>
 
   <footer class="footer">
@@ -40,5 +41,7 @@
   </footer>
 
 </div>
+<script src="js/events.js"></script>
+<script>RobotEvents.initCalendar({ listId: 'cal-list' });</script>
 </body>
 </html>
