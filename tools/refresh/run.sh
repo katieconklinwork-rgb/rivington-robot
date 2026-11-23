@@ -12,9 +12,17 @@ if python3 tools/refresh/overture.py "$W/raw.json" \
    && python3 tools/refresh/merge.py "$W/raw.json" "$W/site.json" \
    && python3 tools/build_site_data.py "$W/site.json" "$W/places.json"; then
   n=$(python3 -c "import json,sys;s=json.load(open(sys.argv[1]));print(len(s['places']))" "$W/places.json")
-  if [ "$n" -gt 5000 ]; then
+  rel=$(python3 -c "import json,sys;print(json.load(open(sys.argv[1]))['release'])" "$W/site.json")
+  if python3 - "$W/old_places.json" "$rel" <<'PY'
+import json, sys
+o = json.load(open(sys.argv[1]))
+sys.exit(0 if o.get('release') == sys.argv[2] or ('release ' + sys.argv[2]) in o.get('sources', '') else 1)
+PY
+  then
+    places_note="Places: unchanged (Overture hasn't put out a new release since $rel)."
+  elif [ "$n" -gt 5000 ]; then
     cp "$W/places.json" data/places.json
-    places_note="Places: $n in and around the ring, from Overture release $(python3 -c "import json,sys;print(json.load(open(sys.argv[1]))['release'])" "$W/site.json")."
+    places_note="Places: $n in and around the ring, from Overture release $rel."
   else
     places_note="Places: unchanged (the new pull only had $n places, which looks broken, so last week's stay)."
   fi

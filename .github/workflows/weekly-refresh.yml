@@ -35,7 +35,7 @@ jobs:
       - name: Probe event sources (setup test only)
         if: github.event_name == 'push'
         run: |
-          echo "https://www.nycgovparks.org/events https://www.boweryballroom.com/ https://www.mercuryloungenyc.com/ https://rockwoodmusichall.com/ https://www.tenement.org/ https://donyc.com/venues/bowery-ballroom https://www.theskint.com/feed/ https://www.newmuseum.org/ https://metrograph.com/" | python3 tools/refresh/probe_events.py
+          echo "https://mercuryeastpresents.com/wp-json/tribe/events/v1/events?per_page=3 https://mercuryeastpresents.com/wp-json/wp/v2/tm-event?per_page=2 https://mercuryeastpresents.com/tm-event/chemical-x/ https://pianosnyc.com/rss https://donyc.com/events/2026/11/24/ghostwoman-tickets https://donyc.com/venues/mercury-lounge https://donyc.com/venues/pianos https://donyc.com/venues/arlenes-grocery https://donyc.com/venues/rockwood-music-hall https://donyc.com/venues/new-museum https://donyc.com/venues/metrograph https://donyc.com/venues/tenement-museum https://metrograph.com/wp-json/wp/v2/types" | python3 tools/refresh/probe_events.py
           python3 tools/refresh/events.py /tmp/events.json
       - name: Open the pull request
         if: github.event_name != 'push'
