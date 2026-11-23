@@ -1,0 +1,211 @@
+[
+ {
+  "name": "Embriago Coffee",
+  "cat": "food",
+  "lat": 40.72141,
+  "lng": -73.99285,
+  "vibes": [
+   "cozy",
+   "wifi",
+   "quiet"
+  ]
+ },
+ {
+  "name": "Katz's Deli",
+  "cat": "food",
+  "lat": 40.7225,
+  "lng": -73.9873,
+  "vibes": [
+   "classic",
+   "lively",
+   "cheap"
+  ]
+ },
+ {
+  "name": "Ms. Takko",
+  "cat": "food",
+  "lat": 40.7206,
+  "lng": -73.991,
+  "vibes": [
+   "hidden gem",
+   "cheap"
+  ]
+ },
+ {
+  "name": "Dirty French",
+  "cat": "food",
+  "lat": 40.7218,
+  "lng": -73.98747,
+  "vibes": [
+   "date night",
+   "lively"
+  ]
+ },
+ {
+  "name": "Dimes",
+  "cat": "food",
+  "lat": 40.71451,
+  "lng": -73.99097,
+  "vibes": [
+   "cozy",
+   "outdoors"
+  ]
+ },
+ {
+  "name": "Russ & Daughters",
+  "cat": "food",
+  "lat": 40.7225,
+  "lng": -73.9881,
+  "vibes": [
+   "classic",
+   "hidden gem"
+  ]
+ },
+ {
+  "name": "Economy Candy",
+  "cat": "shops",
+  "lat": 40.71847,
+  "lng": -73.98889,
+  "vibes": [
+   "hidden gem",
+   "cheap"
+  ]
+ },
+ {
+  "name": "Vale NYC",
+  "cat": "shops",
+  "lat": 40.72158,
+  "lng": -73.99273,
+  "vibes": [
+   "trendy"
+  ]
+ },
+ {
+  "name": "Economy Hardware",
+  "cat": "shops",
+  "lat": 40.72066,
+  "lng": -73.99136,
+  "vibes": [
+   "practical"
+  ]
+ },
+ {
+  "name": "Mercury Lounge",
+  "cat": "going",
+  "lat": 40.7216,
+  "lng": -73.9873,
+  "vibes": [
+   "lively",
+   "late night"
+  ]
+ },
+ {
+  "name": "Ms. Alice",
+  "cat": "going",
+  "lat": 40.72032,
+  "lng": -73.98946,
+  "vibes": [
+   "date night",
+   "trendy"
+  ]
+ },
+ {
+  "name": "169 Bar",
+  "cat": "going",
+  "lat": 40.71407,
+  "lng": -73.98981,
+  "vibes": [
+   "late night",
+   "cheap",
+   "dive"
+  ]
+ },
+ {
+  "name": "Sara D. Roosevelt Park",
+  "cat": "parks",
+  "lat": 40.7203,
+  "lng": -73.9938,
+  "vibes": [
+   "outdoors",
+   "lively"
+  ]
+ },
+ {
+  "name": "Seward Park",
+  "cat": "parks",
+  "lat": 40.71418,
+  "lng": -73.98852,
+  "vibes": [
+   "outdoors",
+   "quiet"
+  ]
+ },
+ {
+  "name": "M'Finda Kalunga Garden",
+  "cat": "parks",
+  "lat": 40.72088,
+  "lng": -73.99302,
+  "vibes": [
+   "quiet",
+   "hidden gem",
+   "outdoors"
+  ]
+ },
+ {
+  "name": "Whole Foods Bowery",
+  "cat": "essentials",
+  "lat": 40.72525,
+  "lng": -73.99221,
+  "vibes": [
+   "grocery"
+  ]
+ },
+ {
+  "name": "Seward Park Library",
+  "cat": "essentials",
+  "lat": 40.71309,
+  "lng": -73.98807,
+  "vibes": [
+   "quiet",
+   "wifi"
+  ]
+ },
+ {
+  "name": "CVS Delancey & Essex",
+  "cat": "essentials",
+  "lat": 40.71824,
+  "lng": -73.98816,
+  "vibes": [
+   "late night"
+  ]
+ },
+ {
+  "name": "New Museum",
+  "cat": "culture",
+  "lat": 40.72249,
+  "lng": -73.99322,
+  "vibes": [
+   "date night",
+   "quiet"
+  ]
+ },
+ {
+  "name": "Tenement Museum",
+  "cat": "culture",
+  "lat": 40.71849,
+  "lng": -73.99027,
+  "vibes": [
+   "quiet"
+  ]
+ },
+ {
+  "name": "Metrograph",
+  "cat": "culture",
+  "lat": 40.71458,
+  "lng": -73.99159,
+  "vibes": [
+   "date night",
+   "cozy"
+  ]
+ }
+]

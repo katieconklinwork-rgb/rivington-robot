@@ -27,12 +27,38 @@
     </div>
   </nav>
 
-  <div class="stub">
-    <div class="stub-bar" style="background:#D4537E"></div>
-    <h1>Roll the Dice</h1>
-    <p>Can't decide? Pick a vibe (cozy, cheap, date night, late night, hidden gem…), hit the button, and the robot randomly picks one place for you from everything within a 10-minute walk.</p>
-    <p style="font-size:12px;color:#8a8578;">Coming soon · wiring up next week</p>
-  </div>
+  <section id="roll">
+    <div class="roll-box">
+      <div class="roll-label">ROLL THE DICE</div>
+      <div class="roll-title">Let the robot pick.</div>
+      <div class="roll-sub">A random pick from anywhere within a 10-minute walk from your door.</div>
+
+      <div class="roll-label-section">NARROW BY VIBE</div>
+      <div class="vibes" id="vibes">
+        <span class="vibe on" data-vibe="cozy">cozy</span>
+        <span class="vibe" data-vibe="cheap">cheap</span>
+        <span class="vibe" data-vibe="date night">date night</span>
+        <span class="vibe" data-vibe="outdoors">outdoors</span>
+        <span class="vibe" data-vibe="hidden gem">hidden gem</span>
+        <span class="vibe" data-vibe="late night">late night</span>
+        <span class="vibe" data-vibe="lively">lively</span>
+        <span class="vibe" data-vibe="quiet">quiet</span>
+      </div>
+
+      <div class="roll-btn" id="roll-btn">
+        <span>🎲</span>
+        <span>Roll me something</span>
+      </div>
+
+      <div class="roll-result" id="roll-result">
+        <div class="roll-result-label">THE ROBOT SAYS</div>
+        <div class="roll-result-name" id="rr-name"></div>
+        <div class="roll-result-meta" id="rr-meta"></div>
+      </div>
+
+      <div class="roll-hint" id="roll-hint">Pulling from spots inside your ring</div>
+    </div>
+  </section>
 
   <footer class="footer">
     <div class="footer-gradient"></div>
@@ -40,5 +66,9 @@
   </footer>
 
 </div>
+<script src="js/robot.js"></script>
+<script>
+Robot.initDice({ btnId: 'roll-btn', vibesId: 'vibes', hintId: 'roll-hint', nameId: 'rr-name', metaId: 'rr-meta', resultId: 'roll-result' });
+</script>
 </body>
 </html>
