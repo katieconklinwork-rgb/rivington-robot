@@ -36,9 +36,10 @@ jobs:
         if: github.event_name == 'push'
         run: |
           printf '%s\n' \
-            'https://donyc.com/events/2026/11/24/ghostwoman-tickets "Event" startDate og:title datetime= ds-event-time' \
-            'https://donyc.com/venues/mercury-lounge ds-listing ghostwoman|del-coda' \
-            'https://www.boweryballroom.com/events tm-event/ tribe ticketmaster.com' \
+            'https://donyc.com/events/today type:"event" venue:\{ latitude page=2' \
+            'https://donyc.com/events/2026/11/27 type:"event" tz_adjusted_begin_time' \
+            'https://donyc.com/events/today?page=2 type:"event"' \
+            'https://donyc.com/neighborhoods/lower-east-side type:"event" ' \
             | python3 tools/refresh/probe_ctx.py
           python3 tools/refresh/events.py /tmp/events.json
       - name: Open the pull request

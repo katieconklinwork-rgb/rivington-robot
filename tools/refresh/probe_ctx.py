@@ -11,5 +11,5 @@ for line in sys.stdin.read().strip().split('\n'):
     for p in pats:
         ms = list(re.finditer(p, t))
         print('-- PAT', p, len(ms))
-        for m in ms[:3]:
-            print('   >>', re.sub(r'\s+', ' ', t[max(0, m.start() - 250): m.end() + 450]))
+        for m in ms[:2]:
+            print('   >>', re.sub(r'\s+', ' ', t[max(0, m.start() - 100): m.end() + 1400]))
