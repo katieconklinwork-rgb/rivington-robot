@@ -35,7 +35,11 @@ jobs:
       - name: Probe event sources (setup test only)
         if: github.event_name == 'push'
         run: |
-          echo "https://mercuryeastpresents.com/wp-json/tribe/events/v1/events?per_page=3 https://mercuryeastpresents.com/wp-json/wp/v2/tm-event?per_page=2 https://mercuryeastpresents.com/tm-event/chemical-x/ https://pianosnyc.com/rss https://donyc.com/events/2026/11/24/ghostwoman-tickets https://donyc.com/venues/mercury-lounge https://donyc.com/venues/pianos https://donyc.com/venues/arlenes-grocery https://donyc.com/venues/rockwood-music-hall https://donyc.com/venues/new-museum https://donyc.com/venues/metrograph https://donyc.com/venues/tenement-museum https://metrograph.com/wp-json/wp/v2/types" | python3 tools/refresh/probe_events.py
+          printf '%s\n' \
+            'https://donyc.com/events/2026/11/24/ghostwoman-tickets "Event" startDate og:title datetime= ds-event-time' \
+            'https://donyc.com/venues/mercury-lounge ds-listing ghostwoman|del-coda' \
+            'https://www.boweryballroom.com/events tm-event/ tribe ticketmaster.com' \
+            | python3 tools/refresh/probe_ctx.py
           python3 tools/refresh/events.py /tmp/events.json
       - name: Open the pull request
         if: github.event_name != 'push'
