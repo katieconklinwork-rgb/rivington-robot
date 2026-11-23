@@ -29,21 +29,26 @@
     <div class="section-head">
       <div class="section-bar green"></div>
       <h2>Full map &amp; list</h2>
-      <span class="sub">Every place in your 10-minute ring</span>
+      <span class="sub" id="map-count">loading places…</span>
     </div>
 
-    <div class="map-filters" id="map-filters">
-      <span class="filter-chip active c-red" data-cat="food">● Food</span>
-      <span class="filter-chip active c-orange" data-cat="shops">● Shops</span>
-      <span class="filter-chip active c-yellow" data-cat="going">● Going out</span>
-      <span class="filter-chip active c-green" data-cat="parks">● Parks</span>
-      <span class="filter-chip active c-blue" data-cat="essentials">● Essentials</span>
-      <span class="filter-chip active c-purple" data-cat="culture">● Culture</span>
-    </div>
+    <div class="map-filters" id="map-filters"></div>
+    <label class="show-all"><input type="checkbox" id="show-all"> Show everything, including less certain listings</label>
 
     <div id="map-full"></div>
 
-    <p style="font-size: 12px; color: var(--ink-3); margin-top: 16px;">Filter to narrow the pins. Click any pin for details. Full filterable list below coming soon — the real dataset lands this week.</p>
+    <p style="font-size: 12px; color: var(--ink-3); margin-top: 16px;">Tap a chip to hide or show a kind of place. Tap any dot for details and walking directions. Big dots are robot picks.</p>
+  </section>
+
+  <section id="list">
+    <div class="section-head">
+      <div class="section-bar green"></div>
+      <h2>The list</h2>
+      <span class="sub" id="list-count"></span>
+    </div>
+    <input type="search" id="place-search" class="place-search" placeholder="Search: tacos, yoga, laundromat, vintage…" autocomplete="off">
+    <div id="place-list" class="place-list"></div>
+    <button id="place-more" class="place-more" style="display:none">Show more</button>
   </section>
 
   <footer class="footer">
@@ -54,58 +59,11 @@
 </div>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="js/robot.js"></script>
 <script>
-const CENTER = [40.72203, -73.99198];
-const PLACES = [
-  { name: "Embriago Coffee", cat: "food", color: "#E24B4A", lat: 40.72141, lng: -73.99285, min: 2, vibes: ["cozy","wifi","quiet"] },
-  { name: "Katz's Deli", cat: "food", color: "#E24B4A", lat: 40.72250, lng: -73.98730, min: 5, vibes: ["classic","lively","cheap"] },
-  { name: "Ms. Takko", cat: "food", color: "#E24B4A", lat: 40.72060, lng: -73.99100, min: 2, vibes: ["hidden gem","cheap"] },
-  { name: "Dirty French", cat: "food", color: "#E24B4A", lat: 40.72180, lng: -73.98747, min: 6, vibes: ["date night","lively"] },
-  { name: "Dimes", cat: "food", color: "#E24B4A", lat: 40.71451, lng: -73.99097, min: 5, vibes: ["cozy","outdoors"] },
-  { name: "Russ & Daughters", cat: "food", color: "#E24B4A", lat: 40.72250, lng: -73.98810, min: 6, vibes: ["classic","hidden gem"] },
-  { name: "Economy Candy", cat: "shops", color: "#EF9F27", lat: 40.71847, lng: -73.98889, min: 7, vibes: ["hidden gem","cheap"] },
-  { name: "Vale NYC", cat: "shops", color: "#EF9F27", lat: 40.72158, lng: -73.99273, min: 1, vibes: ["trendy"] },
-  { name: "Economy Hardware", cat: "shops", color: "#EF9F27", lat: 40.72066, lng: -73.99136, min: 4, vibes: ["practical"] },
-  { name: "Mercury Lounge", cat: "going", color: "#F0C040", lat: 40.72160, lng: -73.98730, min: 4, vibes: ["lively","late night"] },
-  { name: "Ms. Alice", cat: "going", color: "#F0C040", lat: 40.72032, lng: -73.98946, min: 3, vibes: ["date night","trendy"] },
-  { name: "169 Bar", cat: "going", color: "#F0C040", lat: 40.71407, lng: -73.98981, min: 8, vibes: ["late night","cheap","dive"] },
-  { name: "Sara D. Roosevelt Park", cat: "parks", color: "#639922", lat: 40.72030, lng: -73.99380, min: 3, vibes: ["outdoors","lively"] },
-  { name: "Seward Park", cat: "parks", color: "#639922", lat: 40.71418, lng: -73.98852, min: 8, vibes: ["outdoors","quiet"] },
-  { name: "M'Finda Kalunga Garden", cat: "parks", color: "#639922", lat: 40.72088, lng: -73.99302, min: 4, vibes: ["quiet","hidden gem","outdoors"] },
-  { name: "Whole Foods Bowery", cat: "essentials", color: "#378ADD", lat: 40.72525, lng: -73.99221, min: 3, vibes: ["grocery"] },
-  { name: "Seward Park Library", cat: "essentials", color: "#378ADD", lat: 40.71309, lng: -73.98807, min: 6, vibes: ["quiet","wifi"] },
-  { name: "CVS Delancey & Essex", cat: "essentials", color: "#378ADD", lat: 40.71824, lng: -73.98816, min: 6, vibes: ["late night"] },
-  { name: "New Museum", cat: "culture", color: "#7F77DD", lat: 40.72249, lng: -73.99322, min: 4, vibes: ["date night","quiet"] },
-  { name: "Tenement Museum", cat: "culture", color: "#7F77DD", lat: 40.71849, lng: -73.99027, min: 5, vibes: ["quiet"] },
-  { name: "Metrograph", cat: "culture", color: "#7F77DD", lat: 40.71458, lng: -73.99159, min: 7, vibes: ["date night","cozy"] },
-];
-
-const map = L.map('map-full').setView(CENTER, 15);
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '© OpenStreetMap', maxZoom: 19 }).addTo(map);
-
-L.circleMarker(CENTER, { radius: 10, color: '#E24B4A', weight: 3, fillColor: '#2C2A24', fillOpacity: 1 }).addTo(map).bindPopup('<div class="pop-name">8 Rivington St</div><div class="pop-sub">Home base</div>');
-L.circle(CENTER, { radius: 805, color: '#E24B4A', weight: 2, fill: false, dashArray: '4 6' }).addTo(map);
-
-const markersByCat = {};
-PLACES.forEach(p => {
-  const m = L.circleMarker([p.lat, p.lng], { radius: 8, color: 'white', weight: 2, fillColor: p.color, fillOpacity: 1 });
-  m.bindPopup(`<div class="pop-name">${p.name}</div><div class="pop-sub">${p.min} min from your door · ${p.vibes.join(', ')}</div>`);
-  m.addTo(map);
-  if (!markersByCat[p.cat]) markersByCat[p.cat] = [];
-  markersByCat[p.cat].push(m);
-});
-
-document.querySelectorAll('.filter-chip').forEach(c => {
-  c.addEventListener('click', () => {
-    c.classList.toggle('active');
-    const cat = c.dataset.cat;
-    const visible = c.classList.contains('active');
-    (markersByCat[cat] || []).forEach(m => {
-      if (visible) m.addTo(map);
-      else map.removeLayer(m);
-    });
-  });
-});
+const list = Robot.initList({ listId: 'place-list', searchId: 'place-search', moreId: 'place-more', countId: 'list-count' });
+Robot.initMap({ mapId: 'map-full', chipsId: 'map-filters', countId: 'map-count', showAllId: 'show-all', scrollZoom: true,
+  onReady: (d, on, showAll) => list.ready(d, on, showAll), onFilter: (on, showAll) => list.filter(on, showAll) });
 </script>
 
 </body>
