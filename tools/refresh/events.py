@@ -17,19 +17,17 @@ NOW = dt.datetime.now(NY)
 HORIZON = NOW + dt.timedelta(days=21)
 UA = 'Mozilla/5.0 (compatible; RivingtonRobot/1.0; weekly neighborhood calendar)'
 
-# Venues and listings inside or next to the ring. 'near' is the walk from the apartment.
+# Neighborhoods counted as "near" on DoNYC (its own district names).
+NEAR_DISTRICTS = ('lower east side', 'east village', 'chinatown', 'nolita', 'little italy', 'soho', 'noho', 'bowery', 'two bridges')
 SOURCES = [
-    dict(name='Bowery Ballroom', url='https://www.boweryballroom.com/events', kind='jsonld', near='2 min walk'),
-    dict(name='Mercury Lounge', url='https://www.mercuryloungenyc.com/events', kind='jsonld', near='4 min walk'),
-    dict(name='Rockwood Music Hall', url='https://www.rockwoodmusichall.com/', kind='jsonld', near='6 min walk'),
-    dict(name="Arlene's Grocery", url='https://www.arlenesgrocery.net/', kind='jsonld', near='6 min walk'),
-    dict(name='Pianos', url='https://www.pianosnyc.com/', kind='jsonld', near='6 min walk'),
-    dict(name='Metrograph', url='https://metrograph.com/calendar/', kind='jsonld', near='10 min walk'),
-    dict(name='New Museum', url='https://www.newmuseum.org/calendar', kind='jsonld', near='4 min walk'),
-    dict(name='Tenement Museum', url='https://www.tenement.org/events/', kind='jsonld', near='6 min walk'),
-    dict(name='DoNYC', url='https://donyc.com/events/today', kind='jsonld'),
-    dict(name='NYC Parks', url='https://www.nycgovparks.org/xml/events_300_rss.json', kind='nycparks'),
+    dict(name='Bowery Ballroom', url='https://www.boweryballroom.com/events', kind='mercuryeast', venue='Bowery Ballroom',
+         address='6 Delancey St', near='2 min walk'),
+    dict(name='Mercury Lounge', url='https://www.mercuryloungenyc.com/events', kind='mercuryeast', venue='Mercury Lounge',
+         address='217 E Houston St', near='4 min walk'),
+    dict(name='DoNYC', url='https://donyc.com/events', kind='donyc'),
 ]
+DONYC_DAYS = 14   # days ahead to read
+DONYC_PAGES = 15  # pages per day at most (20 events a page, city-wide)
 
 
 def get(url):
@@ -72,69 +70,75 @@ def walk(o):
             yield from walk(v)
 
 
-def from_jsonld(src, page):
-    out = []
-    for block in re.findall(r'<script[^>]+application/ld\+json[^>]*>(.*?)</script>', page, re.S | re.I):
+MONTHS = {m: i for i, m in enumerate(['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september',
+                                      'october', 'november', 'december'], 1)}
+
+
+def from_mercuryeast(src, page):
+    """Bowery Ballroom and Mercury Lounge list shows as 'Name | 24 November 7:00 PM'."""
+    out, seen = [], set()
+    for url, title in re.findall(r'<div class="tw-name">\s*<a href="([^"]+)"[^>]*title="Event Name - ([^"]+)"', page):
+        m = re.match(r'(.+?) \| (\d{1,2}) ([A-Za-z]+) (\d{1,2}):(\d{2}) ([AP]M)', html.unescape(title))
+        if not m or m.group(3).lower() not in MONTHS:
+            continue
+        mon, day = MONTHS[m.group(3).lower()], int(m.group(2))
+        year = NOW.year + (1 if mon < NOW.month - 1 else 0)
+        hour = int(m.group(4)) % 12 + (12 if m.group(6) == 'PM' else 0)
         try:
-            data = json.loads(block.strip())
+            start = dt.datetime(year, mon, day, hour, int(m.group(5)), tzinfo=NY)
         except ValueError:
             continue
-        for o in walk(data):
-            t = o.get('@type')
-            t = ' '.join(t) if isinstance(t, list) else str(t or '')
-            if 'Event' not in t or not o.get('startDate'):
-                continue
-            loc = o.get('location') or {}
-            loc = loc[0] if isinstance(loc, list) and loc else loc
-            loc = loc if isinstance(loc, dict) else {'name': str(loc)}
-            addr = loc.get('address') or ''
-            if isinstance(addr, dict):
-                addr = addr.get('streetAddress') or ''
-            geo = loc.get('geo') or {}
-            ev = dict(name=clean(o.get('name')), start=when(o.get('startDate')), end=when(o.get('endDate')),
-                      venue=clean(loc.get('name')) or src['name'], address=clean(addr),
-                      url=o.get('url') if str(o.get('url', '')).startswith('http') else src['url'], source=src['name'])
-            try:
-                ev['lat'], ev['lng'] = float(geo['latitude']), float(geo['longitude'])
-            except (KeyError, TypeError, ValueError):
-                pass
-            if src.get('near'):
-                ev['near'] = src['near']
-            out.append(ev)
-    return out
-
-
-def from_nycparks(src, page):
-    data = json.loads(page)
-    items = data if isinstance(data, list) else data.get('items') or data.get('events') or []
-    out = []
-    for o in items:
-        if not isinstance(o, dict):
+        if (url, start) in seen:
             continue
-        day = o.get('startdate') or o.get('start_date') or o.get('date')
-        tm = o.get('starttime') or o.get('start_time') or ''
-        start = when(day)
-        if start and tm:
-            m = re.match(r'(\d{1,2}):(\d{2})\s*([ap])', tm.strip(), re.I)
-            if m:
-                h = int(m.group(1)) % 12 + (12 if m.group(3).lower() == 'p' else 0)
-                start = start.replace(hour=h, minute=int(m.group(2)))
-        ev = dict(name=clean(o.get('title')), start=start, end=None, venue=clean(o.get('location') or o.get('parknames')),
-                  address='', url=o.get('link') if str(o.get('link', '')).startswith('http') else src['url'], source=src['name'])
-        c = o.get('coordinates') or ''
-        m = re.findall(r'-?\d+\.\d+', str(c))
-        if len(m) >= 2:
-            a, b = float(m[0]), float(m[1])
-            ev['lat'], ev['lng'] = (a, b) if a > 0 else (b, a)
-        out.append(ev)
+        seen.add((url, start))
+        out.append(dict(name=clean(m.group(1)), start=start, end=None, venue=src['venue'], address=src['address'],
+                        url=url if url.startswith('https://') else src['url'], source=src['name'], near=src['near']))
     return out
 
 
-PARSERS = {'jsonld': from_jsonld, 'nycparks': from_nycparks}
+DONYC_EVENT = re.compile(r'title:"((?:[^"\\]|\\.)*)",permalink:"(/events/[^"]+)".*?'
+                         r'tz_adjusted_begin_time:"([^"]+)",tz_adjusted_end_time:(null|"[^"]*"),event_type:"([a-z_]+)".*?'
+                         r'category:(null|"[^"]*").*?venue:\{id:\d+,title:"((?:[^"\\]|\\.)*)",.*?district_name:(null|"[^"]*"),'
+                         r'.*?area_name:(null|"[^"]*")', re.S)
+
+
+def from_donyc(src, _page):
+    """DoNYC's day pages carry their listings as data; keep the ones in nearby neighborhoods."""
+    import time
+    out = []
+    for d in range(DONYC_DAYS):
+        day = (NOW + dt.timedelta(days=d)).date()
+        for pg in range(1, DONYC_PAGES + 1):
+            url = f'https://donyc.com/events/{day.year}/{day.month}/{day.day}' + (f'?page={pg}' if pg > 1 else '')
+            try:
+                page = get(url)
+            except Exception:
+                break
+            time.sleep(0.4)
+            chunks = re.split(r'\{id:\d+,type:"event",', page)[1:]  # one chunk per listing
+            found = [m.groups() for m in (DONYC_EVENT.search(c) for c in chunks) if m]
+            for title, link, begin, end, kind, cat, venue, district, area in found:
+                where = ' '.join(x.strip('"') for x in (district, area) if x != 'null').lower()
+                if not any(n in where for n in NEAR_DISTRICTS):
+                    continue
+                start = when(begin)
+                if kind != 'single_day' and start:  # a run of shows: list it on this day only
+                    continue
+                out.append(dict(name=clean(json.loads('"' + title + '"')), start=start,
+                                end=when(end.strip('"')) if end != 'null' else None,
+                                venue=clean(json.loads('"' + venue + '"')), address='', url='https://donyc.com' + link,
+                                source='DoNYC', near=district.strip('"') if district != 'null' else '',
+                                category=cat.strip('"') if cat != 'null' else ''))
+            if f'page={pg + 1}' not in page:
+                break
+    return out
+
+
+PARSERS = {'mercuryeast': from_mercuryeast, 'donyc': from_donyc}
 events, ok, failed = [], [], []
 for src in SOURCES:
     try:
-        got = PARSERS[src['kind']](src, get(src['url']))
+        got = PARSERS[src['kind']](src, '' if src['kind'] == 'donyc' else get(src['url']))
     except Exception as e:  # a site that is down or changed: skip it
         failed.append(src['name'])
         print('FAILED', src['name'], type(e).__name__, str(e)[:120])
@@ -150,8 +154,6 @@ for src in SOURCES:
             if d > 1.0:
                 continue
             ev.setdefault('near', f'{max(1, round(d * 1.25 / 3 * 60))} min walk')
-        elif not src.get('near'):
-            continue  # a city-wide listing with no location: can't tell if it's nearby
         keep.append(ev)
     print(src['name'], len(got), 'found,', len(keep), 'kept')
     (ok if got else failed).append(src['name'])
@@ -159,7 +161,7 @@ for src in SOURCES:
 
 seen, final = set(), []
 for ev in sorted(events, key=lambda e: e['start']):
-    k = (re.sub(r'[^a-z0-9]', '', ev['name'].lower())[:40], ev['start'].date())
+    k = (re.sub(r'[^a-z0-9]', '', ev['name'].lower())[:24], ev['start'].date())
     if k in seen:
         continue
     seen.add(k)

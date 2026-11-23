@@ -30,18 +30,7 @@ jobs:
           python-version: '3.12'
       - run: pip install pyarrow
       - name: Refresh places, events and roundup
-        if: github.event_name != 'push'
         run: SUMMARY=/tmp/summary.md bash tools/refresh/run.sh
-      - name: Probe event sources (setup test only)
-        if: github.event_name == 'push'
-        run: |
-          printf '%s\n' \
-            'https://donyc.com/events/today type:"event" venue:\{ latitude page=2' \
-            'https://donyc.com/events/2026/11/27 type:"event" tz_adjusted_begin_time' \
-            'https://donyc.com/events/today?page=2 type:"event"' \
-            'https://donyc.com/neighborhoods/lower-east-side type:"event" ' \
-            | python3 tools/refresh/probe_ctx.py
-          python3 tools/refresh/events.py /tmp/events.json
       - name: Open the pull request
         if: github.event_name != 'push'
         env:
@@ -59,3 +48,8 @@ jobs:
           gh pr create --base main --head "$branch" \
             --title "Weekly refresh: $(TZ=America/New_York date '+%b %-d')" \
             --body-file /tmp/summary.md
+      - name: Test run summary
+        if: github.event_name == 'push'
+        run: |
+          git diff --stat -- data
+          python3 -c "import json;[print(e['start'][:16], '|', e['name'][:50], '|', e['venue'], '|', e.get('near')) for e in json.load(open('data/events.json'))['events'][:40]]"
