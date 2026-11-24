@@ -37,17 +37,18 @@
 
     <div id="map-full"></div>
 
-    <p style="font-size: 12px; color: var(--ink-3); margin-top: 16px;">Tap a chip to hide or show a kind of place. Tap any dot for details and walking directions. Big dots are robot picks.</p>
+    <p style="font-size: 12px; color: var(--ink-3); margin-top: 16px;">Tap a chip to hide or show a kind of place, or tap the ▾ on a chip to drill into its sub-categories. Tap any dot for walking directions, reviews and live "how busy is it right now" from Google. Big dots are robot picks.</p>
   </section>
 
-  <section id="list">
+  <section id="list" class="list-focus">
     <div class="section-head">
       <div class="section-bar green"></div>
       <h2>The list</h2>
       <span class="sub" id="list-count"></span>
     </div>
-    <input type="search" id="place-search" class="place-search" placeholder="Search: tacos, yoga, laundromat, vintage…" autocomplete="off">
-    <div id="place-list" class="place-list"></div>
+    <p class="section-intro">Every spot inside your ring. Use the chips above to narrow it down, or search below.</p>
+    <input type="search" id="place-search" class="place-search place-search-lg" placeholder="Search: tacos, yoga, laundromat, vintage…" autocomplete="off">
+    <div id="place-list" class="place-list place-list-lg"></div>
     <button id="place-more" class="place-more" style="display:none">Show more</button>
   </section>
 

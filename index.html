@@ -23,15 +23,59 @@
       <a href="#subway">SUBWAY</a>
       <a href="#events">EVENTS</a>
       <a href="#roll">ROLL</a>
-      <a href="#essentials">ESSENTIALS</a>
       <a href="map.html">FULL MAP</a>
       <a href="roundup.html">ROUNDUP</a>
     </div>
   </nav>
 
+  <!-- ================ BRIEFING (weather + subway only) ================ -->
   <div class="briefing" id="briefing">
-    48° · trash out tonight · F, J, 6 running normally · sunset 4:33pm
+    <div class="b-grid">
+      <div class="b-card">
+        <div class="b-icon" id="b-wx-icon">🌡️</div>
+        <div class="b-body">
+          <div class="b-main"><span id="b-temp">—</span></div>
+          <div class="b-sub" id="b-feels">loading…</div>
+        </div>
+      </div>
+      <div class="b-card">
+        <div class="b-icon">🌇</div>
+        <div class="b-body">
+          <div class="b-main" id="b-sunset">—</div>
+          <div class="b-sub" id="b-sunset-sub">sunset</div>
+        </div>
+      </div>
+      <div class="b-card">
+        <div class="b-icon">🚇</div>
+        <div class="b-body">
+          <div class="b-main">F · J · 6 your lines</div>
+          <div class="b-sub"><a href="https://new.mta.info/" target="_blank" rel="noopener">check live status →</a></div>
+        </div>
+      </div>
+    </div>
   </div>
+
+  <!-- ================ AT THE APARTMENT ================ -->
+  <section id="home" class="home-sec">
+    <div class="section-head">
+      <div class="section-bar yellow"></div>
+      <h2>At the apartment</h2>
+      <span class="sub">8 Rivington St</span>
+    </div>
+    <div class="ap-grid">
+      <div class="ap-card">
+        <div class="ap-icon">🗑️</div>
+        <div class="ap-title">Trash &amp; recycling</div>
+        <div class="ap-main" id="ap-trash">—</div>
+        <div class="ap-sub" id="ap-trash-sub">Mon / Wed / Fri trash · Thu recycling · set out after 6pm the night before</div>
+      </div>
+      <div class="ap-card ap-stub">
+        <div class="ap-icon">➕</div>
+        <div class="ap-title">More to add</div>
+        <div class="ap-sub">Wi-Fi, laundry room hours, super's number, package room, building rules — drop them in and they'll live here.</div>
+      </div>
+    </div>
+  </section>
 
   <!-- ================ 10 MIN WALK ================ -->
   <section id="walk">
@@ -40,28 +84,21 @@
       <h2>Your 10-minute walking world</h2>
       <span class="sub" id="ring-count">loading places…</span>
     </div>
+    <p class="section-intro">Tap a chip to hide or show a kind of place, or tap the little ▾ on a chip to narrow it down (e.g. just coffee, no restaurants). Tap any dot on the map for directions, reviews and how busy it is right now — all pulled straight from Google.</p>
 
     <div class="map-filters" id="map-filters"></div>
 
     <div id="map"></div>
 
-    <div class="highlights">
-      <div class="hl red"><div class="hl-min">2<span class="unit">MIN</span></div><div class="hl-body"><div class="hl-name">Embriago Coffee</div><div class="hl-sub">Food · café</div></div></div>
-      <div class="hl green"><div class="hl-min">3<span class="unit">MIN</span></div><div class="hl-body"><div class="hl-name">Sara D. Roosevelt Park</div><div class="hl-sub">Parks</div></div></div>
-      <div class="hl purple"><div class="hl-min">4<span class="unit">MIN</span></div><div class="hl-body"><div class="hl-name">New Museum</div><div class="hl-sub">Culture</div></div></div>
-      <div class="hl red"><div class="hl-min">5<span class="unit">MIN</span></div><div class="hl-body"><div class="hl-name">Katz's Deli</div><div class="hl-sub">Food · classic</div></div></div>
-      <div class="hl blue"><div class="hl-min">6<span class="unit">MIN</span></div><div class="hl-body"><div class="hl-name">Seward Park Library</div><div class="hl-sub">Essentials</div></div></div>
-      <div class="hl orange"><div class="hl-min">7<span class="unit">MIN</span></div><div class="hl-body"><div class="hl-name">Economy Candy</div><div class="hl-sub">Shops · old-school</div></div></div>
-    </div>
-
-    <a href="map.html" class="cta-link">Open the full map &amp; list →</a>
+    <a href="map.html" class="cta-link cta-big">Open the full map &amp; list →</a>
   </section>
 
   <!-- ================ SUBWAY REACH ================ -->
   <section id="subway">
     <div class="section-head">
       <div class="section-bar purple"></div>
-      <h2>10 minutes by subway</h2>
+      <h2>A quick subway ride away</h2>
+      <span class="sub">10-ish minutes from your nearest station</span>
     </div>
     <div class="reach-grid">
       <div class="reach-card purple">
@@ -94,17 +131,48 @@
         <div class="reach-name">Brooklyn Bridge City Hall</div>
         <div class="reach-body">Walk the bridge to DUMBO. Jane's Carousel, Time Out Market.</div>
       </div>
+      <div class="reach-card red">
+        <div class="reach-head"><span class="line-bullet line-J">J</span><span class="reach-meta">FROM BOWERY · 2 MIN</span></div>
+        <div class="reach-name">Chinatown</div>
+        <div class="reach-body">Canal St. Dim sum, Mott Street bakeries, Nom Wah Tea Parlor.</div>
+      </div>
+      <div class="reach-card purple">
+        <div class="reach-head"><span class="line-bullet line-6">6</span><span class="reach-meta">FROM BLEECKER · 2 MIN</span></div>
+        <div class="reach-name">East Village / Astor Place</div>
+        <div class="reach-body">Cube statue, St. Mark's, Veselka pierogies, bar-hopping on Avenue A.</div>
+      </div>
+      <div class="reach-card orange">
+        <div class="reach-head"><span class="line-bullet line-6">6</span><span class="reach-meta">FROM BLEECKER · 4 MIN</span></div>
+        <div class="reach-name">Flatiron / Madison Sq</div>
+        <div class="reach-body">23rd St. Eataly, the park with the Shake Shack, the iron building itself.</div>
+      </div>
+      <div class="reach-card orange">
+        <div class="reach-head"><span class="line-bullet line-B">B</span><span class="reach-meta">FROM BROADWAY-LAFAYETTE · 6 MIN</span></div>
+        <div class="reach-name">SoHo / Prince St</div>
+        <div class="reach-body">Shopping blocks, Dominique Ansel, Housing Works bookstore and café.</div>
+      </div>
+      <div class="reach-card pink">
+        <div class="reach-head"><span class="line-bullet line-F">F</span><span class="reach-meta">FROM 2ND AVE · 14 MIN</span></div>
+        <div class="reach-name">Rockefeller Center</div>
+        <div class="reach-body">47-50 St. The tree and rink from Thanksgiving through the holidays.</div>
+      </div>
+      <div class="reach-card green">
+        <div class="reach-head"><span class="line-bullet line-J">J</span><span class="reach-meta">FROM BOWERY · 12 MIN</span></div>
+        <div class="reach-name">Downtown Brooklyn</div>
+        <div class="reach-body">Jay St-MetroTech. Walk into Fort Greene or over to BAM.</div>
+      </div>
     </div>
   </section>
 
-  <!-- ================ EVENTS ================ -->
+  <!-- ================ EVENTS (WEEK CALENDAR) ================ -->
   <section id="events">
     <div class="section-head">
       <div class="section-bar blue"></div>
       <h2>This week in your neighborhood</h2>
+      <a href="calendar.html" class="sub cal-link">full calendar →</a>
     </div>
-    <div class="event-list" id="event-list"><p class="event-empty">Loading this week's events…</p></div>
-    <p id="event-note" style="font-size: 12px; color: var(--ink-3); margin-top: 16px;"><a href="calendar.html">See the full calendar</a></p>
+    <p class="section-intro">The next seven days, grouped by day. Tap any event for tickets or info, or drop it straight into your calendar.</p>
+    <div class="week-cal" id="week-cal"><p class="event-empty">Loading this week's events…</p></div>
   </section>
 
   <!-- ================ ROLL THE DICE ================ -->
@@ -145,23 +213,6 @@
     </div>
   </section>
 
-  <!-- ================ ESSENTIALS ================ -->
-  <section id="essentials">
-    <div class="section-head">
-      <div class="section-bar orange"></div>
-      <h2>The essentials</h2>
-      <a href="essentials.html" class="sub" style="text-decoration: underline;">full page →</a>
-    </div>
-    <div class="essentials-grid">
-      <div class="ess"><div class="ess-icon">🚑</div><div class="ess-label">NEAREST OPEN ER</div><div class="ess-name">NewYork-Presbyterian Lower Manhattan</div><div class="ess-meta">83 Gold St · about 1 mi, take a cab · 24/7</div></div>
-      <div class="ess"><div class="ess-icon">🩺</div><div class="ess-label">URGENT CARE</div><div class="ess-name">HealthNeed Urgent Care</div><div class="ess-meta">384 Grand St · about 11 min walk · 9am-7pm daily</div></div>
-      <div class="ess"><div class="ess-icon">🌙</div><div class="ess-label">24-HOUR URGENT CARE</div><div class="ess-name">Mount Sinai Urgent Care</div><div class="ess-meta">310 E 14th St · about 1 mi</div></div>
-      <div class="ess"><div class="ess-icon">💊</div><div class="ess-label">LATE PHARMACY</div><div class="ess-name">CVS Astor Place</div><div class="ess-meta">51 Astor Pl · store open 24 hours, pharmacy counter has set hours</div></div>
-      <div class="ess"><div class="ess-icon">🏪</div><div class="ess-label">24-HOUR DELI</div><div class="ess-name">Delancey Gourmet Deli</div><div class="ess-meta">50 Delancey St · about 4 min walk</div></div>
-      <div class="ess"><div class="ess-icon">👮</div><div class="ess-label">POLICE PRECINCT</div><div class="ess-name">5th Precinct</div><div class="ess-meta">19 Elizabeth St · (212) 334-0711 · check if the 7th covers you</div></div>
-    </div>
-  </section>
-
   <footer class="footer">
     <div class="footer-gradient"></div>
     Made with care for Paul &amp; Tina · 8 Rivington St · Updated every Sunday
@@ -172,8 +223,11 @@
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="js/robot.js"></script>
 <script src="js/events.js"></script>
+<script src="js/briefing.js"></script>
 <script>
-RobotEvents.initList({ listId: 'event-list', limit: 6 });
+RobotBriefing.init();
+RobotBriefing.initApartment();
+RobotEvents.initWeek({ listId: 'week-cal', days: 7, perDay: 4 });
 Robot.initMap({ mapId: 'map', chipsId: 'map-filters', countId: 'ring-count' });
 Robot.initDice({ btnId: 'roll-btn', vibesId: 'vibes', hintId: 'roll-hint', nameId: 'rr-name', metaId: 'rr-meta', resultId: 'roll-result' });
 </script>
