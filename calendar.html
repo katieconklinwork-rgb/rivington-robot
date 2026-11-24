@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Calendar · Rivington Robot</title>
-<link rel="stylesheet" href="styles.css?v=3">
+<link rel="stylesheet" href="styles.css?v=4">
 </head>
 <body>
 
@@ -26,14 +26,8 @@
   </nav>
 
   <section>
-    <div class="section-head">
-      <div class="section-bar blue"></div>
-      <h2>This week's calendar</h2>
-      <span class="sub">next 7 days</span>
-    </div>
-    <p class="section-intro">Every event within walking distance over the next week. Tap a day at the top to jump to it. Tap any event for tickets or info, or drop it into your own calendar.</p>
+    <p class="section-intro">Every event within walking distance over the next week. Tap an event for tickets or info, or drop it into your own calendar.</p>
 
-    <div class="week-strip" id="cal-strip"></div>
     <div id="cal-list"><p class="event-empty">Loading this week's events…</p></div>
   </section>
 
@@ -43,9 +37,9 @@
   </footer>
 
 </div>
-<script src="js/events.js?v=3"></script>
+<script src="js/events.js?v=4"></script>
 <script>
-try { RobotEvents.initPlanner({ stripId: 'cal-strip', listId: 'cal-list', days: 7, perDay: 50 }); } catch (e) { console.error(e); }
+try { RobotEvents.initPlanner({ listId: 'cal-list', days: 7, perDay: 50 }); } catch (e) { console.error(e); }
 </script>
 </body>
 </html>

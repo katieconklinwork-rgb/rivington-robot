@@ -180,13 +180,12 @@
     }).catch(() => { /* no edition yet: the page keeps its "first edition" note */ });
   }
 
-  // Calendar page: a planner-style week view with a 7-day strip up top and
-  // a date-tile card per day below. Includes empty days so the week reads
-  // as a whole, not just the days that happen to have events.
+  // Calendar page: a horizontal 7-column weekly-plan grid. Looks like a
+  // printable weekly planner — title on top, 7 day columns with events as
+  // little sticky notes stacked inside each column.
   function initPlanner(opts) {
-    const strip = document.getElementById(opts.stripId);
-    const list = document.getElementById(opts.listId);
-    if (!list) return;
+    const host = document.getElementById(opts.listId);
+    if (!host) return;
     const days = opts.days || 7;
     const perDay = opts.perDay || 50;
     getJson('data/events.json').then(d => {
@@ -210,45 +209,44 @@
         if (b) b.events.push(e);
       });
 
-      // top strip
-      if (strip) {
-        strip.innerHTML = buckets.map(b => {
-          const n = b.events.length;
-          const dots = n ? '<div class="strip-dots">' + '<span></span>'.repeat(Math.min(n, 4)) + '</div>' : '<div class="strip-dots"></div>';
-          const cls = ['strip-day'];
-          if (b.isToday) cls.push('today');
-          if (!n) cls.push('empty');
-          return '<a href="#' + b.slug + '" class="' + cls.join(' ') + '">' +
-            '<div class="strip-dow">' + esc(b.weekday.toUpperCase()) + '</div>' +
-            '<div class="strip-date">' + esc(b.dayNum) + '</div>' +
-            dots + '</a>';
-        }).join('');
-      }
-
-      // per-day planner cards
-      if (!buckets.some(b => b.events.length)) {
-        return emptyNote(list, 'Nothing listed for the next week yet. New events land every Sunday.');
-      }
-      list.innerHTML = buckets.map(b => {
-        const cls = ['planner-day'];
+      const cols = buckets.map(b => {
+        const cls = ['plan-col'];
         if (b.isToday) cls.push('today');
-        if (!b.events.length) cls.push('empty');
-        const dateTile = '<div class="planner-date">' +
-          '<div class="planner-dow">' + esc(b.weekday.toUpperCase()) + '</div>' +
-          '<div class="planner-date-num">' + esc(b.dayNum) + '</div>' +
-          '<div class="planner-mon">' + esc(b.month.toUpperCase()) + '</div>' +
+        const head = '<div class="plan-col-head">' +
+          '<div class="plan-col-dow">' + esc(b.weekday.toLowerCase()) + '</div>' +
+          '<div class="plan-col-date">' + esc(b.month) + ' ' + esc(b.dayNum) + '</div>' +
+          (b.isToday ? '<div class="plan-col-today-tag">TODAY</div>' : '') +
           '</div>';
-        const titleBits = [b.weekday];
-        if (b.isToday) titleBits.push('TODAY');
-        titleBits.push('· ' + b.month + ' ' + b.dayNum);
-        const title = '<div class="planner-title">' + esc(titleBits.join(' · ').toUpperCase()) + '</div>';
-        const body = b.events.length
-          ? '<div class="planner-events">' + b.events.slice(0, perDay).map(e => weekEventRow(e)).join('') + '</div>'
-          : '<div class="planner-events">Nothing listed for this day.</div>';
-        return '<div id="' + b.slug + '" class="' + cls.join(' ') + '">' + dateTile +
-          '<div class="planner-body">' + title + body + '</div></div>';
+        const evs = b.events.slice(0, perDay).map(e => planEvent(e)).join('')
+          || '<div class="plan-col-empty">—</div>';
+        return '<div class="' + cls.join(' ') + '">' + head +
+          '<div class="plan-col-events">' + evs + '</div></div>';
       }).join('');
-    }).catch(() => emptyNote(list, "Couldn't load events just now."));
+
+      host.innerHTML = '<div class="weekly-plan">' +
+        '<h2 class="weekly-plan-title">weekly plan</h2>' +
+        '<div class="weekly-plan-wrap"><div class="weekly-plan-grid">' + cols + '</div></div>' +
+        '</div>';
+    }).catch(() => emptyNote(host, "Couldn't load events just now."));
+  }
+
+  function planEvent(e) {
+    const url = safeUrl(e.url);
+    const t = timeLabel(e.s);
+    const name = url
+      ? '<a href="' + esc(url) + '" target="_blank" rel="noopener">' + esc(e.name) + '</a>'
+      : esc(e.name);
+    const venue = e.venue ? '<div class="plan-ev-venue">' + esc(e.venue) + '</div>' : '';
+    const links = [];
+    if (url) links.push('<a class="plan-ev-tix" href="' + esc(url) + '" target="_blank" rel="noopener">Tix</a>');
+    links.push('<a href="' + esc(googleUrl(e)) + '" target="_blank" rel="noopener">+ Google</a>');
+    links.push('<a href="' + esc(icsHref(e)) + '" download="event.ics">+ Apple</a>');
+    return '<div class="plan-ev">' +
+      '<div class="plan-ev-time">' + esc(t) + '</div>' +
+      '<div class="plan-ev-name">' + name + '</div>' +
+      venue +
+      '<div class="plan-ev-links">' + links.join('') + '</div>' +
+      '</div>';
   }
 
   window.RobotEvents = { initList, initWeek, initCalendar, initPlanner, initRoundup };
