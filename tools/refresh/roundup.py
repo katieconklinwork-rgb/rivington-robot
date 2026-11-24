@@ -10,6 +10,7 @@ from zoneinfo import ZoneInfo
 
 OLD, NEW, EV = sys.argv[1:4]
 OUT = sys.argv[4] if len(sys.argv) > 4 else 'data/roundup.json'
+NEWS = 'data/news.json'  # optional; made by tools/refresh/news.py
 NY = ZoneInfo('America/New_York')
 today = dt.datetime.now(NY)
 
@@ -54,7 +55,9 @@ opened.sort(key=lambda p: p.get('m', 99))
 closed.sort(key=lambda p: p.get('m', 99))
 week = today + dt.timedelta(days=7)
 evs = [e for e in (load(EV) or {}).get('events', []) if dt.datetime.fromisoformat(e['start']) <= week][:10]
+news = (load(NEWS) or {}).get('news', [])
 out = {'edition': today.date().isoformat(), 'new_count': len(opened), 'gone_count': len(closed),
-       'new': [card(p) for p in opened[:12]], 'gone': [card(p) for p in closed[:12]], 'events': evs}
+       'new': [card(p) for p in opened[:12]], 'gone': [card(p) for p in closed[:12]],
+       'events': evs, 'news': news}
 json.dump(out, open(OUT, 'w'), indent=1, ensure_ascii=False)
-print('ROUNDUP', out['edition'], 'new', len(opened), 'gone', len(closed), 'events', len(evs))
+print('ROUNDUP', out['edition'], 'new', len(opened), 'gone', len(closed), 'events', len(evs), 'news', len(news))

@@ -29,18 +29,22 @@ PY
 fi
 
 python3 tools/refresh/events.py data/events.json || true
+python3 tools/refresh/news.py data/news.json || true
 python3 tools/refresh/roundup.py "$W/old_places.json" data/places.json data/events.json data/roundup.json || true
 
 python3 - "$SUMMARY" "$places_note" <<'PY'
-import json, sys
+import json, os, sys
 out, note = sys.argv[1], sys.argv[2]
 e = json.load(open('data/events.json')); r = json.load(open('data/roundup.json'))
+news_doc = json.load(open('data/news.json')) if os.path.exists('data/news.json') else {'news': [], 'sources_ok': [], 'sources_failed': []}
 lines = [
     "This week's update for Paul and Tina's site. Merge it to put it live; close it to skip this week.", '',
     f"- {note}",
     f"- New on the map since last week: {r['new_count']}. Gone: {r['gone_count']}.",
     f"- Events: {len(e['events'])} coming up within a mile. Sources that worked: {', '.join(e['sources_ok']) or 'none'}."
     + (f" Didn't work this week: {', '.join(e['sources_failed'])}." if e['sources_failed'] else ''),
+    f"- Hyperlocal news: {len(news_doc.get('news', []))} items. Sources that worked: {', '.join(news_doc.get('sources_ok', [])) or 'none'}."
+    + (f" Didn't work: {', '.join(news_doc['sources_failed'])}." if news_doc.get('sources_failed') else ''),
 ]
 if r['new']:
     lines += ['', 'Newly on the map: ' + ', '.join(p['n'] for p in r['new'][:8]) + ('…' if r['new_count'] > 8 else '')]
