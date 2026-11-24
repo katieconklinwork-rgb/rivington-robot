@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Paul & Tina's Rivington Robot</title>
-<link rel="stylesheet" href="styles.css?v=6">
+<link rel="stylesheet" href="styles.css?v=7">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🤖%3C/text%3E%3C/svg%3E">
 </head>
@@ -183,7 +183,8 @@
       <h2>Today &amp; tomorrow</h2>
       <a href="calendar.html" class="sub cal-link">full week →</a>
     </div>
-    <p class="section-intro">What's on close by, today and tomorrow. Tap any event for tickets or info, or drop it into your calendar. Tap "full week →" for the next seven days.</p>
+    <p class="section-intro">What's on close by, today and tomorrow. Tap a type below to filter — "All" shows everything. Drop any event into your calendar, or tap "full week →" for the next seven days.</p>
+    <div id="week-chips"></div>
     <div class="week-cal" id="week-cal"><p class="event-empty">Loading events…</p></div>
   </section>
 
@@ -255,16 +256,16 @@
 </div>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="js/robot.js?v=6"></script>
-<script src="js/events.js?v=6"></script>
-<script src="js/briefing.js?v=6"></script>
+<script src="js/robot.js?v=7"></script>
+<script src="js/events.js?v=7"></script>
+<script src="js/briefing.js?v=7"></script>
 <script>
 // Each init is wrapped so a hiccup in one (e.g. briefing.js not uploaded)
 // doesn't stop the others from running.
 function safely(fn) { try { fn(); } catch (e) { console.error(e); } }
 safely(() => RobotBriefing.init());
 safely(() => RobotBriefing.initApartment());
-safely(() => RobotEvents.initWeek({ listId: 'week-cal', days: 2, perDay: 20 }));
+safely(() => RobotEvents.initWeek({ listId: 'week-cal', chipsId: 'week-chips', days: 2, perDay: 20 }));
 safely(() => Robot.initMap({ mapId: 'map', chipsId: 'map-filters', countId: 'ring-count' }));
 safely(() => Robot.initDice({ btnId: 'roll-btn', vibesId: 'vibes', hintId: 'roll-hint', nameId: 'rr-name', metaId: 'rr-meta', resultId: 'roll-result' }));
 </script>

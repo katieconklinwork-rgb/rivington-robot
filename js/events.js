@@ -83,41 +83,81 @@
   // Home page: a one-week calendar grouped by day, with ticket links baked in
   // and "Add to calendar" buttons on every event. Shows a card per day so
   // empty days still show up and the layout reads like a week at a glance.
+  // Builds a row of event-kind filter chips. Returns a controller with:
+  //   get()        → Set of selected kind labels (empty means no filter)
+  //   onChange(fn) → register a handler fired when the selection changes
+  // Every kind present in the incoming event list becomes a chip, default ON.
+  // The hidden <input> state for "matches" lets us special-case the "all on"
+  // state cheaply — then there's no filter and everything passes.
+  function buildKindChips(el, events) {
+    const kinds = Array.from(new Set(events.map(eventKindLabel).filter(Boolean))).sort();
+    const selected = new Set(kinds);
+    const listeners = [];
+    function render() {
+      el.innerHTML = '<div class="kind-chips">' +
+        '<button type="button" class="kind-chip kind-all' + (selected.size === kinds.length ? ' on' : '') + '" data-all>All</button>' +
+        kinds.map(k =>
+          '<button type="button" class="kind-chip' + (selected.has(k) ? ' on' : '') + '" data-k="' + esc(k) + '">' + esc(k) + '</button>'
+        ).join('') +
+        '</div>';
+      el.querySelectorAll('.kind-chip').forEach(c => {
+        c.addEventListener('click', () => {
+          if (c.hasAttribute('data-all')) {
+            if (selected.size === kinds.length) { selected.clear(); }
+            else { kinds.forEach(k => selected.add(k)); }
+          } else {
+            const k = c.dataset.k;
+            if (selected.has(k)) selected.delete(k); else selected.add(k);
+          }
+          render();
+          listeners.forEach(fn => fn());
+        });
+      });
+    }
+    render();
+    return {
+      get: () => selected,
+      filter: evs => {
+        if (selected.size === kinds.length || selected.size === 0) return evs;
+        return evs.filter(e => selected.has(eventKindLabel(e)));
+      },
+      onChange: fn => listeners.push(fn)
+    };
+  }
+
   // Home page "today & tomorrow": a pair of compact date-cards side by side.
-  // Opts: listId, days (default 2), perDay (default 3)
+  // Opts: listId, days (default 2), perDay (default 3), chipsId (optional)
   function initWeek(opts) {
     const el = document.getElementById(opts.listId);
     if (!el) return;
     const days = opts.days || 2;
     const perDay = opts.perDay || 3;
+    const chipsEl = opts.chipsId && document.getElementById(opts.chipsId);
     getJson('data/events.json').then(d => {
-      const ev = upcoming(d);
-      // Build an ordered list of the next N day buckets starting from today NY time.
+      const allEv = upcoming(d);
       const today = new Date();
       const todayKey = dayKey(today);
-      // find index of today's bucket among events; build date list by walking days forward
-      const buckets = [];
-      for (let i = 0; i < days; i++) {
-        const dt = new Date(today.getTime() + i * 86400000);
-        const k = dayKey(dt);
-        const parts = nyParts(dt);
-        buckets.push({
-          key: k,
-          dayNum: parts.day,
-          weekday: parts.weekday,
-          month: parts.month,
-          events: []
+
+      const kinds = chipsEl ? buildKindChips(chipsEl, allEv) : null;
+      function render() {
+        const ev = kinds ? kinds.filter(allEv) : allEv;
+        const buckets = [];
+        for (let i = 0; i < days; i++) {
+          const dt = new Date(today.getTime() + i * 86400000);
+          const k = dayKey(dt);
+          const parts = nyParts(dt);
+          buckets.push({ key: k, dayNum: parts.day, weekday: parts.weekday, month: parts.month, events: [] });
+        }
+        ev.forEach(e => {
+          const k = dayKey(e.s);
+          const b = buckets.find(x => x.key === k);
+          if (b) b.events.push(e);
         });
-      }
-      ev.forEach(e => {
-        const k = dayKey(e.s);
-        const b = buckets.find(x => x.key === k);
-        if (b) b.events.push(e);
-      });
-      if (!buckets.some(b => b.events.length)) {
-        return emptyNote(el, 'Nothing listed for the next couple of days. Check back soon.');
-      }
-      el.innerHTML = '<div class="mini-cal">' + buckets.map((b, i) => {
+        if (!buckets.some(b => b.events.length)) {
+          el.innerHTML = '<p class="event-empty">Nothing matches that filter. Tap "All" to see everything.</p>';
+          return;
+        }
+        el.innerHTML = '<div class="mini-cal">' + buckets.map((b, i) => {
         const isToday = b.key === todayKey;
         const label = isToday ? 'TODAY' : (i === 1 ? 'TOMORROW' : b.weekday.toUpperCase());
         const shown = b.events.slice(0, perDay);
@@ -146,7 +186,10 @@
             '<span class="mini-tag">' + esc(label) + '</span>' +
             '<span class="mini-date">' + esc(b.weekday) + ' ' + esc(b.month) + ' ' + esc(b.dayNum) + '</span>' +
           '</div>' + list + more + '</div>';
-      }).join('') + '</div>';
+        }).join('') + '</div>';
+      }
+      render();
+      if (kinds) kinds.onChange(render);
     }).catch(() => emptyNote(el, "Couldn't load events just now."));
   }
 
@@ -257,51 +300,60 @@
 
   // Calendar page: a horizontal 7-column weekly-plan grid. Looks like a
   // printable weekly planner — title on top, 7 day columns with events as
-  // little sticky notes stacked inside each column.
+  // little sticky notes stacked inside each column. Takes an optional
+  // chipsId to render category filter chips above it.
   function initPlanner(opts) {
     const host = document.getElementById(opts.listId);
     if (!host) return;
     const days = opts.days || 7;
     const perDay = opts.perDay || 50;
+    const chipsEl = opts.chipsId && document.getElementById(opts.chipsId);
     getJson('data/events.json').then(d => {
-      const ev = upcoming(d);
+      const allEv = upcoming(d);
       const today = new Date();
       const todayKey = dayKey(today);
-      const buckets = [];
-      for (let i = 0; i < days; i++) {
-        const dt = new Date(today.getTime() + i * 86400000);
-        const k = dayKey(dt);
-        const parts = nyParts(dt);
-        buckets.push({
-          key: k, slug: 'd' + i,
-          dayNum: parts.day, weekday: parts.weekday, month: parts.month,
-          isToday: k === todayKey, events: []
+
+      const kinds = chipsEl ? buildKindChips(chipsEl, allEv) : null;
+
+      function render() {
+        const ev = kinds ? kinds.filter(allEv) : allEv;
+        const buckets = [];
+        for (let i = 0; i < days; i++) {
+          const dt = new Date(today.getTime() + i * 86400000);
+          const k = dayKey(dt);
+          const parts = nyParts(dt);
+          buckets.push({
+            key: k, slug: 'd' + i,
+            dayNum: parts.day, weekday: parts.weekday, month: parts.month,
+            isToday: k === todayKey, events: []
+          });
+        }
+        ev.forEach(e => {
+          const k = dayKey(e.s);
+          const b = buckets.find(x => x.key === k);
+          if (b) b.events.push(e);
         });
-      }
-      ev.forEach(e => {
-        const k = dayKey(e.s);
-        const b = buckets.find(x => x.key === k);
-        if (b) b.events.push(e);
-      });
+        const cols = buckets.map(b => {
+          const cls = ['plan-col'];
+          if (b.isToday) cls.push('today');
+          const head = '<div class="plan-col-head">' +
+            '<div class="plan-col-dow">' + esc(b.weekday.toLowerCase()) + '</div>' +
+            '<div class="plan-col-date">' + esc(b.month) + ' ' + esc(b.dayNum) + '</div>' +
+            (b.isToday ? '<div class="plan-col-today-tag">TODAY</div>' : '') +
+            '</div>';
+          const evs = b.events.slice(0, perDay).map(e => planEvent(e)).join('')
+            || '<div class="plan-col-empty">—</div>';
+          return '<div class="' + cls.join(' ') + '">' + head +
+            '<div class="plan-col-events">' + evs + '</div></div>';
+        }).join('');
 
-      const cols = buckets.map(b => {
-        const cls = ['plan-col'];
-        if (b.isToday) cls.push('today');
-        const head = '<div class="plan-col-head">' +
-          '<div class="plan-col-dow">' + esc(b.weekday.toLowerCase()) + '</div>' +
-          '<div class="plan-col-date">' + esc(b.month) + ' ' + esc(b.dayNum) + '</div>' +
-          (b.isToday ? '<div class="plan-col-today-tag">TODAY</div>' : '') +
+        host.innerHTML = '<div class="weekly-plan">' +
+          '<h2 class="weekly-plan-title">weekly plan</h2>' +
+          '<div class="weekly-plan-wrap"><div class="weekly-plan-grid">' + cols + '</div></div>' +
           '</div>';
-        const evs = b.events.slice(0, perDay).map(e => planEvent(e)).join('')
-          || '<div class="plan-col-empty">—</div>';
-        return '<div class="' + cls.join(' ') + '">' + head +
-          '<div class="plan-col-events">' + evs + '</div></div>';
-      }).join('');
-
-      host.innerHTML = '<div class="weekly-plan">' +
-        '<h2 class="weekly-plan-title">weekly plan</h2>' +
-        '<div class="weekly-plan-wrap"><div class="weekly-plan-grid">' + cols + '</div></div>' +
-        '</div>';
+      }
+      render();
+      if (kinds) kinds.onChange(render);
     }).catch(() => emptyNote(host, "Couldn't load events just now."));
   }
 

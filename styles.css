@@ -356,6 +356,27 @@ a { color: inherit; text-decoration: none; }
   .plan-col-empty { text-align: left; padding: 6px 2px; font-size: 11px; }
 }
 
+/* ============ EVENT KIND FILTER CHIPS ============ */
+.kind-chips {
+  display: flex; flex-wrap: wrap; gap: 6px;
+  margin: 6px 0 14px;
+}
+.kind-chip {
+  font-family: var(--sans);
+  font-size: 11px; font-weight: 500; letter-spacing: 0.3px;
+  background: white; color: var(--ink-2);
+  border: 1px solid var(--rule);
+  padding: 5px 11px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background .12s ease, color .12s ease, border-color .12s ease;
+}
+.kind-chip:hover { border-color: var(--ink-3); }
+.kind-chip.on {
+  background: var(--blue); color: white; border-color: var(--blue);
+}
+.kind-chip.kind-all.on { background: var(--ink); border-color: var(--ink); }
+
 /* ============ ROUNDUP HYPERLOCAL NEWS ============ */
 .roundup-news { list-style: none; padding: 0; margin: 10px 0 24px; display: flex; flex-direction: column; gap: 14px; }
 .roundup-news li {
