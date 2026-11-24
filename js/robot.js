@@ -30,6 +30,12 @@
   function walkUrl(p) {
     return 'https://www.google.com/maps/dir/?api=1&destination=' + p.y + ',' + p.x + '&travelmode=walking';
   }
+  // Link into Google Maps for this exact place — reviews, photos, and the
+  // live "popular times / busy now" chart all live on that page for free.
+  function reviewsUrl(p) {
+    const q = encodeURIComponent((p.n || '') + (p.a ? ', ' + p.a : '') + ', New York, NY');
+    return 'https://www.google.com/maps/search/?api=1&query=' + q;
+  }
   function safeUrl(u) {
     return /^https?:\/\//i.test(u || '') ? u : null;
   }
@@ -41,6 +47,7 @@
     if (p.h) bits.push('<div class="pop-sub">' + esc(p.h) + '</div>');
     if (p.v && p.v.length) bits.push('<div class="pop-sub">' + esc(p.v.join(', ')) + (p.vg ? ' (guessed from type)' : '') + '</div>');
     const links = ['<a href="' + walkUrl(p) + '" target="_blank" rel="noopener">Walk there</a>'];
+    links.push('<a href="' + reviewsUrl(p) + '" target="_blank" rel="noopener">Reviews &amp; busy times ★</a>');
     const w = safeUrl(p.w);
     if (w) links.push('<a href="' + esc(w) + '" target="_blank" rel="noopener">Website</a>');
     if (p.p) links.push('<a href="tel:' + esc(p.p.replace(/[^+\d]/g, '')) + '">Call</a>');
@@ -49,18 +56,126 @@
   }
 
   // ---------- MAP ----------
-  function buildChips(el, d, onChange) {
-    if (!el) return new Set(Object.keys(d.groups));
-    const on = new Set(Object.keys(d.groups));
-    const counts = {};
-    d.places.forEach(p => { if (p.t !== 'm') counts[p.g] = (counts[p.g] || 0) + 1; });
-    el.innerHTML = Object.entries(d.groups).map(([g, label]) =>
-      '<span class="filter-chip active ' + CHIP[g] + '" data-cat="' + g + '">● ' + esc(label) + ' <span class="chip-n">' + (counts[g] || 0) + '</span></span>').join('');
-    el.querySelectorAll('.filter-chip').forEach(c => c.addEventListener('click', () => {
-      c.classList.toggle('active');
-      if (c.classList.contains('active')) on.add(c.dataset.cat); else on.delete(c.dataset.cat);
-      onChange();
-    }));
+  // Two-level chip filter:
+  //   - row 1: 7 broad group chips. Tapping the body toggles the whole
+  //     group on/off; tapping the small caret opens that group's sub-chips.
+  //   - row 2 (sub-tray): the fine categories inside the expanded group.
+  //     Only one group's sub-tray is open at a time. Toggling a sub-chip
+  //     affects just that category; the parent group chip shows a "partial"
+  //     state when some but not all of its children are on.
+  // Underlying filter is always `on.has(p.c)`.
+  function buildChips(el, d, onChange, state) {
+    const includeAll = () => state && state.showAll;
+    const usePlace = p => includeAll() ? true : p.t !== 'm';
+
+    const catGroup = {};
+    const countsByCat = {};
+    const catsByGroup = {};
+    d.places.forEach(p => {
+      if (!usePlace(p)) return;
+      catGroup[p.c] = p.g;
+      countsByCat[p.c] = (countsByCat[p.c] || 0) + 1;
+      (catsByGroup[p.g] = catsByGroup[p.g] || new Set()).add(p.c);
+    });
+
+    const allCats = new Set(Object.keys(countsByCat).map(n => parseInt(n, 10)));
+    const on = new Set(allCats);
+    if (!el) return on;
+
+    // state.openGroup: which group's sub-tray is open (null = none)
+    if (!('openGroup' in state)) state.openGroup = null;
+
+    function render() {
+      const groupCounts = {};
+      Object.entries(catsByGroup).forEach(([g, set]) => {
+        let n = 0; set.forEach(ci => n += countsByCat[ci] || 0);
+        groupCounts[g] = n;
+      });
+
+      const mainChips = Object.entries(d.groups).map(([g, label]) => {
+        const cats = catsByGroup[g] ? [...catsByGroup[g]] : [];
+        if (!cats.length) return '';
+        const allOn = cats.every(ci => on.has(ci));
+        const someOn = !allOn && cats.some(ci => on.has(ci));
+        const onCount = cats.filter(ci => on.has(ci)).length;
+        const isOpen = state.openGroup === g;
+        const cls = ['filter-chip', 'chip-group', CHIP[g] || 'c-blue'];
+        if (allOn) cls.push('active');
+        else if (someOn) cls.push('partial');
+        if (isOpen) cls.push('open');
+        const subLabel = someOn ? (onCount + '/' + cats.length) : groupCounts[g];
+        return '<span class="' + cls.join(' ') + '" data-g="' + g + '">' +
+          '<span class="chip-label">' + esc(label) + ' <span class="chip-n">' + subLabel + '</span></span>' +
+          '<button type="button" class="chip-caret" data-caret="' + g + '" aria-label="Refine ' + esc(label) + '">▾</button>' +
+          '</span>';
+      }).join('');
+
+      let trayHtml = '';
+      if (state.openGroup && catsByGroup[state.openGroup]) {
+        const g = state.openGroup;
+        const label = d.groups[g] || g;
+        const cats = [...catsByGroup[g]].sort((a, b) => (countsByCat[b] || 0) - (countsByCat[a] || 0));
+        const allOn = cats.every(ci => on.has(ci));
+        const inner = cats.map(ci => {
+          const cname = d.categories[ci] || ('Cat ' + ci);
+          return '<span class="filter-chip chip-sub ' + (on.has(ci) ? 'active ' : '') + (CHIP[g] || 'c-blue') + '" data-ci="' + ci + '">' + esc(cname) + ' <span class="chip-n">' + (countsByCat[ci] || 0) + '</span></span>';
+        }).join('');
+        trayHtml = '<div class="sub-tray">' +
+          '<div class="sub-tray-head"><span class="sub-tray-title">Inside ' + esc(label) + '</span>' +
+          '<button type="button" class="sub-tray-act" data-all-on>All on</button>' +
+          '<button type="button" class="sub-tray-act" data-all-off>All off</button>' +
+          '<button type="button" class="sub-tray-close" data-close>close ×</button></div>' +
+          '<div class="sub-tray-chips">' + inner + '</div>' +
+          '</div>';
+      }
+
+      el.innerHTML = '<div class="chip-row">' + mainChips + '</div>' + trayHtml;
+
+      el.querySelectorAll('.chip-group .chip-label').forEach(lbl => {
+        lbl.addEventListener('click', ev => {
+          ev.stopPropagation();
+          const g = lbl.parentElement.dataset.g;
+          const cats = [...(catsByGroup[g] || [])];
+          const allOn = cats.every(ci => on.has(ci));
+          if (allOn) cats.forEach(ci => on.delete(ci));
+          else cats.forEach(ci => on.add(ci));
+          render();
+          onChange();
+        });
+      });
+      el.querySelectorAll('.chip-caret').forEach(c => {
+        c.addEventListener('click', ev => {
+          ev.stopPropagation();
+          const g = c.dataset.caret;
+          state.openGroup = state.openGroup === g ? null : g;
+          render();
+        });
+      });
+      el.querySelectorAll('.chip-sub').forEach(c => {
+        c.addEventListener('click', () => {
+          const ci = parseInt(c.dataset.ci, 10);
+          if (on.has(ci)) on.delete(ci); else on.add(ci);
+          render();
+          onChange();
+        });
+      });
+      const close = el.querySelector('[data-close]');
+      if (close) close.addEventListener('click', () => { state.openGroup = null; render(); });
+      const allOnBtn = el.querySelector('[data-all-on]');
+      if (allOnBtn) allOnBtn.addEventListener('click', () => {
+        const cats = [...(catsByGroup[state.openGroup] || [])];
+        cats.forEach(ci => on.add(ci));
+        render(); onChange();
+      });
+      const allOffBtn = el.querySelector('[data-all-off]');
+      if (allOffBtn) allOffBtn.addEventListener('click', () => {
+        const cats = [...(catsByGroup[state.openGroup] || [])];
+        cats.forEach(ci => on.delete(ci));
+        render(); onChange();
+      });
+    }
+    render();
+    state.rebuildChips = render;
     return on;
   }
 
@@ -74,12 +189,12 @@
 
     load().then(d => {
       const layer = L.layerGroup().addTo(map);
-      let showAll = false;
+      const state = { showAll: false };
       let on;
       function draw() {
         layer.clearLayers();
         // smaller dots first so picks sit on top
-        const list = d.places.filter(p => on.has(p.g) && (showAll || p.t !== 'm'));
+        const list = d.places.filter(p => on.has(p.c) && (state.showAll || p.t !== 'm'));
         list.sort((a, b) => (a.t === 'p') - (b.t === 'p'));
         list.forEach(p => {
           const pick = p.t === 'p';
@@ -93,10 +208,18 @@
           if (c) c.textContent = list.length.toLocaleString() + ' places';
         }
       }
-      on = buildChips(document.getElementById(opts.chipsId), d, () => { draw(); if (opts.onFilter) opts.onFilter(on, showAll); });
+      on = buildChips(document.getElementById(opts.chipsId), d, () => { draw(); if (opts.onFilter) opts.onFilter(on, state.showAll); }, state);
       const all = opts.showAllId && document.getElementById(opts.showAllId);
-      if (all) all.addEventListener('change', () => { showAll = all.checked; draw(); if (opts.onFilter) opts.onFilter(on, showAll); });
+      if (all) all.addEventListener('change', () => {
+        state.showAll = all.checked;
+        // Rebuild chips so new categories that only exist in the "more" tier show up.
+        on = buildChips(document.getElementById(opts.chipsId), d, () => { draw(); if (opts.onFilter) opts.onFilter(on, state.showAll); }, state);
+        draw();
+        if (opts.onFilter) opts.onFilter(on, state.showAll);
+      });
       draw();
+      // make the shared `on` set reachable for chip re-renders
+      state.on = on;
       // home on top of everything
       L.circleMarker(CENTER, { radius: 9, color: '#E24B4A', weight: 3, fillColor: '#2C2A24', fillOpacity: 1 })
         .addTo(map).bindPopup('<div class="pop-name">8 Rivington St</div><div class="pop-sub">Home base</div>');
@@ -117,7 +240,7 @@
     function render() {
       if (!state.d) return;
       const q = (search && search.value || '').trim().toLowerCase();
-      const rows = state.d.places.filter(p => state.on.has(p.g) && (state.showAll || p.t !== 'm') &&
+      const rows = state.d.places.filter(p => state.on.has(p.c) && (state.showAll || p.t !== 'm') &&
         (!q || (p.n + ' ' + (p.k || '') + ' ' + p.cat + ' ' + (p.a || '') + ' ' + (p.v || []).join(' ')).toLowerCase().includes(q)));
       box.innerHTML = rows.slice(0, state.limit).map(p =>
         '<div class="place-row">' +

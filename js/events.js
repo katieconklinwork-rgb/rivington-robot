@@ -80,6 +80,73 @@
     }).catch(() => emptyNote(el, "Couldn't load events just now."));
   }
 
+  // Home page: a one-week calendar grouped by day, with ticket links baked in
+  // and "Add to calendar" buttons on every event. Shows a card per day so
+  // empty days still show up and the layout reads like a week at a glance.
+  function initWeek(opts) {
+    const el = document.getElementById(opts.listId);
+    if (!el) return;
+    const days = opts.days || 7;
+    const perDay = opts.perDay || 4;
+    getJson('data/events.json').then(d => {
+      const ev = upcoming(d);
+      // Build an ordered list of the next N day buckets starting from today NY time.
+      const today = new Date();
+      const todayKey = dayKey(today);
+      // find index of today's bucket among events; build date list by walking days forward
+      const buckets = [];
+      for (let i = 0; i < days; i++) {
+        const dt = new Date(today.getTime() + i * 86400000);
+        const k = dayKey(dt);
+        const parts = nyParts(dt);
+        buckets.push({
+          key: k,
+          dayNum: parts.day,
+          weekday: parts.weekday,
+          month: parts.month,
+          events: []
+        });
+      }
+      ev.forEach(e => {
+        const k = dayKey(e.s);
+        const b = buckets.find(x => x.key === k);
+        if (b) b.events.push(e);
+      });
+      if (!buckets.some(b => b.events.length)) {
+        return emptyNote(el, 'Nothing listed for the next week yet. New events land every Sunday.');
+      }
+      el.innerHTML = buckets.map(b => {
+        const isToday = b.key === todayKey;
+        const head = '<div class="wk-head"><div class="wk-dow">' + esc(b.weekday.toUpperCase()) + (isToday ? ' · TODAY' : '') + '</div>' +
+          '<div class="wk-date">' + esc(b.month) + ' ' + esc(b.dayNum) + '</div></div>';
+        if (!b.events.length) return '<div class="wk-day wk-empty">' + head + '<div class="wk-none">Nothing listed</div></div>';
+        const shown = b.events.slice(0, perDay);
+        const extra = b.events.length - shown.length;
+        const list = shown.map(e => weekEventRow(e)).join('');
+        const more = extra > 0 ? '<a class="wk-more" href="calendar.html">+ ' + extra + ' more this day →</a>' : '';
+        return '<div class="wk-day">' + head + '<div class="wk-events">' + list + '</div>' + more + '</div>';
+      }).join('');
+    }).catch(() => emptyNote(el, "Couldn't load events just now."));
+  }
+
+  function weekEventRow(e) {
+    const url = safeUrl(e.url);
+    const t = timeLabel(e.s);
+    const meta = [e.venue, e.near].filter(Boolean).map(esc).join(' · ');
+    const title = url
+      ? '<a href="' + esc(url) + '" target="_blank" rel="noopener" class="wk-name">' + esc(e.name) + '</a>'
+      : '<span class="wk-name">' + esc(e.name) + '</span>';
+    const links = [];
+    if (url) links.push('<a href="' + esc(url) + '" target="_blank" rel="noopener" class="wk-tix">Tickets &amp; info →</a>');
+    links.push('<a href="' + esc(googleUrl(e)) + '" target="_blank" rel="noopener" class="wk-cal">+ Google Cal</a>');
+    links.push('<a href="' + esc(icsHref(e)) + '" download="event.ics" class="wk-cal">+ Apple</a>');
+    return '<div class="wk-ev"><div class="wk-time">' + esc(t) + '</div>' +
+      '<div class="wk-body">' + title +
+      (meta ? '<div class="wk-meta">' + meta + '</div>' : '') +
+      '<div class="wk-links">' + links.join('') + '</div>' +
+      '</div></div>';
+  }
+
   // Calendar page: everything coming up, grouped by day, with Add to calendar.
   function initCalendar(opts) {
     const el = document.getElementById(opts.listId);
@@ -113,5 +180,5 @@
     }).catch(() => { /* no edition yet: the page keeps its "first edition" note */ });
   }
 
-  window.RobotEvents = { initList, initCalendar, initRoundup };
+  window.RobotEvents = { initList, initWeek, initCalendar, initRoundup };
 })();
