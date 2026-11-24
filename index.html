@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Paul & Tina's Rivington Robot</title>
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="styles.css?v=3">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🤖%3C/text%3E%3C/svg%3E">
 </head>
@@ -29,20 +29,27 @@
 
   <!-- ================ HERO GREETING + BRIEFING ================ -->
   <section class="hero">
-    <div class="hero-head">
-      <div class="hero-eyebrow">WELCOME HOME</div>
-      <h1 class="hero-title">Hi Paul &amp; Tina 👋</h1>
-      <p class="hero-sub">Here's your corner of the Lower East Side — the ring around your door, today's local events, and the subway reach from your stop. Below is the quick rundown for right now.</p>
-    </div>
-
-    <a class="roundup-cta" href="roundup.html">
-      <div class="roundup-cta-body">
-        <div class="roundup-cta-eyebrow">EVERY SUNDAY MORNING</div>
-        <div class="roundup-cta-title">Read this week's Roundup</div>
-        <div class="roundup-cta-sub">A short neighborhood newspaper edition — what's new, what's gone, what to do.</div>
+    <div class="hero-top">
+      <div class="hero-head">
+        <div class="hero-eyebrow">WELCOME HOME</div>
+        <h1 class="hero-title">Hi Paul &amp; Tina 👋</h1>
+        <p class="hero-sub">Here's your corner of the Lower East Side — the ring around your door, today's local events, and the subway reach from your stop. Below is the quick rundown for right now.</p>
       </div>
-      <div class="roundup-cta-arrow">→</div>
-    </a>
+
+      <a class="paper-link" href="roundup.html" aria-label="Read this week's Roundup">
+        <div class="paper">
+          <div class="paper-tape"></div>
+          <div class="paper-masthead">THE RIVINGTON<br>HERALD</div>
+          <div class="paper-rule"></div>
+          <div class="paper-headline">This Week's<br>Roundup</div>
+          <div class="paper-lines">
+            <div></div><div></div><div></div><div></div><div></div>
+          </div>
+          <div class="paper-badge">READ →</div>
+        </div>
+        <div class="paper-caption">tap the paper</div>
+      </a>
+    </div>
 
     <div class="b-grid">
       <div class="b-card">
@@ -235,9 +242,9 @@
 </div>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="js/robot.js"></script>
-<script src="js/events.js"></script>
-<script src="js/briefing.js"></script>
+<script src="js/robot.js?v=3"></script>
+<script src="js/events.js?v=3"></script>
+<script src="js/briefing.js?v=3"></script>
 <script>
 // Each init is wrapped so a hiccup in one (e.g. briefing.js not uploaded)
 // doesn't stop the others from running.

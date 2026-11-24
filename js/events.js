@@ -180,5 +180,76 @@
     }).catch(() => { /* no edition yet: the page keeps its "first edition" note */ });
   }
 
-  window.RobotEvents = { initList, initWeek, initCalendar, initRoundup };
+  // Calendar page: a planner-style week view with a 7-day strip up top and
+  // a date-tile card per day below. Includes empty days so the week reads
+  // as a whole, not just the days that happen to have events.
+  function initPlanner(opts) {
+    const strip = document.getElementById(opts.stripId);
+    const list = document.getElementById(opts.listId);
+    if (!list) return;
+    const days = opts.days || 7;
+    const perDay = opts.perDay || 50;
+    getJson('data/events.json').then(d => {
+      const ev = upcoming(d);
+      const today = new Date();
+      const todayKey = dayKey(today);
+      const buckets = [];
+      for (let i = 0; i < days; i++) {
+        const dt = new Date(today.getTime() + i * 86400000);
+        const k = dayKey(dt);
+        const parts = nyParts(dt);
+        buckets.push({
+          key: k, slug: 'd' + i,
+          dayNum: parts.day, weekday: parts.weekday, month: parts.month,
+          isToday: k === todayKey, events: []
+        });
+      }
+      ev.forEach(e => {
+        const k = dayKey(e.s);
+        const b = buckets.find(x => x.key === k);
+        if (b) b.events.push(e);
+      });
+
+      // top strip
+      if (strip) {
+        strip.innerHTML = buckets.map(b => {
+          const n = b.events.length;
+          const dots = n ? '<div class="strip-dots">' + '<span></span>'.repeat(Math.min(n, 4)) + '</div>' : '<div class="strip-dots"></div>';
+          const cls = ['strip-day'];
+          if (b.isToday) cls.push('today');
+          if (!n) cls.push('empty');
+          return '<a href="#' + b.slug + '" class="' + cls.join(' ') + '">' +
+            '<div class="strip-dow">' + esc(b.weekday.toUpperCase()) + '</div>' +
+            '<div class="strip-date">' + esc(b.dayNum) + '</div>' +
+            dots + '</a>';
+        }).join('');
+      }
+
+      // per-day planner cards
+      if (!buckets.some(b => b.events.length)) {
+        return emptyNote(list, 'Nothing listed for the next week yet. New events land every Sunday.');
+      }
+      list.innerHTML = buckets.map(b => {
+        const cls = ['planner-day'];
+        if (b.isToday) cls.push('today');
+        if (!b.events.length) cls.push('empty');
+        const dateTile = '<div class="planner-date">' +
+          '<div class="planner-dow">' + esc(b.weekday.toUpperCase()) + '</div>' +
+          '<div class="planner-date-num">' + esc(b.dayNum) + '</div>' +
+          '<div class="planner-mon">' + esc(b.month.toUpperCase()) + '</div>' +
+          '</div>';
+        const titleBits = [b.weekday];
+        if (b.isToday) titleBits.push('TODAY');
+        titleBits.push('· ' + b.month + ' ' + b.dayNum);
+        const title = '<div class="planner-title">' + esc(titleBits.join(' · ').toUpperCase()) + '</div>';
+        const body = b.events.length
+          ? '<div class="planner-events">' + b.events.slice(0, perDay).map(e => weekEventRow(e)).join('') + '</div>'
+          : '<div class="planner-events">Nothing listed for this day.</div>';
+        return '<div id="' + b.slug + '" class="' + cls.join(' ') + '">' + dateTile +
+          '<div class="planner-body">' + title + body + '</div></div>';
+      }).join('');
+    }).catch(() => emptyNote(list, "Couldn't load events just now."));
+  }
+
+  window.RobotEvents = { initList, initWeek, initCalendar, initPlanner, initRoundup };
 })();

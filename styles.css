@@ -112,24 +112,131 @@ a { color: inherit; text-decoration: none; }
 }
 @media (max-width: 680px) { .hero-title { font-size: 30px; } }
 
-.roundup-cta {
-  display: flex; align-items: center; gap: 16px;
-  margin: 20px 0 22px;
-  padding: 16px 20px;
-  background: linear-gradient(135deg, var(--orange-50) 0%, #FFF4DE 100%);
-  border: 1px solid #F0D8A3;
-  border-radius: 16px;
-  text-decoration: none;
-  color: var(--ink);
-  transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
-  box-shadow: 0 1px 2px rgba(44, 42, 36, 0.04);
+/* ============ HERO LAYOUT WITH NEWSPAPER ============ */
+.hero-top {
+  display: flex; align-items: flex-start; gap: 24px;
+  margin-bottom: 20px;
 }
-.roundup-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(239, 159, 39, 0.18); }
-.roundup-cta-body { flex: 1; min-width: 0; }
-.roundup-cta-eyebrow { font-size: 10px; letter-spacing: 1.8px; color: var(--orange-800); font-weight: 600; text-transform: uppercase; margin-bottom: 4px; }
-.roundup-cta-title { font-family: var(--serif); font-size: 20px; font-weight: 500; line-height: 1.15; letter-spacing: -0.01em; color: var(--ink); }
-.roundup-cta-sub { font-size: 12.5px; color: var(--ink-2); margin-top: 4px; line-height: 1.45; }
-.roundup-cta-arrow { font-size: 26px; color: var(--orange-800); flex: none; }
+.hero-top .hero-head { flex: 1; min-width: 0; margin-bottom: 0; }
+
+/* ============ NEWSPAPER GRAPHIC ============ */
+.paper-link {
+  flex: none; display: flex; flex-direction: column; align-items: center; gap: 6px;
+  text-decoration: none; color: inherit;
+}
+.paper {
+  position: relative;
+  width: 130px; height: 160px;
+  background: #FAF4E6;
+  border: 1px solid #D9CFB8;
+  box-shadow: 2px 2px 0 #E8DFC6, 0 10px 18px rgba(44, 42, 36, 0.12);
+  padding: 14px 10px 10px;
+  transform: rotate(4deg);
+  transition: transform .18s ease, box-shadow .18s ease;
+  font-family: var(--serif);
+  color: var(--ink);
+  overflow: hidden;
+}
+.paper-link:hover .paper { transform: rotate(0deg) translateY(-3px) scale(1.04); box-shadow: 2px 2px 0 #E8DFC6, 0 16px 28px rgba(44, 42, 36, 0.22); }
+.paper-tape {
+  position: absolute; top: -8px; left: 50%; transform: translateX(-50%) rotate(-3deg);
+  width: 46px; height: 14px;
+  background: rgba(239, 159, 39, 0.35);
+  border: 0.5px solid rgba(203, 133, 29, 0.4);
+}
+.paper-masthead {
+  font-size: 10px; letter-spacing: 1.2px; text-align: center;
+  font-weight: 700; line-height: 1.1;
+  margin-top: 4px;
+  color: var(--ink);
+}
+.paper-rule { height: 1px; background: var(--ink); margin: 6px 0 8px; opacity: 0.7; }
+.paper-headline {
+  font-size: 15px; font-weight: 500; line-height: 1.1; letter-spacing: -0.01em;
+  text-align: center;
+  margin-bottom: 8px;
+}
+.paper-lines { display: flex; flex-direction: column; gap: 4px; }
+.paper-lines div {
+  height: 3px; background: #D9CFB8; border-radius: 1px;
+}
+.paper-lines div:nth-child(2) { width: 85%; }
+.paper-lines div:nth-child(4) { width: 70%; }
+.paper-lines div:nth-child(5) { width: 90%; }
+.paper-badge {
+  position: absolute; bottom: 8px; right: 8px;
+  font-family: var(--sans); font-size: 9px; font-weight: 700; letter-spacing: 1.2px;
+  background: var(--orange); color: white;
+  padding: 3px 7px; border-radius: 3px;
+  transform: rotate(-4deg);
+}
+.paper-caption {
+  font-size: 10px; color: var(--ink-3); letter-spacing: 0.8px; text-transform: uppercase;
+}
+@media (max-width: 680px) {
+  .hero-top { gap: 14px; }
+  .paper { width: 108px; height: 138px; padding: 12px 8px 8px; }
+  .paper-masthead { font-size: 9px; }
+  .paper-headline { font-size: 13px; }
+}
+
+/* ============ WEEK PLANNER (calendar.html) ============ */
+.week-strip {
+  display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px;
+  margin: 6px 0 24px;
+}
+.strip-day {
+  background: white; border: 1px solid var(--rule); border-radius: 10px;
+  padding: 8px 4px; text-align: center; cursor: pointer;
+  text-decoration: none; color: var(--ink);
+  transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease;
+}
+.strip-day:hover { transform: translateY(-2px); box-shadow: 0 4px 10px rgba(44, 42, 36, 0.08); }
+.strip-day.today { background: var(--blue-50); border-color: var(--blue-300, #A8C4E3); }
+.strip-day.empty { opacity: 0.45; }
+.strip-dow { font-size: 9px; letter-spacing: 1.2px; font-weight: 600; color: var(--ink-3); }
+.strip-day.today .strip-dow { color: var(--blue-800); }
+.strip-date { font-family: var(--serif); font-size: 22px; font-weight: 500; line-height: 1; margin-top: 3px; }
+.strip-dots { display: flex; justify-content: center; gap: 2px; margin-top: 6px; min-height: 6px; }
+.strip-dots span {
+  width: 4px; height: 4px; border-radius: 50%; background: var(--blue);
+  display: inline-block;
+}
+
+.planner-day {
+  display: flex; gap: 14px;
+  background: white; border: 1px solid var(--rule); border-radius: 14px;
+  padding: 18px 18px 16px; margin-bottom: 14px;
+  box-shadow: 0 1px 2px rgba(44, 42, 36, 0.04);
+  scroll-margin-top: 80px;
+}
+.planner-day.today { border-color: var(--blue-300, #A8C4E3); background: linear-gradient(180deg, var(--blue-50) 0%, white 60%); }
+.planner-day.empty .planner-events { color: var(--ink-3); font-style: italic; font-size: 13px; padding-top: 6px; }
+.planner-date {
+  flex: none; width: 60px;
+  border: 1px solid var(--rule); border-radius: 10px;
+  padding: 8px 4px; text-align: center;
+  background: #FAF4E6;
+  align-self: flex-start;
+}
+.planner-day.today .planner-date { background: white; border-color: var(--blue-300, #A8C4E3); }
+.planner-dow { font-size: 10px; letter-spacing: 1.4px; font-weight: 700; color: var(--orange-800); }
+.planner-day.today .planner-dow { color: var(--blue-800); }
+.planner-date-num { font-family: var(--serif); font-size: 28px; font-weight: 500; line-height: 1; margin-top: 2px; }
+.planner-mon { font-size: 10px; color: var(--ink-3); letter-spacing: 1.2px; margin-top: 2px; }
+.planner-body { flex: 1; min-width: 0; }
+.planner-title { font-size: 11px; letter-spacing: 1.4px; font-weight: 600; color: var(--ink-3); text-transform: uppercase; margin-bottom: 8px; }
+.planner-day.today .planner-title { color: var(--blue-800); }
+.planner-events { display: flex; flex-direction: column; gap: 10px; }
+@media (max-width: 480px) {
+  .week-strip { gap: 4px; }
+  .strip-day { padding: 6px 2px; border-radius: 8px; }
+  .strip-date { font-size: 18px; }
+  .strip-dow { font-size: 8px; letter-spacing: 1px; }
+  .planner-day { padding: 14px; gap: 10px; }
+  .planner-date { width: 52px; }
+  .planner-date-num { font-size: 24px; }
+}
 
 /* ============ BRIEFING ============ */
 .briefing {
