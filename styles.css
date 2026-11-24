@@ -295,27 +295,34 @@ a { color: inherit; text-decoration: none; }
   background: #FFFBF0;
   border-left: 3px solid var(--blue);
   border-radius: 3px;
-  padding: 7px 8px;
-  font-size: 11px;
-  line-height: 1.3;
   color: var(--ink);
 }
-.plan-ev-top { display: flex; align-items: baseline; justify-content: space-between; gap: 6px; }
-.plan-ev-time { font-weight: 600; color: var(--blue-800); font-size: 10px; letter-spacing: 0.3px; }
-.plan-ev-kind {
-  font-family: var(--serif); font-style: italic; font-weight: 500;
-  font-size: 10px; color: var(--pink-800);
-  background: var(--pink-50); padding: 1px 6px; border-radius: 3px;
-  letter-spacing: 0.2px;
+.plan-ev[open] { background: white; box-shadow: 0 2px 8px rgba(44, 42, 36, 0.08); }
+.plan-ev-summary {
+  display: flex; gap: 8px; align-items: baseline;
+  padding: 6px 8px;
+  font-size: 12px; line-height: 1.3;
+  cursor: pointer;
+  list-style: none;
 }
-.plan-ev-name { font-weight: 500; margin-top: 3px; }
-.plan-ev-name a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--rule); }
-.plan-ev-name a:hover { border-bottom-color: var(--ink); }
-.plan-ev-venue { color: var(--ink-3); font-size: 10px; margin-top: 2px; }
-.plan-ev-links { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 4px; }
+.plan-ev-summary::-webkit-details-marker { display: none; }
+.plan-ev-summary::marker { content: ''; }
+.plan-ev-summary:hover { background: rgba(55, 138, 221, 0.06); }
+.plan-ev-time { font-weight: 600; color: var(--blue-800); font-size: 11px; letter-spacing: 0.2px; flex: none; }
+.plan-ev-name { font-weight: 500; color: var(--ink); flex: 1; min-width: 0; }
+.plan-ev-extra { padding: 4px 10px 10px; border-top: 0.5px dashed var(--rule); margin-top: 2px; }
+.plan-ev-kind-row { margin-top: 6px; }
+.plan-ev-kind {
+  display: inline-block;
+  font-family: var(--serif); font-style: italic; font-weight: 500;
+  font-size: 11px; color: var(--pink-800);
+  background: var(--pink-50); padding: 2px 8px; border-radius: 3px;
+}
+.plan-ev-venue { color: var(--ink-3); font-size: 11px; margin-top: 4px; }
+.plan-ev-links { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
 .plan-ev-links a {
-  font-size: 9px; font-weight: 600; letter-spacing: 0.3px;
-  padding: 2px 5px; border-radius: 3px; text-decoration: none;
+  font-size: 10px; font-weight: 600; letter-spacing: 0.3px;
+  padding: 4px 8px; border-radius: 4px; text-decoration: none;
   background: var(--blue-50); color: var(--blue-800);
 }
 .plan-ev-links a.plan-ev-tix { background: var(--blue); color: white; }
@@ -349,10 +356,10 @@ a { color: inherit; text-decoration: none; }
   .plan-col.today .plan-col-head { border-bottom: none; border-right-color: var(--blue-300, #A8C4E3); }
   .plan-col-dow { font-size: 16px; }
   .plan-col-date { font-size: 12px; margin-top: 2px; }
-  .plan-col-events { padding: 10px 10px; gap: 8px; }
-  .plan-ev { font-size: 12px; padding: 8px 10px; }
-  .plan-ev-time { font-size: 11px; }
-  .plan-ev-venue { font-size: 11px; }
+  .plan-col-events { padding: 10px 10px; gap: 6px; }
+  .plan-ev-summary { padding: 8px 10px; font-size: 13px; }
+  .plan-ev-time { font-size: 12px; min-width: 56px; }
+  .plan-ev-venue { font-size: 12px; }
   .plan-col-empty { text-align: left; padding: 6px 2px; font-size: 11px; }
 }
 
@@ -377,18 +384,114 @@ a { color: inherit; text-decoration: none; }
 }
 .kind-chip.kind-all.on { background: var(--ink); border-color: var(--ink); }
 
-/* ============ ROUNDUP HYPERLOCAL NEWS ============ */
-.roundup-news { list-style: none; padding: 0; margin: 10px 0 24px; display: flex; flex-direction: column; gap: 14px; }
-.roundup-news li {
-  background: white; border: 1px solid var(--rule); border-radius: 10px;
-  padding: 12px 14px;
-  box-shadow: 0 1px 2px rgba(44, 42, 36, 0.04);
+/* ============ THE RIVINGTON HERALD (vintage newspaper) ============ */
+.herald {
+  background: #FDFAF0;
+  color: var(--ink);
+  padding: 18px 28px 22px;
+  margin: 14px 0 28px;
+  border: 1px solid var(--ink);
+  box-shadow: 0 6px 16px rgba(44, 42, 36, 0.14);
+  font-family: var(--serif);
 }
-.news-title { font-family: var(--serif); font-size: 16px; font-weight: 500; line-height: 1.3; }
-.news-title a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--rule); }
-.news-title a:hover { border-bottom-color: var(--ink); }
-.news-src { font-family: var(--sans); font-size: 10px; letter-spacing: 1px; color: var(--ink-3); text-transform: uppercase; font-weight: 600; }
-.news-blurb { font-size: 13px; color: var(--ink-2); margin-top: 6px; line-height: 1.5; }
+.herald-masthead { text-align: center; margin-bottom: 18px; }
+.herald-rule-top, .herald-rule-bot { height: 4px; background: var(--ink); margin: 0 0 6px; }
+.herald-rule-bot { margin: 8px 0 14px; height: 3px; border-top: 1px solid var(--ink); background: transparent; border-bottom: 1px solid var(--ink); }
+.herald-rule-mid { height: 1px; background: var(--ink); margin: 8px 20% 8px; }
+.herald-meta-top, .herald-meta-bot {
+  display: flex; justify-content: space-between; align-items: center;
+  font-family: var(--sans); font-size: 10px; letter-spacing: 1.6px;
+  font-weight: 600; text-transform: uppercase; color: var(--ink);
+  padding: 2px 4px;
+}
+.herald-title {
+  font-family: var(--serif); font-weight: 700;
+  font-size: 56px; line-height: 0.95; letter-spacing: -0.02em;
+  margin: 4px 0 6px;
+  color: var(--ink);
+  font-variant: small-caps;
+}
+.herald-strap {
+  font-style: italic; font-size: 13px; color: var(--ink-2);
+  margin-bottom: 4px;
+}
+
+.herald-body { }
+.herald-story { break-inside: avoid; margin-bottom: 18px; }
+.herald-kicker {
+  font-family: var(--sans); font-size: 9px; letter-spacing: 1.8px;
+  font-weight: 700; color: var(--red-800); text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.herald-headline {
+  font-family: var(--serif); font-weight: 700;
+  line-height: 1.1; letter-spacing: -0.01em;
+  margin: 0 0 4px; color: var(--ink);
+}
+.herald-lead .herald-headline { font-size: 30px; }
+.herald-story:not(.herald-lead) .herald-headline { font-size: 18px; }
+.herald-headline a { color: var(--ink); text-decoration: none; }
+.herald-headline a:hover { text-decoration: underline; }
+.herald-byline {
+  font-family: var(--serif); font-style: italic;
+  font-size: 12px; color: var(--ink-2);
+  margin-bottom: 6px;
+  border-bottom: 0.5px solid var(--rule);
+  padding-bottom: 4px;
+}
+.herald-blurb {
+  font-size: 13.5px; line-height: 1.55; color: var(--ink);
+  margin: 0 0 6px;
+  font-family: var(--serif);
+}
+.herald-lead .herald-blurb::first-letter {
+  font-size: 44px; float: left; line-height: 0.9; padding: 4px 6px 0 0;
+  font-weight: 700;
+}
+.herald-more {
+  font-family: var(--sans); font-size: 10px; letter-spacing: 1.2px;
+  font-weight: 700; color: var(--red-800); text-transform: uppercase;
+  text-decoration: none;
+}
+.herald-more:hover { text-decoration: underline; }
+
+.herald-lead {
+  padding-bottom: 14px;
+  margin-bottom: 14px;
+  border-bottom: 1px solid var(--ink);
+}
+.herald-columns {
+  column-count: 3;
+  column-gap: 22px;
+  column-rule: 1px solid var(--rule);
+}
+@media (max-width: 900px) { .herald-columns { column-count: 2; } }
+@media (max-width: 560px) {
+  .herald { padding: 14px 16px 18px; }
+  .herald-title { font-size: 36px; }
+  .herald-strap { font-size: 11px; }
+  .herald-meta-top, .herald-meta-bot { font-size: 9px; letter-spacing: 1.2px; flex-wrap: wrap; gap: 4px; }
+  .herald-lead .herald-headline { font-size: 22px; }
+  .herald-columns { column-count: 1; }
+}
+
+/* ============ ROUNDUP CALENDAR LINK ============ */
+.roundup-cal-link {
+  display: block;
+  background: linear-gradient(135deg, var(--blue-50) 0%, #F2EDFB 100%);
+  border: 1px solid #C9D4E9;
+  border-radius: 14px;
+  padding: 18px 22px;
+  margin: 18px 0 24px;
+  text-decoration: none;
+  color: var(--ink);
+  transition: transform .15s ease, box-shadow .15s ease;
+  box-shadow: 0 2px 4px rgba(44, 42, 36, 0.05);
+}
+.roundup-cal-link:hover { transform: translateY(-2px); box-shadow: 0 10px 22px rgba(55, 138, 221, 0.18); }
+.rc-eyebrow { font-size: 10px; letter-spacing: 2px; font-weight: 700; color: var(--blue-800); text-transform: uppercase; margin-bottom: 6px; }
+.rc-title { font-family: var(--serif); font-size: 22px; font-weight: 500; letter-spacing: -0.01em; margin-bottom: 4px; }
+.rc-sub { font-size: 13px; color: var(--ink-2); line-height: 1.5; }
 
 /* ============ MINI CALENDAR (home page: today & tomorrow) ============ */
 .mini-cal {
@@ -884,4 +987,4 @@ section:last-of-type { border-bottom: none; }
 .cal-day { font-family: var(--serif); font-size: 18px; margin: 24px 0 8px; }
 .roundup-date { font-size: 12px; letter-spacing: 1px; color: var(--orange-800); text-transform: uppercase; }
 .roundup-list { margin: 0; padding-left: 18px; font-size: 14px; line-height: 1.7; }
-#cal-list, #roundup-body { text-align: left; max-width: 560px; width: 100%; }
+#cal-list, #roundup-body { text-align: left; width: 100%; }

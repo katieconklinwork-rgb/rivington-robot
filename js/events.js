@@ -241,58 +241,55 @@
       parts.push('<h3 class="cal-day">New on the map</h3>' + (r.new && r.new.length ? '<ul class="roundup-list">' + r.new.map(place).join('') + '</ul>' + (r.new_count > r.new.length ? '<p class="event-empty">and ' + (r.new_count - r.new.length) + ' more</p>' : '') : '<p class="event-empty">Nothing new this week.</p>'));
       if (r.gone && r.gone.length) parts.push('<h3 class="cal-day">No longer listed</h3><ul class="roundup-list">' + r.gone.map(place).join('') + '</ul>');
 
-      // Hyperlocal news items (optional in roundup.json as r.news)
+      // Hyperlocal news as a vintage newspaper front page.
       if (r.news && r.news.length) {
-        parts.push('<h3 class="cal-day">Hyperlocal news</h3><ul class="roundup-news">' +
-          r.news.map(n => {
-            const u = safeUrl(n.url);
-            const title = u ? '<a href="' + esc(u) + '" target="_blank" rel="noopener">' + esc(n.title) + '</a>' : esc(n.title);
-            const src = n.source ? ' <span class="news-src">· ' + esc(n.source) + (n.date ? ' · ' + esc(n.date) : '') + '</span>' : '';
-            const blurb = n.blurb ? '<div class="news-blurb">' + esc(n.blurb) + '</div>' : '';
-            return '<li><div class="news-title">' + title + src + '</div>' + blurb + '</li>';
-          }).join('') + '</ul>');
+        const ed = new Date(r.edition + 'T12:00:00');
+        const dateStr = DAYS[ed.getDay()] + ', ' + MONTHS[ed.getMonth()].toUpperCase() + ' ' + ed.getDate() + ', ' + ed.getFullYear();
+        const [lead, ...rest] = r.news;
+
+        function story(n, big) {
+          const u = safeUrl(n.url);
+          const kicker = n.source ? '<div class="herald-kicker">' + esc(n.source) + '</div>' : '';
+          const headline = u
+            ? '<a href="' + esc(u) + '" target="_blank" rel="noopener">' + esc(n.title) + '</a>'
+            : esc(n.title);
+          const byline = '<div class="herald-byline">By ' + esc(n.source || 'Staff') + (n.date ? ' — ' + esc(n.date) : '') + '</div>';
+          const blurb = n.blurb ? '<p class="herald-blurb">' + esc(n.blurb) + '</p>' : '';
+          const more = u ? '<a class="herald-more" href="' + esc(u) + '" target="_blank" rel="noopener">Continue reading →</a>' : '';
+          return '<article class="herald-story' + (big ? ' herald-lead' : '') + '">' +
+            kicker +
+            '<h2 class="herald-headline">' + headline + '</h2>' +
+            byline + blurb + more +
+            '</article>';
+        }
+
+        parts.push(
+          '<section class="herald">' +
+          '<div class="herald-masthead">' +
+            '<div class="herald-rule-top"></div>' +
+            '<div class="herald-meta-top"><span>EST. 2026</span><span>WEEKLY EDITION</span><span>PRICE: FREE</span></div>' +
+            '<h1 class="herald-title">The Rivington Herald</h1>' +
+            '<div class="herald-strap">"All the news from your 10-minute walk"</div>' +
+            '<div class="herald-rule-mid"></div>' +
+            '<div class="herald-meta-bot"><span>' + esc(dateStr) + '</span><span>8 RIVINGTON ST, N.Y.</span><span>VOL. I &middot; NO. 1</span></div>' +
+            '<div class="herald-rule-bot"></div>' +
+          '</div>' +
+          '<div class="herald-body">' +
+            story(lead, true) +
+            '<div class="herald-columns">' +
+              rest.map(n => story(n, false)).join('') +
+            '</div>' +
+          '</div>' +
+          '</section>'
+        );
       }
 
-      // This week's events as the weekly-plan grid, matching the Calendar page.
-      const ev = upcoming({ events: r.events || [] });
-      let weekHtml;
-      if (!ev.length) {
-        weekHtml = '<p class="event-empty">No events listed this week.</p>';
-      } else {
-        const today = new Date();
-        const todayKey = dayKey(today);
-        const buckets = [];
-        for (let i = 0; i < 7; i++) {
-          const dt = new Date(today.getTime() + i * 86400000);
-          const dp = nyParts(dt);
-          buckets.push({
-            key: dayKey(dt),
-            dayNum: dp.day, weekday: dp.weekday, month: dp.month,
-            isToday: dayKey(dt) === todayKey, events: []
-          });
-        }
-        ev.forEach(e => {
-          const k = dayKey(e.s);
-          const b = buckets.find(x => x.key === k);
-          if (b) b.events.push(e);
-        });
-        const cols = buckets.map(b => {
-          const cls = ['plan-col'];
-          if (b.isToday) cls.push('today');
-          const head = '<div class="plan-col-head">' +
-            '<div class="plan-col-dow">' + esc(b.weekday.toLowerCase()) + '</div>' +
-            '<div class="plan-col-date">' + esc(b.month) + ' ' + esc(b.dayNum) + '</div>' +
-            (b.isToday ? '<div class="plan-col-today-tag">TODAY</div>' : '') +
-            '</div>';
-          const evs = b.events.map(e => planEvent(e)).join('')
-            || '<div class="plan-col-empty">—</div>';
-          return '<div class="' + cls.join(' ') + '">' + head +
-            '<div class="plan-col-events">' + evs + '</div></div>';
-        }).join('');
-        weekHtml = '<div class="weekly-plan"><h2 class="weekly-plan-title">weekly plan</h2>' +
-          '<div class="weekly-plan-wrap"><div class="weekly-plan-grid">' + cols + '</div></div></div>';
-      }
-      parts.push('<h3 class="cal-day">This week</h3>' + weekHtml);
+      // Weekly events live on the Calendar page now — just link there.
+      parts.push('<a class="roundup-cal-link" href="calendar.html">' +
+        '<div class="rc-eyebrow">THIS WEEK’S EVENTS</div>' +
+        '<div class="rc-title">Open the weekly calendar →</div>' +
+        '<div class="rc-sub">Every concert, comedy show, drag night, talk and pop-up within walking distance over the next seven days.</div>' +
+        '</a>');
 
       el.innerHTML = parts.join('');
     }).catch(() => { /* no edition yet: the page keeps its "first edition" note */ });
@@ -377,28 +374,28 @@
     return map[c] || c;
   }
 
+  // One-line event row that expands to show kind, venue and the + Google / +
+  // Apple / Tix buttons. Uses the native <details>/<summary> disclosure so
+  // it works everywhere with no JS; the arrow is hidden by CSS.
   function planEvent(e) {
     const url = safeUrl(e.url);
     const t = timeLabel(e.s);
     const kind = eventKindLabel(e);
-    const name = url
-      ? '<a href="' + esc(url) + '" target="_blank" rel="noopener">' + esc(e.name) + '</a>'
-      : esc(e.name);
-    const kindBadge = kind ? '<span class="plan-ev-kind">' + esc(kind) + '</span>' : '';
-    const venue = e.venue ? '<div class="plan-ev-venue">' + esc(e.venue) + '</div>' : '';
     const links = [];
-    if (url) links.push('<a class="plan-ev-tix" href="' + esc(url) + '" target="_blank" rel="noopener">Tix</a>');
+    if (url) links.push('<a class="plan-ev-tix" href="' + esc(url) + '" target="_blank" rel="noopener">Tickets &amp; info</a>');
     links.push('<a href="' + esc(googleUrl(e)) + '" target="_blank" rel="noopener">+ Google</a>');
     links.push('<a href="' + esc(icsHref(e)) + '" download="event.ics">+ Apple</a>');
-    return '<div class="plan-ev">' +
-      '<div class="plan-ev-top">' +
+    return '<details class="plan-ev">' +
+      '<summary class="plan-ev-summary">' +
         '<span class="plan-ev-time">' + esc(t) + '</span>' +
-        kindBadge +
+        '<span class="plan-ev-name">' + esc(e.name) + '</span>' +
+      '</summary>' +
+      '<div class="plan-ev-extra">' +
+        (kind ? '<div class="plan-ev-kind-row"><span class="plan-ev-kind">' + esc(kind) + '</span></div>' : '') +
+        (e.venue ? '<div class="plan-ev-venue">' + esc(e.venue) + '</div>' : '') +
+        '<div class="plan-ev-links">' + links.join('') + '</div>' +
       '</div>' +
-      '<div class="plan-ev-name">' + name + '</div>' +
-      venue +
-      '<div class="plan-ev-links">' + links.join('') + '</div>' +
-      '</div>';
+      '</details>';
   }
 
   window.RobotEvents = { initList, initWeek, initCalendar, initPlanner, initRoundup };
