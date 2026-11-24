@@ -131,8 +131,11 @@
               const name = url
                 ? '<a href="' + esc(url) + '" target="_blank" rel="noopener">' + esc(e.name) + '</a>'
                 : esc(e.name);
+              const kind = eventKindLabel(e);
               return '<li><span class="mini-time">' + esc(timeLabel(e.s)) + '</span>' +
-                '<span class="mini-name">' + name + '</span></li>';
+                '<span class="mini-name">' + name +
+                (kind ? '<span class="mini-kind">' + esc(kind) + '</span>' : '') +
+                '</span></li>';
             }).join('') + '</ul>'
           : '<div class="mini-none">Nothing listed</div>';
         const more = extra > 0
@@ -182,7 +185,9 @@
     }).catch(() => emptyNote(el, "Couldn't load events just now."));
   }
 
-  // Roundup page: the latest Sunday edition.
+  // Roundup page: the latest Sunday edition — new openings, closings,
+  // hyperlocal news, and the week's events in the same planner grid used
+  // on the Calendar page.
   function initRoundup(opts) {
     const el = document.getElementById(opts.bodyId);
     if (!el) return;
@@ -192,8 +197,60 @@
       const place = p => '<li><b>' + esc(p.n) + '</b>' + (p.k ? ' · ' + esc(String(p.k).replace(/_/g, ' ')) : '') + (p.a ? ' · ' + esc(p.a) : '') + (p.m ? ' · ' + p.m + ' min walk' : '') + '</li>';
       parts.push('<h3 class="cal-day">New on the map</h3>' + (r.new && r.new.length ? '<ul class="roundup-list">' + r.new.map(place).join('') + '</ul>' + (r.new_count > r.new.length ? '<p class="event-empty">and ' + (r.new_count - r.new.length) + ' more</p>' : '') : '<p class="event-empty">Nothing new this week.</p>'));
       if (r.gone && r.gone.length) parts.push('<h3 class="cal-day">No longer listed</h3><ul class="roundup-list">' + r.gone.map(place).join('') + '</ul>');
+
+      // Hyperlocal news items (optional in roundup.json as r.news)
+      if (r.news && r.news.length) {
+        parts.push('<h3 class="cal-day">Hyperlocal news</h3><ul class="roundup-news">' +
+          r.news.map(n => {
+            const u = safeUrl(n.url);
+            const title = u ? '<a href="' + esc(u) + '" target="_blank" rel="noopener">' + esc(n.title) + '</a>' : esc(n.title);
+            const src = n.source ? ' <span class="news-src">· ' + esc(n.source) + (n.date ? ' · ' + esc(n.date) : '') + '</span>' : '';
+            const blurb = n.blurb ? '<div class="news-blurb">' + esc(n.blurb) + '</div>' : '';
+            return '<li><div class="news-title">' + title + src + '</div>' + blurb + '</li>';
+          }).join('') + '</ul>');
+      }
+
+      // This week's events as the weekly-plan grid, matching the Calendar page.
       const ev = upcoming({ events: r.events || [] });
-      parts.push('<h3 class="cal-day">This week</h3>' + (ev.length ? '<div class="event-list">' + ev.map(e => eventRow(e, true)).join('') + '</div>' : '<p class="event-empty">No events listed this week.</p>'));
+      let weekHtml;
+      if (!ev.length) {
+        weekHtml = '<p class="event-empty">No events listed this week.</p>';
+      } else {
+        const today = new Date();
+        const todayKey = dayKey(today);
+        const buckets = [];
+        for (let i = 0; i < 7; i++) {
+          const dt = new Date(today.getTime() + i * 86400000);
+          const dp = nyParts(dt);
+          buckets.push({
+            key: dayKey(dt),
+            dayNum: dp.day, weekday: dp.weekday, month: dp.month,
+            isToday: dayKey(dt) === todayKey, events: []
+          });
+        }
+        ev.forEach(e => {
+          const k = dayKey(e.s);
+          const b = buckets.find(x => x.key === k);
+          if (b) b.events.push(e);
+        });
+        const cols = buckets.map(b => {
+          const cls = ['plan-col'];
+          if (b.isToday) cls.push('today');
+          const head = '<div class="plan-col-head">' +
+            '<div class="plan-col-dow">' + esc(b.weekday.toLowerCase()) + '</div>' +
+            '<div class="plan-col-date">' + esc(b.month) + ' ' + esc(b.dayNum) + '</div>' +
+            (b.isToday ? '<div class="plan-col-today-tag">TODAY</div>' : '') +
+            '</div>';
+          const evs = b.events.map(e => planEvent(e)).join('')
+            || '<div class="plan-col-empty">—</div>';
+          return '<div class="' + cls.join(' ') + '">' + head +
+            '<div class="plan-col-events">' + evs + '</div></div>';
+        }).join('');
+        weekHtml = '<div class="weekly-plan"><h2 class="weekly-plan-title">weekly plan</h2>' +
+          '<div class="weekly-plan-wrap"><div class="weekly-plan-grid">' + cols + '</div></div></div>';
+      }
+      parts.push('<h3 class="cal-day">This week</h3>' + weekHtml);
+
       el.innerHTML = parts.join('');
     }).catch(() => { /* no edition yet: the page keeps its "first edition" note */ });
   }
@@ -248,19 +305,44 @@
     }).catch(() => emptyNote(host, "Couldn't load events just now."));
   }
 
+  // Category/kind label normalized for display. "DJ / Parties" → "DJ set",
+  // "Theatre & Performing Arts" → "Theatre", empty → ''.
+  function eventKindLabel(e) {
+    const c = String(e.category || '').trim();
+    if (!c) return '';
+    const map = {
+      'DJ / Parties': 'DJ set',
+      'Music': 'Concert',
+      'Comedy': 'Comedy',
+      'Drag': 'Drag show',
+      'Burlesque': 'Burlesque',
+      'Theatre & Performing Arts': 'Theatre',
+      'Performing Arts': 'Performance',
+      'Readings & Talks': 'Talk',
+      'LGBTQ+': 'LGBTQ+',
+      'Other/Fun/Deals': 'Event'
+    };
+    return map[c] || c;
+  }
+
   function planEvent(e) {
     const url = safeUrl(e.url);
     const t = timeLabel(e.s);
+    const kind = eventKindLabel(e);
     const name = url
       ? '<a href="' + esc(url) + '" target="_blank" rel="noopener">' + esc(e.name) + '</a>'
       : esc(e.name);
+    const kindBadge = kind ? '<span class="plan-ev-kind">' + esc(kind) + '</span>' : '';
     const venue = e.venue ? '<div class="plan-ev-venue">' + esc(e.venue) + '</div>' : '';
     const links = [];
     if (url) links.push('<a class="plan-ev-tix" href="' + esc(url) + '" target="_blank" rel="noopener">Tix</a>');
     links.push('<a href="' + esc(googleUrl(e)) + '" target="_blank" rel="noopener">+ Google</a>');
     links.push('<a href="' + esc(icsHref(e)) + '" download="event.ics">+ Apple</a>');
     return '<div class="plan-ev">' +
-      '<div class="plan-ev-time">' + esc(t) + '</div>' +
+      '<div class="plan-ev-top">' +
+        '<span class="plan-ev-time">' + esc(t) + '</span>' +
+        kindBadge +
+      '</div>' +
       '<div class="plan-ev-name">' + name + '</div>' +
       venue +
       '<div class="plan-ev-links">' + links.join('') + '</div>' +

@@ -268,18 +268,23 @@
     const vibeEls = document.querySelectorAll('#' + opts.vibesId + ' .vibe');
     const hint = document.getElementById(opts.hintId);
     const selected = new Set([...vibeEls].filter(e => e.classList.contains('on')).map(e => e.dataset.vibe));
+    const TOTAL_VIBES = vibeEls.length;
     let D = null;
     function pool() {
-      // everything people can walk into: robot picks and core places, not the "more" pile
-      const base = D.places.filter(p => p.t !== 'm' && p.g !== 'essentials');
-      return selected.size === 0 ? base : base.filter(p => (p.v || []).some(v => selected.has(v)));
+      // Every single place within walking range — picks, core, more, essentials.
+      const base = D.places;
+      // When all vibes are on (default) OR none are on, no vibe filter —
+      // the whole list. Otherwise narrow to places matching the chosen vibes.
+      if (selected.size === 0 || selected.size === TOTAL_VIBES) return base;
+      return base.filter(p => (p.v || []).some(v => selected.has(v)));
     }
     function updateHint() {
       if (!D) return;
       const n = pool().length;
-      hint.textContent = selected.size === 0
-        ? 'Pulling from ' + n.toLocaleString() + ' places inside your ring'
-        : 'Picking from ' + n.toLocaleString() + ' ' + [...selected].join(' + ') + ' spots inside your ring';
+      const all = selected.size === 0 || selected.size === TOTAL_VIBES;
+      hint.textContent = all
+        ? 'Pulling from all ' + n.toLocaleString() + ' places within walking range'
+        : 'Picking from ' + n.toLocaleString() + ' ' + [...selected].join(' + ') + ' spots nearby';
     }
     vibeEls.forEach(el => el.addEventListener('click', () => {
       const v = el.dataset.vibe;
