@@ -83,11 +83,13 @@
   // Home page: a one-week calendar grouped by day, with ticket links baked in
   // and "Add to calendar" buttons on every event. Shows a card per day so
   // empty days still show up and the layout reads like a week at a glance.
+  // Home page "today & tomorrow": a pair of compact date-cards side by side.
+  // Opts: listId, days (default 2), perDay (default 3)
   function initWeek(opts) {
     const el = document.getElementById(opts.listId);
     if (!el) return;
-    const days = opts.days || 7;
-    const perDay = opts.perDay || 4;
+    const days = opts.days || 2;
+    const perDay = opts.perDay || 3;
     getJson('data/events.json').then(d => {
       const ev = upcoming(d);
       // Build an ordered list of the next N day buckets starting from today NY time.
@@ -113,19 +115,35 @@
         if (b) b.events.push(e);
       });
       if (!buckets.some(b => b.events.length)) {
-        return emptyNote(el, 'Nothing listed for the next week yet. New events land every Sunday.');
+        return emptyNote(el, 'Nothing listed for the next couple of days. Check back soon.');
       }
-      el.innerHTML = buckets.map(b => {
+      el.innerHTML = '<div class="mini-cal">' + buckets.map((b, i) => {
         const isToday = b.key === todayKey;
-        const head = '<div class="wk-head"><div class="wk-dow">' + esc(b.weekday.toUpperCase()) + (isToday ? ' · TODAY' : '') + '</div>' +
-          '<div class="wk-date">' + esc(b.month) + ' ' + esc(b.dayNum) + '</div></div>';
-        if (!b.events.length) return '<div class="wk-day wk-empty">' + head + '<div class="wk-none">Nothing listed</div></div>';
+        const label = isToday ? 'TODAY' : (i === 1 ? 'TOMORROW' : b.weekday.toUpperCase());
         const shown = b.events.slice(0, perDay);
         const extra = b.events.length - shown.length;
-        const list = shown.map(e => weekEventRow(e)).join('');
-        const more = extra > 0 ? '<a class="wk-more" href="calendar.html">+ ' + extra + ' more this day →</a>' : '';
-        return '<div class="wk-day">' + head + '<div class="wk-events">' + list + '</div>' + more + '</div>';
-      }).join('');
+        const cls = ['mini-day'];
+        if (isToday) cls.push('today');
+        if (!b.events.length) cls.push('empty');
+        const list = shown.length
+          ? '<ul class="mini-list">' + shown.map(e => {
+              const url = safeUrl(e.url);
+              const name = url
+                ? '<a href="' + esc(url) + '" target="_blank" rel="noopener">' + esc(e.name) + '</a>'
+                : esc(e.name);
+              return '<li><span class="mini-time">' + esc(timeLabel(e.s)) + '</span>' +
+                '<span class="mini-name">' + name + '</span></li>';
+            }).join('') + '</ul>'
+          : '<div class="mini-none">Nothing listed</div>';
+        const more = extra > 0
+          ? '<a class="mini-more" href="calendar.html">+ ' + extra + ' more →</a>'
+          : (shown.length ? '<a class="mini-more" href="calendar.html">full week →</a>' : '');
+        return '<div class="' + cls.join(' ') + '">' +
+          '<div class="mini-head">' +
+            '<span class="mini-tag">' + esc(label) + '</span>' +
+            '<span class="mini-date">' + esc(b.weekday) + ' ' + esc(b.month) + ' ' + esc(b.dayNum) + '</span>' +
+          '</div>' + list + more + '</div>';
+      }).join('') + '</div>';
     }).catch(() => emptyNote(el, "Couldn't load events just now."));
   }
 

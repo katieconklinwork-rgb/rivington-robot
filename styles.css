@@ -316,13 +316,99 @@ a { color: inherit; text-decoration: none; }
   text-align: center; padding: 10px 4px; opacity: 0.6;
 }
 
+/* Mobile: stack days as horizontal rows so event text has room. */
 @media (max-width: 760px) {
   .weekly-plan { border-radius: 4px; }
   .weekly-plan-title { font-size: 28px; padding: 10px 0 8px; }
-  .weekly-plan-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
-  .weekly-plan-wrap .weekly-plan-grid { min-width: 820px; }
-  .plan-col { min-height: 260px; }
-  .plan-col-dow { font-size: 14px; }
+  .weekly-plan-grid {
+    grid-template-columns: 1fr;
+  }
+  .plan-col {
+    display: grid;
+    grid-template-columns: 70px 1fr;
+    min-height: 0;
+    border-right: none;
+    border-bottom: 1px solid var(--rule);
+  }
+  .plan-col:last-child { border-bottom: none; }
+  .plan-col-head {
+    border-bottom: none;
+    border-right: 1px solid var(--rule);
+    padding: 14px 6px;
+    display: flex; flex-direction: column; justify-content: center;
+    gap: 2px;
+  }
+  .plan-col.today .plan-col-head { border-bottom: none; border-right-color: var(--blue-300, #A8C4E3); }
+  .plan-col-dow { font-size: 16px; }
+  .plan-col-date { font-size: 12px; margin-top: 2px; }
+  .plan-col-events { padding: 10px 10px; gap: 8px; }
+  .plan-ev { font-size: 12px; padding: 8px 10px; }
+  .plan-ev-time { font-size: 11px; }
+  .plan-ev-venue { font-size: 11px; }
+  .plan-col-empty { text-align: left; padding: 6px 2px; font-size: 11px; }
+}
+
+/* ============ MINI CALENDAR (home page: today & tomorrow) ============ */
+.mini-cal {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+  margin-top: 4px;
+}
+.mini-day {
+  background: white;
+  border: 1px solid var(--rule);
+  border-radius: 12px;
+  padding: 12px 14px 12px;
+  box-shadow: 0 1px 2px rgba(44, 42, 36, 0.04);
+  display: flex; flex-direction: column;
+  min-height: 150px;
+}
+.mini-day.today {
+  background: linear-gradient(180deg, var(--blue-50) 0%, white 70%);
+  border-color: var(--blue-300, #A8C4E3);
+}
+.mini-day.empty { opacity: 0.7; }
+.mini-head {
+  display: flex; align-items: baseline; justify-content: space-between; gap: 6px;
+  border-bottom: 0.5px dashed var(--rule);
+  padding-bottom: 6px; margin-bottom: 8px;
+}
+.mini-tag {
+  font-size: 9px; letter-spacing: 1.4px; font-weight: 700;
+  color: var(--pink-800);
+  padding: 2px 6px;
+  background: var(--pink-50);
+  border-radius: 3px;
+}
+.mini-day.today .mini-tag { color: var(--blue-800); background: var(--blue-50); }
+.mini-date {
+  font-family: var(--serif); font-size: 13px; color: var(--ink-2);
+}
+.mini-list { list-style: none; padding: 0; margin: 0 0 6px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
+.mini-list li { display: flex; gap: 8px; align-items: baseline; font-size: 12px; line-height: 1.3; }
+.mini-time {
+  flex: none;
+  font-family: var(--serif); font-weight: 500; font-size: 11px;
+  color: var(--blue-800);
+  min-width: 46px;
+}
+.mini-name { flex: 1; min-width: 0; color: var(--ink); }
+.mini-name a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--rule); }
+.mini-name a:hover { border-bottom-color: var(--ink); }
+.mini-none { font-size: 12px; color: var(--ink-3); font-style: italic; flex: 1; }
+.mini-more {
+  font-size: 11px; color: var(--blue-800); text-decoration: none;
+  margin-top: auto; padding-top: 6px;
+  border-top: 0.5px dashed var(--rule);
+  font-weight: 500;
+}
+.mini-more:hover { text-decoration: underline; }
+@media (max-width: 420px) {
+  .mini-cal { gap: 8px; }
+  .mini-day { padding: 10px 11px; }
+  .mini-tag { font-size: 8px; padding: 2px 5px; }
+  .mini-date { font-size: 11px; }
+  .mini-list li { font-size: 11px; }
+  .mini-time { min-width: 40px; font-size: 10px; }
 }
 
 /* ============ BRIEFING ============ */
