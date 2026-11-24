@@ -1,5 +1,5 @@
 {
- "built": "2026-11-23T23:50-05:00",
+ "built": "2026-11-24T00:42-05:00",
  "sources_ok": [
   "Bowery Ballroom",
   "Mercury Lounge",
@@ -7,104 +7,6 @@
  ],
  "sources_failed": [],
  "events": [
-  {
-   "name": "Foxtail’s Holiday Hideaway",
-   "start": "2026-11-23T17:00:00-05:00",
-   "end": "2026-11-23T23:30:00-05:00",
-   "venue": "Arlo Hotel Soho",
-   "address": "",
-   "url": "https://donyc.com/events/2026/11/23/foxtail-s-holiday-hideaway-tickets",
-   "source": "DoNYC",
-   "near": "SoHo",
-   "category": "DJ / Parties"
-  },
-  {
-   "name": "Bookshop meet-cute Brooklyn - BODA singles social",
-   "start": "2026-11-23T18:00:00-05:00",
-   "end": "2026-11-23T22:30:00-05:00",
-   "venue": "Book Club Bar",
-   "address": "",
-   "url": "https://donyc.com/events/2026/11/23/bookshop-meet-cute-brooklyn-boda-singles-social-tickets",
-   "source": "DoNYC",
-   "near": "East Village",
-   "category": "Comedy"
-  },
-  {
-   "name": "Drag King Bingo with Cunning Stunt",
-   "start": "2026-11-23T19:00:00-05:00",
-   "end": "2026-11-23T21:00:00-05:00",
-   "venue": "Club Cumming",
-   "address": "",
-   "url": "https://donyc.com/events/2026/11/23/drag-king-bingo-with-cunning-stunt-tickets",
-   "source": "DoNYC",
-   "near": "Alphabet City",
-   "category": "Drag"
-  },
-  {
-   "name": "Annalise & The Mother Underground",
-   "start": "2026-11-23T21:00:00-05:00",
-   "end": null,
-   "venue": "Mercury Lounge",
-   "address": "217 E Houston St",
-   "url": "https://mercuryeastpresents.com/tm-event/annalise-the-mother-underground/",
-   "source": "Mercury Lounge",
-   "near": "4 min walk"
-  },
-  {
-   "name": "A True York Comedy Experience",
-   "start": "2026-11-23T21:00:00-05:00",
-   "end": null,
-   "venue": "St. Marks Comedy Club",
-   "address": "",
-   "url": "https://donyc.com/events/2026/11/23/a-true-york-comedy-experience-tickets",
-   "source": "DoNYC",
-   "near": "East Village",
-   "category": "Comedy"
-  },
-  {
-   "name": "Code Red",
-   "start": "2026-11-23T21:00:00-05:00",
-   "end": null,
-   "venue": "Berlin",
-   "address": "",
-   "url": "https://donyc.com/events/2026/11/23/code-red-tickets",
-   "source": "DoNYC",
-   "near": "East Village",
-   "category": "Music"
-  },
-  {
-   "name": "Christeene",
-   "start": "2026-11-23T21:30:00-05:00",
-   "end": null,
-   "venue": "Joe's Pub",
-   "address": "",
-   "url": "https://donyc.com/events/2026/11/23/christeene-tickets",
-   "source": "DoNYC",
-   "near": "NoHo",
-   "category": "Performing Arts"
-  },
-  {
-   "name": "Mondays in the Club with Lance",
-   "start": "2026-11-23T21:30:00-05:00",
-   "end": "2026-11-23T23:59:00-05:00",
-   "venue": "Club Cumming",
-   "address": "",
-   "url": "https://donyc.com/events/2026/11/23/mondays-in-the-club-with-lance-tickets",
-   "source": "DoNYC",
-   "near": "Alphabet City",
-   "category": "LGBTQ+"
-  },
-  {
-   "name": "New Jokes & Newbies",
-   "start": "2026-11-23T21:45:00-05:00",
-   "end": null,
-   "venue": "NEW YORK COMEDY CLUB EAST VILLAGE",
-   "address": "",
-   "url": "https://donyc.com/events/2026/11/23/new-jokes-newbies-tickets",
-   "source": "DoNYC",
-   "near": "East Village",
-   "category": "Comedy"
-  },
   {
    "name": "Laughing Buddha Open Mic",
    "start": "2026-11-24T16:30:00-05:00",
@@ -3194,6 +3096,94 @@
    "category": "Comedy"
   },
   {
+   "name": "Chriswithawhy",
+   "start": "2026-12-07T18:00:00-05:00",
+   "end": null,
+   "venue": "Mercury Lounge",
+   "address": "",
+   "url": "https://donyc.com/events/2026/12/7/chriswithawhy-tickets",
+   "source": "DoNYC",
+   "near": "East Village",
+   "category": "Music"
+  },
+  {
+   "name": "Guest Event: Hell Yeah!",
+   "start": "2026-12-07T18:30:00-05:00",
+   "end": null,
+   "venue": "The Slipper Room",
+   "address": "",
+   "url": "https://donyc.com/events/2026/12/7/guest-event-hell-yeah-tickets",
+   "source": "DoNYC",
+   "near": "East Village",
+   "category": "Burlesque"
+  },
+  {
+   "name": "Nuyorican Bowery Slam",
+   "start": "2026-12-07T18:30:00-05:00",
+   "end": null,
+   "venue": "Nuyorican Poets Cafe",
+   "address": "",
+   "url": "https://donyc.com/events/2026/12/7/nuyorican-bowery-slam-tickets",
+   "source": "DoNYC",
+   "near": "Alphabet City",
+   "category": "Performing Arts"
+  },
+  {
+   "name": "Sol Village Live at SOB's",
+   "start": "2026-12-07T19:00:00-05:00",
+   "end": null,
+   "venue": "SOB's",
+   "address": "",
+   "url": "https://donyc.com/events/2026/12/7/sol-village-live-at-sob-s-tickets",
+   "source": "DoNYC",
+   "near": "SoHo",
+   "category": "Music"
+  },
+  {
+   "name": "A True York Comedy Experience",
+   "start": "2026-12-07T19:00:00-05:00",
+   "end": null,
+   "venue": "St. Marks Comedy Club",
+   "address": "",
+   "url": "https://donyc.com/events/2026/12/7/a-true-york-comedy-experience-tickets-mekgArn",
+   "source": "DoNYC",
+   "near": "East Village",
+   "category": "Comedy"
+  },
+  {
+   "name": "Barstow Drive / TBD",
+   "start": "2026-12-07T19:00:00-05:00",
+   "end": null,
+   "venue": "Arlene's Grocery",
+   "address": "",
+   "url": "https://donyc.com/events/2026/12/7/barstow-drive-tbd-tickets",
+   "source": "DoNYC",
+   "near": "East Village",
+   "category": "Music"
+  },
+  {
+   "name": "Jinyur - Dreaming of You Tickets",
+   "start": "2026-12-07T19:00:00-05:00",
+   "end": null,
+   "venue": "Nublu 151",
+   "address": "",
+   "url": "https://donyc.com/events/2026/12/7/jinyur-dreaming-of-you-tickets-tickets",
+   "source": "DoNYC",
+   "near": "Alphabet City",
+   "category": "Music"
+  },
+  {
+   "name": "MAUDE NIGHT: First Wife & Fridge Magnet",
+   "start": "2026-12-07T19:00:00-05:00",
+   "end": null,
+   "venue": "Upright Citizens Brigade (UCB)",
+   "address": "",
+   "url": "https://donyc.com/events/2026/12/7/maude-night-first-wife-fridge-magnet-tickets",
+   "source": "DoNYC",
+   "near": "East Village",
+   "category": "Comedy"
+  },
+  {
    "name": "The 8 Nights of Hanukkah with Yo La Tengo",
    "start": "2026-12-07T19:30:00-05:00",
    "end": null,
@@ -3202,6 +3192,94 @@
    "url": "https://mercuryeastpresents.com/tm-event/the-8-nights-of-hanukkah-with-yo-la-tengo-4/",
    "source": "Bowery Ballroom",
    "near": "2 min walk"
+  },
+  {
+   "name": "Barstow Drive | Cal Stamp | Bright Copper Company",
+   "start": "2026-12-07T19:30:00-05:00",
+   "end": null,
+   "venue": "Bowery Palace",
+   "address": "",
+   "url": "https://donyc.com/events/2026/12/7/barstow-drive-ben-anderson-tickets",
+   "source": "DoNYC",
+   "near": "East Village",
+   "category": "Music"
+  },
+  {
+   "name": "Hunxho",
+   "start": "2026-12-07T20:00:00-05:00",
+   "end": null,
+   "venue": "Webster Hall",
+   "address": "",
+   "url": "https://donyc.com/events/2026/12/7/hunxho-tickets",
+   "source": "DoNYC",
+   "near": "East Village",
+   "category": "Music"
+  },
+  {
+   "name": "New York Comedy Club Presents",
+   "start": "2026-12-07T20:00:00-05:00",
+   "end": null,
+   "venue": "NEW YORK COMEDY CLUB EAST VILLAGE",
+   "address": "",
+   "url": "https://donyc.com/events/2026/12/7/new-york-comedy-club-presents-tickets-leLzLkA",
+   "source": "DoNYC",
+   "near": "East Village",
+   "category": "Comedy"
+  },
+  {
+   "name": "misc., Red Girl's Blue, Circle of Sevens",
+   "start": "2026-12-07T21:00:00-05:00",
+   "end": null,
+   "venue": "Mercury Lounge",
+   "address": "",
+   "url": "https://donyc.com/events/2026/12/7/misc-red-girl-s-blue-circle-of-sevens-tickets",
+   "source": "DoNYC",
+   "near": "East Village",
+   "category": "Music"
+  },
+  {
+   "name": "Huxley Kuhlmann",
+   "start": "2026-12-07T21:00:00-05:00",
+   "end": null,
+   "venue": "Lucinda’s",
+   "address": "",
+   "url": "https://donyc.com/events/2026/12/7/huxley-kuhlmann-tickets",
+   "source": "DoNYC",
+   "near": "Alphabet City",
+   "category": "Music"
+  },
+  {
+   "name": "Code Red",
+   "start": "2026-12-07T21:00:00-05:00",
+   "end": null,
+   "venue": "Berlin",
+   "address": "",
+   "url": "https://donyc.com/events/2026/12/7/code-red-tickets",
+   "source": "DoNYC",
+   "near": "East Village",
+   "category": "Music"
+  },
+  {
+   "name": "Tomorrow is Tonight",
+   "start": "2026-12-07T21:30:00-05:00",
+   "end": null,
+   "venue": "Caveat",
+   "address": "",
+   "url": "https://donyc.com/events/2026/12/7/tomorrow-is-tonight-tickets",
+   "source": "DoNYC",
+   "near": "East Village",
+   "category": "Comedy"
+  },
+  {
+   "name": "New Jokes & Newbies",
+   "start": "2026-12-07T21:45:00-05:00",
+   "end": null,
+   "venue": "NEW YORK COMEDY CLUB EAST VILLAGE",
+   "address": "",
+   "url": "https://donyc.com/events/2026/12/7/new-jokes-newbies-tickets",
+   "source": "DoNYC",
+   "near": "East Village",
+   "category": "Comedy"
   },
   {
    "name": "The 8 Nights of Hanukkah with Yo La Tengo",

@@ -1,108 +1,10 @@
 {
- "edition": "2026-11-23",
+ "edition": "2026-11-24",
  "new_count": 0,
  "gone_count": 0,
  "new": [],
  "gone": [],
  "events": [
-  {
-   "name": "Foxtail’s Holiday Hideaway",
-   "start": "2026-11-23T17:00:00-05:00",
-   "end": "2026-11-23T23:30:00-05:00",
-   "venue": "Arlo Hotel Soho",
-   "address": "",
-   "url": "https://donyc.com/events/2026/11/23/foxtail-s-holiday-hideaway-tickets",
-   "source": "DoNYC",
-   "near": "SoHo",
-   "category": "DJ / Parties"
-  },
-  {
-   "name": "Bookshop meet-cute Brooklyn - BODA singles social",
-   "start": "2026-11-23T18:00:00-05:00",
-   "end": "2026-11-23T22:30:00-05:00",
-   "venue": "Book Club Bar",
-   "address": "",
-   "url": "https://donyc.com/events/2026/11/23/bookshop-meet-cute-brooklyn-boda-singles-social-tickets",
-   "source": "DoNYC",
-   "near": "East Village",
-   "category": "Comedy"
-  },
-  {
-   "name": "Drag King Bingo with Cunning Stunt",
-   "start": "2026-11-23T19:00:00-05:00",
-   "end": "2026-11-23T21:00:00-05:00",
-   "venue": "Club Cumming",
-   "address": "",
-   "url": "https://donyc.com/events/2026/11/23/drag-king-bingo-with-cunning-stunt-tickets",
-   "source": "DoNYC",
-   "near": "Alphabet City",
-   "category": "Drag"
-  },
-  {
-   "name": "Annalise & The Mother Underground",
-   "start": "2026-11-23T21:00:00-05:00",
-   "end": null,
-   "venue": "Mercury Lounge",
-   "address": "217 E Houston St",
-   "url": "https://mercuryeastpresents.com/tm-event/annalise-the-mother-underground/",
-   "source": "Mercury Lounge",
-   "near": "4 min walk"
-  },
-  {
-   "name": "A True York Comedy Experience",
-   "start": "2026-11-23T21:00:00-05:00",
-   "end": null,
-   "venue": "St. Marks Comedy Club",
-   "address": "",
-   "url": "https://donyc.com/events/2026/11/23/a-true-york-comedy-experience-tickets",
-   "source": "DoNYC",
-   "near": "East Village",
-   "category": "Comedy"
-  },
-  {
-   "name": "Code Red",
-   "start": "2026-11-23T21:00:00-05:00",
-   "end": null,
-   "venue": "Berlin",
-   "address": "",
-   "url": "https://donyc.com/events/2026/11/23/code-red-tickets",
-   "source": "DoNYC",
-   "near": "East Village",
-   "category": "Music"
-  },
-  {
-   "name": "Christeene",
-   "start": "2026-11-23T21:30:00-05:00",
-   "end": null,
-   "venue": "Joe's Pub",
-   "address": "",
-   "url": "https://donyc.com/events/2026/11/23/christeene-tickets",
-   "source": "DoNYC",
-   "near": "NoHo",
-   "category": "Performing Arts"
-  },
-  {
-   "name": "Mondays in the Club with Lance",
-   "start": "2026-11-23T21:30:00-05:00",
-   "end": "2026-11-23T23:59:00-05:00",
-   "venue": "Club Cumming",
-   "address": "",
-   "url": "https://donyc.com/events/2026/11/23/mondays-in-the-club-with-lance-tickets",
-   "source": "DoNYC",
-   "near": "Alphabet City",
-   "category": "LGBTQ+"
-  },
-  {
-   "name": "New Jokes & Newbies",
-   "start": "2026-11-23T21:45:00-05:00",
-   "end": null,
-   "venue": "NEW YORK COMEDY CLUB EAST VILLAGE",
-   "address": "",
-   "url": "https://donyc.com/events/2026/11/23/new-jokes-newbies-tickets",
-   "source": "DoNYC",
-   "near": "East Village",
-   "category": "Comedy"
-  },
   {
    "name": "Laughing Buddha Open Mic",
    "start": "2026-11-24T16:30:00-05:00",
@@ -113,6 +15,189 @@
    "source": "DoNYC",
    "near": "East Village",
    "category": "Comedy"
+  },
+  {
+   "name": "Foxtail’s Holiday Hideaway",
+   "start": "2026-11-24T17:00:00-05:00",
+   "end": "2026-11-24T23:30:00-05:00",
+   "venue": "Arlo Hotel Soho",
+   "address": "",
+   "url": "https://donyc.com/events/2026/11/24/foxtail-s-holiday-hideaway-tickets",
+   "source": "DoNYC",
+   "near": "SoHo",
+   "category": "DJ / Parties"
+  },
+  {
+   "name": "Del Coda, Off the Hook, Dylan Taganas, and more!",
+   "start": "2026-11-24T18:00:00-05:00",
+   "end": null,
+   "venue": "Mercury Lounge",
+   "address": "217 E Houston St",
+   "url": "https://mercuryeastpresents.com/tm-event/del-coda-off-the-hook-dylan-taganas-and-more/",
+   "source": "Mercury Lounge",
+   "near": "4 min walk"
+  },
+  {
+   "name": "Make It with Brini Maxwell",
+   "start": "2026-11-24T18:00:00-05:00",
+   "end": "2026-11-24T20:00:00-05:00",
+   "venue": "Club Cumming",
+   "address": "",
+   "url": "https://donyc.com/events/2026/11/24/make-it-with-brini-maxwell-tickets",
+   "source": "DoNYC",
+   "near": "Alphabet City",
+   "category": "LGBTQ+"
+  },
+  {
+   "name": "GHOSTWOMAN",
+   "start": "2026-11-24T19:00:00-05:00",
+   "end": null,
+   "venue": "Bowery Ballroom",
+   "address": "6 Delancey St",
+   "url": "https://mercuryeastpresents.com/tm-event/ghostwoman/",
+   "source": "Bowery Ballroom",
+   "near": "2 min walk"
+  },
+  {
+   "name": "Willie Nile",
+   "start": "2026-11-24T19:00:00-05:00",
+   "end": null,
+   "venue": "Joe's Pub",
+   "address": "",
+   "url": "https://donyc.com/events/2026/11/24/willie-nile-tickets",
+   "source": "DoNYC",
+   "near": "NoHo",
+   "category": "Performing Arts"
+  },
+  {
+   "name": "Torture Tuesday: Torture and the Desert Spiders",
+   "start": "2026-11-24T19:00:00-05:00",
+   "end": null,
+   "venue": "Berlin",
+   "address": "",
+   "url": "https://donyc.com/events/2026/11/24/torture-tuesday-torture-and-the-desert-spiders-tickets",
+   "source": "DoNYC",
+   "near": "East Village",
+   "category": "Music"
+  },
+  {
+   "name": "NY Gypsy All-Stars ft. Hüsnü Şenlendirici",
+   "start": "2026-11-24T19:00:00-05:00",
+   "end": null,
+   "venue": "Drom",
+   "address": "",
+   "url": "https://donyc.com/events/2026/11/24/ny-gypsy-all-stars-ft-husnu-senlendirici-tickets",
+   "source": "DoNYC",
+   "near": "East Village",
+   "category": "Music"
+  },
+  {
+   "name": "Nick Gianni w/ Ronnie Burrage, Alexis Marcelo, Dmitry Ishenko Dawn Drake & Zapote! Indeterminate Orchestra Tickets",
+   "start": "2026-11-24T19:00:00-05:00",
+   "end": null,
+   "venue": "Nublu 151",
+   "address": "",
+   "url": "https://donyc.com/events/2026/11/24/nick-gianni-w-ronnie-burrage-alexis-marcelo-dmitry-ishenko-dawn-drake-zapote-indeterminate-orchestra-tickets-tickets",
+   "source": "DoNYC",
+   "near": "Alphabet City",
+   "category": "Music"
+  },
+  {
+   "name": "Tuesdays at the Red Room",
+   "start": "2026-11-24T19:00:00-05:00",
+   "end": null,
+   "venue": "KGB Bar",
+   "address": "",
+   "url": "https://donyc.com/events/2026/11/24/tuesdays-at-the-red-room-tickets",
+   "source": "DoNYC",
+   "near": "East Village",
+   "category": "Readings & Talks"
+  }
+ ],
+ "news": [
+  {
+   "title": "Inside Bocabierta, the East Village's new Spanish-language bookstore",
+   "url": "http://evgrieve.com/2026/11/inside-bocabierta-east-villages-new.html",
+   "source": "EV Grieve",
+   "date": "Mon Nov 23",
+   "blurb": "Photos and reporting by Stacie Joy Bocabierta , the new Spanish-language bookstore at 138 E. Third St. between Avenue A and First Avenue, celebrated its opening this past Saturday afternoon. Ahead of the festivities, we…"
+  },
+  {
+   "title": "Ludlow Coffee Supply opening an outpost on Avenue A",
+   "url": "http://evgrieve.com/2026/11/ludlow-coffee-supply-opening-outpost-on.html",
+   "source": "EV Grieve",
+   "date": "Mon Nov 23",
+   "blurb": "Photo by Choresh Wald A familiar name is opening shop at 149 Avenue A. Signage is up now for Ludlow Coffee Supply here between Ninth Street and 10th Street. Founded by John Seymour on the Lower East Side (Ludlow…"
+  },
+  {
+   "title": "Openings: Macario on Avenue B",
+   "url": "http://evgrieve.com/2026/11/openings-macario-on-avenue-b.html",
+   "source": "EV Grieve",
+   "date": "Mon Nov 23",
+   "blurb": "Photos by Stacie Joy Macario debuted last week at 167 Avenue B between 10th and 11th streets ... As we've been reporting , Macario relocated here from Park Slope, where it debuted in August 2025... specializing in…"
+  },
+  {
+   "title": "Old Fez brings Moroccan craftsmanship to First Avenue",
+   "url": "http://evgrieve.com/2026/11/old-fez-brings-moroccan-craftsmanship.html",
+   "source": "EV Grieve",
+   "date": "Mon Nov 23",
+   "blurb": "Photos and reporting by Stacie Joy Old Fez, a new shop specializing in Moroccan goods, opened Nov. 1 at 45 First Ave. between Second and Third Streets. Owned by Omar Aqani, the shop offers handcrafted leather bags and…"
+  },
+  {
+   "title": "From Shanghai to Cooper Square: Yulian House to make its U.S. debut",
+   "url": "http://evgrieve.com/2026/11/from-shanghai-to-cooper-square-yulian.html",
+   "source": "EV Grieve",
+   "date": "Mon Nov 23",
+   "blurb": "Photo by Stacie Joy Coming soon to 68 Cooper Square, near Astor Place: Yulian House , a Shanghai-based tea and pastry chain making its U.S. debut. The company has more than 170 locations across China. Here, the menu…"
+  },
+  {
+   "title": "Sunday's parting shot",
+   "url": "http://evgrieve.com/2026/11/sundays-parting-shot_02102018988.html",
+   "source": "EV Grieve",
+   "date": "Sun Nov 22",
+   "blurb": "Photo by Steven The Tree Riders have arrived on Second Avenue between 10th Street and 11th Street for their 16th season here..."
+  },
+  {
+   "title": "Noted",
+   "url": "http://evgrieve.com/2026/11/noted_01144933528.html",
+   "source": "EV Grieve",
+   "date": "Sun Nov 22",
+   "blurb": "An entry in our occasional Vans of the East Village series... as seen on Houston Street between A and B... thanks to Jason Newton for the photo!"
+  },
+  {
+   "title": "EV Grieve's East Village Week in Review",
+   "url": "http://evgrieve.com/2026/11/ev-grieves-east-village-week-in-review_0328360251.html",
+   "source": "EV Grieve",
+   "date": "Sun Nov 22",
+   "blurb": "Posts this past week included (with a photo of Baillie the rescue in Tompkins by Stacie Joy)... • Mysterious late-night booms have East Village residents looking for answers ( Nov. 19 ) • After 17 sweet years, the St.…"
+  },
+  {
+   "title": "Veniero’s vintage neon sign gets the Christmas ornament treatment",
+   "url": "http://evgrieve.com/2026/11/venieros-vintage-neon-sign-gets.html",
+   "source": "EV Grieve",
+   "date": "Sun Nov 22",
+   "blurb": "Images courtesy of Veniero's EV classic Veniero's Pasticceria & Caffè on 11th Street has introduced its first Christmas ornament, a miniature version of the bakery's vintage neon sign. The ornaments come in red gift…"
+  },
+  {
+   "title": "Saturday's parting shot",
+   "url": "http://evgrieve.com/2026/11/saturdays-parting-shot_01720574056.html",
+   "source": "EV Grieve",
+   "date": "Sat Nov 21",
+   "blurb": "A walk along 3rd Street tonight..."
+  },
+  {
+   "title": "A $4.8 million Georgia O'Keeffe painting was hiding in an East Village closet",
+   "url": "http://evgrieve.com/2026/11/a-48-million-georgia-okeeffe-painting.html",
+   "source": "EV Grieve",
+   "date": "Sat Nov 21",
+   "blurb": "Image via Christie's Press Centre That long-lost Georgia O'Keeffe painting, hidden in an East Village closet for roughly 40 years, sold for $4.8 million at Christie's on Tuesday. The 1930 landscape, \"Near Abiquiu, New…"
+  },
+  {
+   "title": "6&B Garden launches native seed library in memory of longtime gardener",
+   "url": "http://evgrieve.com/2026/11/6-garden-launches-native-seed-library.html",
+   "source": "EV Grieve",
+   "date": "Sat Nov 21",
+   "blurb": "The 6&B Garden Horticulture Committee is launching a native plant seed library in memory of Mary Buchen, who founded the committee and generously shared her gardening knowledge and time with others. The Mary Buchen…"
   }
  ]
 }
