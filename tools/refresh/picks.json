@@ -1,0 +1,1016 @@
+[
+{
+"name": "The Hideout Chai Bar",
+"place_id": "ChIJv_6WmoZZwokRbuo1pyegDRE",
+"lat": 40.7210707,
+"lng": -73.9909791,
+"address": "LES",
+"miles": 0.08,
+"category": "Cafe",
+"vibes": [
+"cozy"
+]
+},
+{
+"name": "Saltwater Coffee & Wine Bar",
+"place_id": "ChIJL1fyf6BZwokRjnzysdh3BvE",
+"lat": 40.7203405,
+"lng": -73.988765,
+"address": "90 Rivington St",
+"miles": 0.2,
+"category": "Cafe",
+"hours": "8AM-10PM",
+"vibes": [
+"cozy",
+"work from cafe",
+"dog friendly"
+]
+},
+{
+"name": "Black Cat LES",
+"place_id": "ChIJjW5AuIFZwokRdNPH7jFGigM",
+"lat": 40.7190149,
+"lng": -73.9845769,
+"address": "172 Rivington St",
+"miles": 0.44,
+"category": "Cafe",
+"hours": "Mon-Tue, Sun 8AM-9PM; Wed 8AM-8PM; Thu-Sat 8AM-11PM",
+"vibes": [
+"cozy",
+"work from cafe"
+]
+},
+{
+"name": "Hancock Cafe",
+"place_id": "ChIJB-pG9qJZwokR8mxvdm-jf-E",
+"lat": 40.7189544,
+"lng": -73.9843817,
+"address": "176 Rivington St",
+"miles": 0.45,
+"category": "Cafe",
+"hours": "Mon-Fri 8AM-4:30PM; Sat-Sun 8:30AM-6PM",
+"vibes": [
+"cozy"
+]
+},
+{
+"name": "Kaida Coffee and Bakery",
+"place_id": "ChIJkzkqDABZwokRl-Jxqks-gq4",
+"lat": 40.7196328,
+"lng": -73.9883579,
+"address": "122 Ludlow St",
+"miles": 0.25,
+"category": "Cafe",
+"hours": "Mon-Fri 7AM-5PM; Sat 8AM-5PM; Sun 9AM-5PM",
+"vibes": [
+"work from cafe",
+"sweet tooth"
+]
+},
+{
+"name": "Supermoon Bakehouse",
+"place_id": "ChIJcTYla4FZwokRYe11aG3tgqk",
+"lat": 40.7198453,
+"lng": -73.9872386,
+"address": "120 Rivington St",
+"miles": 0.29,
+"category": "Bakery",
+"hours": "8AM-10PM",
+"vibes": [
+"sweet tooth"
+]
+},
+{
+"name": "Allan's Bakery",
+"place_id": "ChIJG30Lq4hZwokRp-441yznOYs",
+"lat": 40.7211534,
+"lng": -73.9891068,
+"address": "166 Allen St",
+"miles": 0.16,
+"category": "Bakery",
+"hours": "Tue-Sat 8:30AM-6PM; Sun 8:30AM-7PM",
+"vibes": [
+"sweet tooth",
+"cheap eats"
+]
+},
+{
+"name": "Kossar's Bagels & Bialys",
+"place_id": "ChIJcWoDq4BZwokRFDtV51j09Hg",
+"lat": 40.7164068,
+"lng": -73.9888009,
+"address": "367 Grand St",
+"miles": 0.42,
+"category": "Bagels",
+"hours": "Mon-Thu 6AM-4PM; Fri-Sun 6AM-5PM",
+"vibes": [
+"classic NYC",
+"breakfast"
+]
+},
+{
+"name": "Pop's Bagels Nolita",
+"place_id": "ChIJjfKKlqRZwokRe2ZxAJAra6U",
+"lat": 40.7245528,
+"lng": -73.9945038,
+"address": "55 E Houston St",
+"miles": 0.22,
+"category": "Bagels",
+"hours": "Mon-Fri 6AM-3:30PM; Sat-Sun 7AM-3:30PM",
+"vibes": [
+"breakfast"
+]
+},
+{
+"name": "Heaven's Hot Bagels",
+"place_id": "ChIJC50JF4JZwokRNEtnmQP0MD4",
+"lat": 40.7214235,
+"lng": -73.9843214,
+"address": "283 E Houston St",
+"miles": 0.4,
+"category": "Bagels",
+"hours": "Mon-Fri 7AM-3:30PM; Sat 7AM-3PM; Sun 7:30AM-2PM",
+"vibes": [
+"breakfast",
+"cheap eats"
+]
+},
+{
+"name": "Freemans",
+"place_id": "ChIJRcCC14VZwokRvJiDo29-IGM",
+"lat": 40.721984,
+"lng": -73.992446,
+"address": "2 Freeman Alley",
+"miles": 0.02,
+"category": "Restaurant",
+"hours": "Mon 11AM-10PM; Tue-Fri 11AM-11PM; Sat 10AM-11PM; Sun 10AM-10PM",
+"vibes": [
+"brunch",
+"date night",
+"cozy",
+"right next door"
+]
+},
+{
+"name": "Sonnyboy",
+"place_id": "ChIJlWIymCBZwokRQMYxkk_fBmE",
+"lat": 40.7205154,
+"lng": -73.9901841,
+"address": "65 Rivington St",
+"miles": 0.14,
+"category": "Restaurant",
+"hours": "Tue-Thu 5-11PM; Fri-Sat 9AM-12AM; Sun 9AM-5PM",
+"vibes": [
+"brunch"
+]
+},
+{
+"name": "Isla & Co",
+"place_id": "ChIJ-RMiPFxZwokRxa6YwAIhvcU",
+"lat": 40.720017,
+"lng": -73.989518,
+"address": "139 Orchard St",
+"miles": 0.19,
+"category": "Restaurant",
+"hours": "10AM-10PM (brunch to 4PM)",
+"vibes": [
+"brunch"
+]
+},
+{
+"name": "Dudleys",
+"place_id": "ChIJWQs914ZZwokRl55uI6owqC4",
+"lat": 40.7180686,
+"lng": -73.9904389,
+"address": "85 Orchard St",
+"miles": 0.29,
+"category": "Restaurant",
+"hours": "9AM-12AM",
+"vibes": [
+"brunch",
+"late night"
+]
+},
+{
+"name": "Balzem",
+"place_id": "ChIJa128pIhZwokRnoPKJguYBCA",
+"lat": 40.7213239,
+"lng": -73.9954644,
+"address": "202 Mott St",
+"miles": 0.19,
+"category": "Restaurant",
+"hours": "Mon-Thu 11:30AM-12AM; Fri 11:30AM-1AM; Sat 11AM-1AM; Sun 11AM-12AM",
+"vibes": [
+"date night",
+"cozy"
+]
+},
+{
+"name": "Pietro Nolita",
+"place_id": "ChIJtVCVH4ZZwokRyfkmpj7Qk5g",
+"lat": 40.7210232,
+"lng": -73.9947345,
+"address": "174 Elizabeth St",
+"miles": 0.16,
+"category": "Restaurant",
+"hours": "Mon-Wed 5-11PM; Thu-Sat 5PM-2AM",
+"vibes": [
+"date night",
+"lively"
+]
+},
+{
+"name": "Peasant",
+"place_id": "ChIJ0XJEBIZZwokR3iPgClK9uEg",
+"lat": 40.721696,
+"lng": -73.994272,
+"address": "Elizabeth St",
+"miles": 0.12,
+"category": "Restaurant",
+"vibes": [
+"date night",
+"cozy"
+]
+},
+{
+"name": "Forsythia NYC",
+"place_id": "ChIJ6Xa02cFZwokRv_5HQ3fHoHk",
+"lat": 40.7225352,
+"lng": -73.9924919,
+"address": "Bowery area",
+"miles": 0.04,
+"category": "Restaurant",
+"vibes": [
+"date night"
+]
+},
+{
+"name": "Taverna Di Bacco",
+"place_id": "ChIJlQFG6INZwokRRiBMK6vm7xw",
+"lat": 40.7218614,
+"lng": -73.9875337,
+"address": "175 Ludlow St",
+"miles": 0.23,
+"category": "Restaurant",
+"hours": "Wed-Sat 1:30-11PM; Sun 1:30-10PM",
+"vibes": [
+"date night",
+"cozy"
+]
+},
+{
+"name": "Maretta",
+"place_id": "ChIJUZ_osrNZwokRYq0Y0YFsxYA",
+"lat": 40.7222537,
+"lng": -73.9829507,
+"address": "27 Avenue B",
+"miles": 0.47,
+"category": "Restaurant",
+"hours": "Tue-Thu, Sun 5-10PM; Fri-Sat 5-11PM",
+"vibes": [
+"date night"
+]
+},
+{
+"name": "Bufón",
+"place_id": "ChIJFyq1toZZwokR2NjdTcUeG_s",
+"lat": 40.7205449,
+"lng": -73.9894542,
+"address": "78 Rivington St",
+"miles": 0.17,
+"category": "Restaurant",
+"hours": "Sun-Thu 6-11PM; Fri-Sat 6PM-12AM",
+"vibes": [
+"date night",
+"splurge"
+]
+},
+{
+"name": "Banzarbar",
+"place_id": "ChIJU74O14VZwokRQ-wPmjfTERE",
+"lat": 40.7219843,
+"lng": -73.9924459,
+"address": "2 Freeman Alley",
+"miles": 0.02,
+"category": "Bar",
+"hours": "Mon, Sun 5-10:30PM; Tue-Sat 5-11:30PM",
+"vibes": [
+"date night",
+"cocktails",
+"right next door"
+]
+},
+{
+"name": "Fig. 19",
+"place_id": "ChIJb6KTyodZwokR-3P63Pvd6Ng",
+"lat": 40.7195451,
+"lng": -73.9936649,
+"address": "131 Chrystie St",
+"miles": 0.19,
+"category": "Bar",
+"hours": "Tue-Wed, Sun 6PM-1AM; Thu 6PM-2AM; Fri-Sat 6PM-4AM",
+"vibes": [
+"cocktails",
+"hidden"
+]
+},
+{
+"name": "The Back Room",
+"place_id": "ChIJnY19HoFZwokRfs9FwDLVRKw",
+"lat": 40.7187626,
+"lng": -73.9870042,
+"address": "Norfolk St",
+"miles": 0.34,
+"category": "Bar",
+"vibes": [
+"cocktails",
+"hidden"
+]
+},
+{
+"name": "Nurse Bettie",
+"place_id": "ChIJLVsGHIFZwokRjE7iQPpJ4Lk",
+"lat": 40.718877,
+"lng": -73.986982,
+"address": "106 Norfolk St",
+"miles": 0.34,
+"category": "Bar",
+"hours": "Mon-Fri 4PM-4AM; Sat-Sun 2PM-4AM",
+"vibes": [
+"cocktails",
+"lively",
+"late night"
+]
+},
+{
+"name": "Nana Cocktail Bar",
+"place_id": "ChIJF2Iq2KJZwokRbCag4eJfOAc",
+"lat": 40.7194288,
+"lng": -73.9851017,
+"address": "67 Clinton St FL2",
+"miles": 0.4,
+"category": "Bar",
+"hours": "Thu 6-11PM; Fri 6PM-12AM; Sat 5PM-12AM",
+"vibes": [
+"cocktails",
+"date night"
+]
+},
+{
+"name": "Skin Contact",
+"place_id": "ChIJu2qqwwJZwokR_VbX5-UgL9s",
+"lat": 40.7176912,
+"lng": -73.9902341,
+"address": "76 Orchard St",
+"miles": 0.31,
+"category": "Wine bar",
+"hours": "Mon-Fri 5PM-12AM; Sat 3PM-12AM; Sun 3-11PM",
+"vibes": [
+"wine",
+"cozy",
+"date night"
+]
+},
+{
+"name": "BabySips",
+"place_id": "ChIJBUoUBBtZwokRoH9ZV7FA9RA",
+"lat": 40.7189652,
+"lng": -73.9844169,
+"address": "176 Rivington St",
+"miles": 0.45,
+"category": "Wine bar",
+"hours": "Mon, Wed-Sun 5-11PM",
+"vibes": [
+"wine",
+"cozy"
+]
+},
+{
+"name": "Somm Time",
+"place_id": "ChIJSeHeZ6ZZwokRMWhy805YXs8",
+"lat": 40.7182273,
+"lng": -73.9899201,
+"address": "254 Broome St",
+"miles": 0.28,
+"category": "Wine bar",
+"hours": "Sun-Wed 4PM-12AM; Thu-Sat 4PM-2AM",
+"vibes": [
+"wine"
+]
+},
+{
+"name": "David's Bar",
+"place_id": "ChIJv0qKlqxZwokRmvaWbZ3R2qU",
+"lat": 40.7172339,
+"lng": -73.9932237,
+"address": "76 Forsyth St",
+"miles": 0.34,
+"category": "Bar",
+"hours": "Mon-Sat 5PM-2AM; Sun 1PM-2AM",
+"vibes": [
+"dive",
+"chill",
+"trivia"
+]
+},
+{
+"name": "Welcome To The Johnsons",
+"place_id": "ChIJD5T-FIFZwokRKLQDKrQ68-0",
+"lat": 40.7197028,
+"lng": -73.9873361,
+"address": "123 Rivington St",
+"miles": 0.29,
+"category": "Bar",
+"hours": "Mon-Fri 3PM-4AM; Sat-Sun 1PM-4AM",
+"vibes": [
+"dive",
+"late night"
+]
+},
+{
+"name": "Milano's Bar",
+"place_id": "ChIJgQx6f4VZwokRO-KNRPprvl0",
+"lat": 40.7246208,
+"lng": -73.9945755,
+"address": "51 E Houston St",
+"miles": 0.22,
+"category": "Bar",
+"hours": "Mon-Sat 8AM-4AM; Sun 10AM-4AM",
+"vibes": [
+"dive",
+"classic NYC"
+]
+},
+{
+"name": "The Library",
+"place_id": "ChIJQwDts4NZwokR1G-QaglL6H0",
+"lat": 40.7226196,
+"lng": -73.986389,
+"address": "7 Avenue A",
+"miles": 0.3,
+"category": "Bar",
+"hours": "12PM-4AM",
+"vibes": [
+"dive",
+"late night"
+]
+},
+{
+"name": "Katz's Delicatessen",
+"place_id": "ChIJCar0f49ZwokR6ozLV-dHNTE",
+"lat": 40.722233,
+"lng": -73.987429,
+"address": "205 E Houston St",
+"miles": 0.24,
+"category": "Deli",
+"hours": "Mon-Thu 8AM-11PM; Fri 8AM-11:30PM; Sat 24h; Sun to 11PM",
+"vibes": [
+"classic NYC",
+"late night"
+]
+},
+{
+"name": "7th Street Burger",
+"place_id": "ChIJNSDH0nFZwokRtkqtIklLC6M",
+"lat": 40.7216176,
+"lng": -73.9886293,
+"address": "173 Orchard St",
+"miles": 0.18,
+"category": "Burgers",
+"hours": "Mon-Tue 12PM-1AM; Wed, Sun 12PM-2AM; Thu-Sat 12PM-3AM",
+"vibes": [
+"late night",
+"cheap eats"
+]
+},
+{
+"name": "Pizza Loves Sauce",
+"place_id": "ChIJ52tvBGhZwokROhzPBm3wPrU",
+"lat": 40.723033,
+"lng": -73.98969,
+"address": "147 E Houston St",
+"miles": 0.14,
+"category": "Pizza",
+"hours": "Sun-Wed 12PM-12AM; Thu 12PM-2AM; Fri-Sat 12PM-4AM",
+"vibes": [
+"late night",
+"cheap eats"
+]
+},
+{
+"name": "Champion Pizza Essex",
+"place_id": "ChIJp_szOYFZwokRzCu-mpGDzBM",
+"lat": 40.7197418,
+"lng": -73.9877989,
+"address": "123 Essex St",
+"miles": 0.27,
+"category": "Pizza",
+"hours": "Sun-Thu 11AM-2AM; Fri-Sat 11AM-4AM",
+"vibes": [
+"late night",
+"cheap eats"
+]
+},
+{
+"name": "Uncle Sam's Pizza",
+"place_id": "ChIJOSJjkXxZwokRy1nEgF7hFtU",
+"lat": 40.7208699,
+"lng": -73.9844002,
+"address": "17 Clinton St",
+"miles": 0.4,
+"category": "Pizza",
+"hours": "Mon, Sun 11AM-12AM; Tue-Thu 11AM-2AM; Fri-Sat 11AM-4AM",
+"vibes": [
+"late night",
+"cheap eats"
+]
+},
+{
+"name": "Vanessa's Dumpling House",
+"place_id": "ChIJRUnhkElZwokRBRSJxl_Up68",
+"lat": 40.7183133,
+"lng": -73.9917561,
+"address": "118A Eldridge St",
+"miles": 0.26,
+"category": "Dumplings",
+"hours": "11AM-9PM",
+"vibes": [
+"cheap eats"
+]
+},
+{
+"name": "King Dumplings",
+"place_id": "ChIJwUWtpVNbwokRFXYqGsP5tyQ",
+"lat": 40.7159626,
+"lng": -73.9917091,
+"address": "74 Hester St",
+"miles": 0.42,
+"category": "Dumplings",
+"hours": "9AM-10PM (cash only)",
+"vibes": [
+"cheap eats"
+]
+},
+{
+"name": "Super Taste",
+"place_id": "ChIJoR3RZyhawokRwR91d6hJvvY",
+"lat": 40.7150662,
+"lng": -73.9933358,
+"address": "26 Eldridge St",
+"miles": 0.49,
+"category": "Noodles",
+"hours": "11AM-9:20PM",
+"vibes": [
+"cheap eats"
+]
+},
+{
+"name": "The Bowery Ballroom",
+"place_id": "ChIJLQUUOYZZwokR1BfSFbM-XB4",
+"lat": 40.7204065,
+"lng": -73.9933583,
+"address": "6 Delancey St",
+"miles": 0.13,
+"category": "Music venue",
+"hours": "Show nights",
+"vibes": [
+"live music",
+"right next door"
+]
+},
+{
+"name": "The Mercury Lounge",
+"place_id": "ChIJQxzbx4NZwokRfWXvfisf3Eo",
+"lat": 40.7221676,
+"lng": -73.9867459,
+"address": "217 E Houston St",
+"miles": 0.27,
+"category": "Music venue",
+"hours": "Show nights",
+"vibes": [
+"live music"
+]
+},
+{
+"name": "Bowery Palace",
+"place_id": "ChIJFf-pIIVZwokRPeulXUC6oqU",
+"lat": 40.7257471,
+"lng": -73.9917966,
+"address": "327 Bowery",
+"miles": 0.26,
+"category": "Bar",
+"hours": "Sun-Wed 5PM-2AM; Thu 5PM-3AM; Fri-Sat 5PM-4AM",
+"vibes": [
+"live music",
+"lively"
+]
+},
+{
+"name": "Metrograph",
+"place_id": "ChIJ58HssClawokRefq6VNIOrlY",
+"lat": 40.715143,
+"lng": -73.9911467,
+"address": "7 Ludlow St",
+"miles": 0.48,
+"category": "Cinema",
+"hours": "Mon-Fri 12PM-12AM; Sat-Sun 11AM-12AM",
+"vibes": [
+"movie night",
+"date night",
+"rainy day"
+]
+},
+{
+"name": "Angelika Film Center",
+"place_id": "ChIJQ1RTt49ZwokRgYgqG6DdK2w",
+"lat": 40.7259068,
+"lng": -73.997169,
+"address": "18 W Houston St",
+"miles": 0.38,
+"category": "Cinema",
+"hours": "11AM-10PM",
+"vibes": [
+"movie night",
+"rainy day"
+]
+},
+{
+"name": "Village East by Angelika",
+"place_id": "ChIJy_q2gZ5ZwokRrG27bv1NgtU",
+"lat": 40.7309555,
+"lng": -73.9862117,
+"address": "181-189 2nd Ave",
+"miles": 0.69,
+"category": "Cinema",
+"vibes": [
+"movie night",
+"rainy day"
+]
+},
+{
+"name": "Sesh Comedy",
+"place_id": "ChIJ59-_Gu5ZwokR7Xc8o5IAtY0",
+"lat": 40.7164535,
+"lng": -73.9948933,
+"address": "55 Chrystie St",
+"miles": 0.41,
+"category": "Comedy",
+"hours": "Tue-Wed 7:30-11PM; Thu, Sun 8-11PM; Fri-Sat 7-11:30PM",
+"vibes": [
+"comedy",
+"BYOB"
+]
+},
+{
+"name": "The Fear City Comedy Club",
+"place_id": "ChIJmfs0oC9bwokRvksSyYq9Cq8",
+"lat": 40.7152778,
+"lng": -73.990166,
+"address": "17 Essex St",
+"miles": 0.48,
+"category": "Comedy",
+"hours": "Tue-Sun 5:45PM-12AM",
+"vibes": [
+"comedy"
+]
+},
+{
+"name": "Heatwise (hot yoga)",
+"place_id": "ChIJ3cr2DyZZwokRjSSnYvxxh9I",
+"lat": 40.7237396,
+"lng": -73.9931265,
+"address": "274 Bowery",
+"miles": 0.13,
+"category": "Yoga",
+"hours": "6AM-9PM",
+"vibes": [
+"workout"
+]
+},
+{
+"name": "The Studio (yoga)",
+"place_id": "ChIJcfMSoL5ZwokRFBa3qbfoVVM",
+"lat": 40.7247369,
+"lng": -73.9927673,
+"address": "302 Bowery 2nd fl",
+"miles": 0.19,
+"category": "Yoga",
+"hours": "Mon-Fri 10AM-8PM; Sat-Sun 10AM-3:30PM",
+"vibes": [
+"workout",
+"quiet"
+]
+},
+{
+"name": "CorePower Yoga NoHo",
+"place_id": "ChIJwUGPCI1ZwokRSyHsuul_MPs",
+"lat": 40.7261965,
+"lng": -73.9947756,
+"address": "59 Bleecker St",
+"miles": 0.32,
+"category": "Yoga",
+"hours": "6AM-10PM",
+"vibes": [
+"workout"
+]
+},
+{
+"name": "Sara D. Roosevelt Park",
+"place_id": "ChIJX0-MTYZZwokR0L585ip8P18",
+"lat": 40.7217408,
+"lng": -73.9915425,
+"address": "Chrystie St & Forsyth St",
+"miles": 0.03,
+"category": "Park",
+"hours": "6AM-10PM",
+"vibes": [
+"outdoors",
+"right next door"
+]
+},
+{
+"name": "Liz Christy Garden",
+"place_id": "ChIJW6YCq4VZwokRtiopYvcCua8",
+"lat": 40.7240965,
+"lng": -73.9919101,
+"address": "E Houston St, Bowery to 2nd Ave",
+"miles": 0.14,
+"category": "Garden",
+"hours": "Tue, Thu 6-8PM; Sat-Sun 12-4PM",
+"vibes": [
+"quiet",
+"outdoors"
+]
+},
+{
+"name": "Elizabeth Street Garden",
+"place_id": "ChIJBW-pqohZwokR06r3hclT0Vw",
+"lat": 40.7221885,
+"lng": -73.9946104,
+"address": "Elizabeth St (Prince-Spring)",
+"miles": 0.14,
+"category": "Garden",
+"hours": "10AM-6PM",
+"vibes": [
+"quiet",
+"date night",
+"outdoors"
+]
+},
+{
+"name": "ABC Playground",
+"place_id": "ChIJSyvtzINZwokR_Ht9Q90QY_4",
+"lat": 40.7218555,
+"lng": -73.986039,
+"address": "245 E Houston St",
+"miles": 0.31,
+"category": "Playground",
+"hours": "7AM-6PM"
+},
+{
+"name": "Hester St. Playground",
+"place_id": "ChIJa4BiHShawokRn93-3Stm7Q8",
+"lat": 40.7170413,
+"lng": -73.9939552,
+"address": "Hester St & Chrystie St",
+"miles": 0.36,
+"category": "Playground"
+},
+{
+"name": "Seward Park",
+"place_id": "ChIJgYVCiSlawokRDDyA2Tq9wkM",
+"lat": 40.7149056,
+"lng": -73.989247,
+"address": "Canal St & Essex St",
+"miles": 0.51,
+"category": "Park",
+"hours": "7AM-10PM",
+"vibes": [
+"outdoors"
+]
+},
+{
+"name": "Luther Gulick Park",
+"place_id": "ChIJa_Rw5n9ZwokRW0_rNWVYSaE",
+"lat": 40.7158817,
+"lng": -73.9819149,
+"address": "Delancey St",
+"miles": 0.68,
+"category": "Park",
+"hours": "6AM-10PM"
+},
+{
+"name": "Washington Square Park",
+"place_id": "ChIJjX494pBZwokRGH620d9eYfo",
+"lat": 40.7308838,
+"lng": -73.997332,
+"address": "Greenwich Village",
+"miles": 0.67,
+"category": "Park",
+"hours": "6AM-12AM",
+"vibes": [
+"outdoors",
+"people watching"
+]
+},
+{
+"name": "Tompkins Square Dog Run",
+"place_id": "ChIJ330ClndZwokRXY4DMT4ivKU",
+"lat": 40.7265008,
+"lng": -73.9811366,
+"address": "Tompkins Square Park",
+"miles": 0.65,
+"category": "Dog run",
+"hours": "6AM-11PM"
+},
+{
+"name": "Tenement Museum",
+"place_id": "ChIJ20bVJYdZwokRhI7esP3mYM0",
+"lat": 40.718818,
+"lng": -73.9900876,
+"address": "103 Orchard St",
+"miles": 0.24,
+"category": "Museum",
+"hours": "10AM-6PM",
+"vibes": [
+"rainy day"
+]
+},
+{
+"name": "New Museum",
+"place_id": "ChIJlaRS3IVZwokR2llMD6dCt-U",
+"lat": 40.7223376,
+"lng": -73.9928905,
+"address": "235 Bowery",
+"miles": 0.05,
+"category": "Museum",
+"hours": "Tue-Wed, Fri-Sun 11AM-6PM; Thu 11AM-9PM",
+"vibes": [
+"rainy day",
+"date night"
+]
+},
+{
+"name": "International Center of Photography",
+"place_id": "ChIJ5YRc6oVZwokRcRC4WKbR6_s",
+"lat": 40.7182297,
+"lng": -73.989171,
+"address": "84 Ludlow St",
+"miles": 0.3,
+"category": "Museum",
+"hours": "Mon-Wed, Fri-Sun 10:30AM-6:30PM; Thu to 8PM",
+"vibes": [
+"rainy day"
+]
+},
+{
+"name": "Museum of Street Art (citizenM Bowery)",
+"place_id": "ChIJPUk5rj1ZwokRTy9lmqFcz4Y",
+"lat": 40.7205848,
+"lng": -73.9935607,
+"address": "189 Bowery",
+"miles": 0.13,
+"category": "Museum",
+"hours": "Sun-Thu 12-10PM; Fri-Sat 12-11PM",
+"vibes": [
+"free",
+"rainy day"
+]
+},
+{
+"name": "Essex Market",
+"place_id": "ChIJ7fydz4BZwokRl6FuOJM5QPU",
+"lat": 40.7180004,
+"lng": -73.98819,
+"address": "88 Essex St",
+"miles": 0.34,
+"category": "Market",
+"hours": "Mon-Wed 8AM-8PM; Thu-Sat 8AM-9PM; Sun 10AM-6PM",
+"vibes": [
+"rainy day",
+"foodie"
+]
+},
+{
+"name": "Seward Park Library (NYPL)",
+"place_id": "ChIJZ-sbLypawokRCB0zWUxZeXc",
+"lat": 40.7144701,
+"lng": -73.9884896,
+"address": "192 E Broadway",
+"miles": 0.55,
+"category": "Library",
+"hours": "Mon-Thu 10AM-8PM; Fri-Sat 10AM-5PM",
+"vibes": [
+"quiet"
+]
+},
+{
+"name": "Ottendorfer Library (NYPL)",
+"place_id": "ChIJIbzhYJxZwokRNKKGmpAqZmM",
+"lat": 40.7288855,
+"lng": -73.9876849,
+"address": "135 2nd Ave",
+"miles": 0.52,
+"category": "Library",
+"hours": "Mon-Thu 11AM-7PM; Fri-Sat 10AM-5PM",
+"vibes": [
+"quiet"
+]
+},
+{
+"name": "Mulberry Street Library (NYPL)",
+"place_id": "ChIJ1UovZY9ZwokRGCaEaGe4d8M",
+"lat": 40.7241149,
+"lng": -73.9955922,
+"address": "10 Jersey St",
+"miles": 0.24,
+"category": "Library",
+"hours": "Mon, Wed 11AM-7PM; Tue, Thu 10AM-7PM; Fri-Sat 10AM-5PM",
+"vibes": [
+"quiet"
+]
+},
+{
+"name": "USPS (East Broadway)",
+"place_id": "ChIJRazS_yhawokRx9tAi3xuJ6k",
+"lat": 40.7140772,
+"lng": -73.9919131,
+"address": "128 E Broadway",
+"miles": 0.55,
+"category": "Post office",
+"hours": "Mon-Fri 9AM-5:30PM; Sat 9AM-4PM"
+},
+{
+"name": "USPS (Doyers St)",
+"place_id": "ChIJ-4f8wqhZwokRNQ7WfJZ0xYg",
+"lat": 40.7144269,
+"lng": -73.9979135,
+"address": "6 Doyers St",
+"miles": 0.61,
+"category": "Post office",
+"hours": "Mon-Fri 10AM-5:30PM; Sat 10AM-4PM"
+},
+{
+"name": "Whole Foods Market",
+"place_id": "ChIJQ5yUr4VZwokRbMN-yaOarmc",
+"lat": 40.7238246,
+"lng": -73.9923102,
+"address": "95 E Houston St",
+"miles": 0.13,
+"category": "Grocery",
+"hours": "7AM-10PM"
+},
+{
+"name": "Union Market",
+"place_id": "ChIJaxvWroVZwokReqjdeMaSIF4",
+"lat": 40.7223638,
+"lng": -73.9859359,
+"address": "240 E Houston St",
+"miles": 0.32,
+"category": "Grocery",
+"hours": "7AM-10PM"
+},
+{
+"name": "Noho Food Market",
+"place_id": "ChIJM2AZXYhZwokRZd-M2ubFMnU",
+"lat": 40.7268422,
+"lng": -73.9919326,
+"address": "354 Bowery",
+"miles": 0.33,
+"category": "Grocery",
+"hours": "Mon-Thu 6AM-12AM; Fri 6AM-2:30AM; Sat 7AM-2:30AM; Sun 8AM-12AM",
+"vibes": [
+"late night"
+]
+},
+{
+"name": "T & Y Hardware",
+"place_id": "ChIJQUuf5YdZwokRLGhdjwuW344",
+"lat": 40.7179116,
+"lng": -73.9941332,
+"address": "101 Chrystie St",
+"miles": 0.31,
+"category": "Hardware",
+"hours": "Mon-Sat 9:30AM-6PM"
+},
+{
+"name": "Delancey Laundromat",
+"place_id": "ChIJJQkQNoZZwokRvcNvkrVqldg",
+"lat": 40.7198526,
+"lng": -73.9933343,
+"address": "9-11 Delancey St",
+"miles": 0.17,
+"category": "Laundry",
+"hours": "7:30AM-8PM"
+},
+{
+"name": "Ludlow Laundromat",
+"place_id": "ChIJYxm6bdJZwokRhylD0aX14D0",
+"lat": 40.7173817,
+"lng": -73.9899587,
+"address": "67 Ludlow St",
+"miles": 0.34,
+"category": "Laundry",
+"hours": "8AM-8PM"
+}
+]

@@ -349,3 +349,13 @@ section:last-of-type { border-bottom: none; }
 .place-go { flex: none; font-size: 12px; font-weight: 500; color: white; background: var(--ink); padding: 6px 12px; border-radius: 12px; text-decoration: none; }
 .place-empty { font-size: 13px; color: var(--ink-3); }
 .place-more { margin-top: 12px; width: 100%; padding: 11px; border-radius: 12px; border: 0.5px solid var(--rule); background: var(--cream-2); font: 500 13px var(--sans); color: var(--ink); cursor: pointer; }
+
+/* events, calendar and roundup (js/events.js) */
+.event-name a { color: inherit; text-decoration: none; border-bottom: 1px solid var(--rule); }
+.event-add { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
+.event-add a { font-size: 11px; font-weight: 500; color: var(--blue-800); background: var(--blue-50); border-radius: 999px; padding: 4px 10px; text-decoration: none; }
+.event-empty { font-size: 13px; color: var(--ink-3); margin: 8px 0; }
+.cal-day { font-family: var(--serif); font-size: 18px; margin: 24px 0 8px; }
+.roundup-date { font-size: 12px; letter-spacing: 1px; color: var(--orange-800); text-transform: uppercase; }
+.roundup-list { margin: 0; padding-left: 18px; font-size: 14px; line-height: 1.7; }
+#cal-list, #roundup-body { text-align: left; max-width: 560px; width: 100%; }
