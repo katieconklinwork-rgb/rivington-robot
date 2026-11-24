@@ -45,6 +45,11 @@ jobs:
           git add data
           git commit -m "Weekly refresh for $day"
           git push -f origin "$branch"
+          # A second run on the same day updates that day's open pull request instead of failing.
+          if [ -n "$(gh pr list --head "$branch" --state open --json number -q '.[].number')" ]; then
+            echo "Updated the pull request that was already open for $branch."
+            exit 0
+          fi
           gh pr create --base main --head "$branch" \
             --title "Weekly refresh: $(TZ=America/New_York date '+%b %-d')" \
             --body-file /tmp/summary.md
