@@ -1,0 +1,118 @@
+{
+ "edition": "2026-11-23",
+ "new_count": 0,
+ "gone_count": 0,
+ "new": [],
+ "gone": [],
+ "events": [
+  {
+   "name": "Foxtail’s Holiday Hideaway",
+   "start": "2026-11-23T17:00:00-05:00",
+   "end": "2026-11-23T23:30:00-05:00",
+   "venue": "Arlo Hotel Soho",
+   "address": "",
+   "url": "https://donyc.com/events/2026/11/23/foxtail-s-holiday-hideaway-tickets",
+   "source": "DoNYC",
+   "near": "SoHo",
+   "category": "DJ / Parties"
+  },
+  {
+   "name": "Bookshop meet-cute Brooklyn - BODA singles social",
+   "start": "2026-11-23T18:00:00-05:00",
+   "end": "2026-11-23T22:30:00-05:00",
+   "venue": "Book Club Bar",
+   "address": "",
+   "url": "https://donyc.com/events/2026/11/23/bookshop-meet-cute-brooklyn-boda-singles-social-tickets",
+   "source": "DoNYC",
+   "near": "East Village",
+   "category": "Comedy"
+  },
+  {
+   "name": "Drag King Bingo with Cunning Stunt",
+   "start": "2026-11-23T19:00:00-05:00",
+   "end": "2026-11-23T21:00:00-05:00",
+   "venue": "Club Cumming",
+   "address": "",
+   "url": "https://donyc.com/events/2026/11/23/drag-king-bingo-with-cunning-stunt-tickets",
+   "source": "DoNYC",
+   "near": "Alphabet City",
+   "category": "Drag"
+  },
+  {
+   "name": "Annalise & The Mother Underground",
+   "start": "2026-11-23T21:00:00-05:00",
+   "end": null,
+   "venue": "Mercury Lounge",
+   "address": "217 E Houston St",
+   "url": "https://mercuryeastpresents.com/tm-event/annalise-the-mother-underground/",
+   "source": "Mercury Lounge",
+   "near": "4 min walk"
+  },
+  {
+   "name": "A True York Comedy Experience",
+   "start": "2026-11-23T21:00:00-05:00",
+   "end": null,
+   "venue": "St. Marks Comedy Club",
+   "address": "",
+   "url": "https://donyc.com/events/2026/11/23/a-true-york-comedy-experience-tickets",
+   "source": "DoNYC",
+   "near": "East Village",
+   "category": "Comedy"
+  },
+  {
+   "name": "Code Red",
+   "start": "2026-11-23T21:00:00-05:00",
+   "end": null,
+   "venue": "Berlin",
+   "address": "",
+   "url": "https://donyc.com/events/2026/11/23/code-red-tickets",
+   "source": "DoNYC",
+   "near": "East Village",
+   "category": "Music"
+  },
+  {
+   "name": "Christeene",
+   "start": "2026-11-23T21:30:00-05:00",
+   "end": null,
+   "venue": "Joe's Pub",
+   "address": "",
+   "url": "https://donyc.com/events/2026/11/23/christeene-tickets",
+   "source": "DoNYC",
+   "near": "NoHo",
+   "category": "Performing Arts"
+  },
+  {
+   "name": "Mondays in the Club with Lance",
+   "start": "2026-11-23T21:30:00-05:00",
+   "end": "2026-11-23T23:59:00-05:00",
+   "venue": "Club Cumming",
+   "address": "",
+   "url": "https://donyc.com/events/2026/11/23/mondays-in-the-club-with-lance-tickets",
+   "source": "DoNYC",
+   "near": "Alphabet City",
+   "category": "LGBTQ+"
+  },
+  {
+   "name": "New Jokes & Newbies",
+   "start": "2026-11-23T21:45:00-05:00",
+   "end": null,
+   "venue": "NEW YORK COMEDY CLUB EAST VILLAGE",
+   "address": "",
+   "url": "https://donyc.com/events/2026/11/23/new-jokes-newbies-tickets",
+   "source": "DoNYC",
+   "near": "East Village",
+   "category": "Comedy"
+  },
+  {
+   "name": "Laughing Buddha Open Mic",
+   "start": "2026-11-24T16:30:00-05:00",
+   "end": null,
+   "venue": "St. Marks Comedy Club",
+   "address": "",
+   "url": "https://donyc.com/events/2026/11/24/laughing-buddha-open-mic-tickets",
+   "source": "DoNYC",
+   "near": "East Village",
+   "category": "Comedy"
+  }
+ ]
+}

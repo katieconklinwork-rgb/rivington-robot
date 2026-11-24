@@ -1,5 +1,5 @@
 {
- "built": "2026-11-23T18:23-05:00",
+ "built": "2026-11-23T23:50-05:00",
  "sources_ok": [
   "Bowery Ballroom",
   "Mercury Lounge",
@@ -7,16 +7,6 @@
  ],
  "sources_failed": [],
  "events": [
-  {
-   "name": "Alyssa Grace",
-   "start": "2026-11-23T16:00:00-05:00",
-   "end": null,
-   "venue": "Bowery Ballroom",
-   "address": "6 Delancey St",
-   "url": "https://mercuryeastpresents.com/tm-event/alyssa-grace-2/",
-   "source": "Bowery Ballroom",
-   "near": "2 min walk"
-  },
   {
    "name": "Foxtail’s Holiday Hideaway",
    "start": "2026-11-23T17:00:00-05:00",
@@ -27,38 +17,6 @@
    "source": "DoNYC",
    "near": "SoHo",
    "category": "DJ / Parties"
-  },
-  {
-   "name": "Hello Dreamer, ELIS, Audrey Mason",
-   "start": "2026-11-23T18:00:00-05:00",
-   "end": null,
-   "venue": "Mercury Lounge",
-   "address": "217 E Houston St",
-   "url": "https://mercuryeastpresents.com/tm-event/hello-dreamer-elis-audrey-mason/",
-   "source": "Mercury Lounge",
-   "near": "4 min walk"
-  },
-  {
-   "name": "Vicente García Night 3",
-   "start": "2026-11-23T18:00:00-05:00",
-   "end": null,
-   "venue": "SOB's",
-   "address": "",
-   "url": "https://donyc.com/events/2026/11/23/vicente-garcia-night-3-tickets",
-   "source": "DoNYC",
-   "near": "SoHo",
-   "category": "Music"
-  },
-  {
-   "name": "Alphabet City Limits",
-   "start": "2026-11-23T18:00:00-05:00",
-   "end": null,
-   "venue": "Lucinda’s",
-   "address": "",
-   "url": "https://donyc.com/events/2026/11/23/alphabet-city-limits-tickets",
-   "source": "DoNYC",
-   "near": "Alphabet City",
-   "category": "Music"
   },
   {
    "name": "Bookshop meet-cute Brooklyn - BODA singles social",
@@ -72,39 +30,6 @@
    "category": "Comedy"
   },
   {
-   "name": "Nuyorican Bowery Slam",
-   "start": "2026-11-23T18:30:00-05:00",
-   "end": null,
-   "venue": "Nuyorican Poets Cafe",
-   "address": "",
-   "url": "https://donyc.com/events/2026/11/23/nuyorican-bowery-slam-tickets",
-   "source": "DoNYC",
-   "near": "Alphabet City",
-   "category": "Performing Arts"
-  },
-  {
-   "name": "Sophie B. Hawkins: One Night Only NYC",
-   "start": "2026-11-23T19:00:00-05:00",
-   "end": null,
-   "venue": "Joe's Pub",
-   "address": "",
-   "url": "https://donyc.com/events/2026/11/23/sophie-b-hawkins-one-night-only-nyc-tickets",
-   "source": "DoNYC",
-   "near": "NoHo",
-   "category": "Performing Arts"
-  },
-  {
-   "name": "EGE TUREV, ABDIAS ARMENTEROS, DANIEL CRAWFORD, & More",
-   "start": "2026-11-23T19:00:00-05:00",
-   "end": null,
-   "venue": "Nublu 151",
-   "address": "",
-   "url": "https://donyc.com/events/2026/11/23/ege-turev-abdias-armenteros-daniel-crawford-more-tickets",
-   "source": "DoNYC",
-   "near": "Alphabet City",
-   "category": "Music"
-  },
-  {
    "name": "Drag King Bingo with Cunning Stunt",
    "start": "2026-11-23T19:00:00-05:00",
    "end": "2026-11-23T21:00:00-05:00",
@@ -116,94 +41,6 @@
    "category": "Drag"
   },
   {
-   "name": "A True York Comedy Experience",
-   "start": "2026-11-23T19:00:00-05:00",
-   "end": null,
-   "venue": "St. Marks Comedy Club",
-   "address": "",
-   "url": "https://donyc.com/events/2026/11/23/a-true-york-comedy-experience-tickets-qeDq7XV",
-   "source": "DoNYC",
-   "near": "East Village",
-   "category": "Comedy"
-  },
-  {
-   "name": "Quantrell",
-   "start": "2026-11-23T19:00:00-05:00",
-   "end": null,
-   "venue": "Night Club 101",
-   "address": "",
-   "url": "https://donyc.com/events/2026/11/23/quantrell-tickets",
-   "source": "DoNYC",
-   "near": "Alphabet City",
-   "category": "Music"
-  },
-  {
-   "name": "Nikki Sorrentino / TBD",
-   "start": "2026-11-23T19:00:00-05:00",
-   "end": null,
-   "venue": "Arlene's Grocery",
-   "address": "",
-   "url": "https://donyc.com/events/2026/11/23/nikki-sorrentino-tbd-tickets",
-   "source": "DoNYC",
-   "near": "East Village",
-   "category": "Music"
-  },
-  {
-   "name": "The Pachelbel Rant 20th Anniversary Show",
-   "start": "2026-11-23T19:00:00-05:00",
-   "end": null,
-   "venue": "Caveat",
-   "address": "",
-   "url": "https://donyc.com/events/2026/11/23/the-pachelbel-rant-20th-anniversary-show-tickets",
-   "source": "DoNYC",
-   "near": "East Village",
-   "category": "Comedy"
-  },
-  {
-   "name": "Easy Paradise Open Mic @ Private Curtain",
-   "start": "2026-11-23T19:00:00-05:00",
-   "end": null,
-   "venue": "KGB Bar",
-   "address": "",
-   "url": "https://donyc.com/events/2026/11/23/easy-paradise-open-mic-private-curtain-tickets",
-   "source": "DoNYC",
-   "near": "East Village",
-   "category": "Readings & Talks"
-  },
-  {
-   "name": "Gravid Water",
-   "start": "2026-11-23T19:00:00-05:00",
-   "end": null,
-   "venue": "Upright Citizens Brigade (UCB)",
-   "address": "",
-   "url": "https://donyc.com/events/2026/11/23/gravid-water-tickets",
-   "source": "DoNYC",
-   "near": "East Village",
-   "category": "Comedy"
-  },
-  {
-   "name": "Bull Thieves | Anni Rossi | Pearie Sol",
-   "start": "2026-11-23T20:00:00-05:00",
-   "end": null,
-   "venue": "Bowery Palace",
-   "address": "",
-   "url": "https://donyc.com/events/2026/11/23/bull-thieves-anni-rossi-pearie-sol-tickets",
-   "source": "DoNYC",
-   "near": "East Village",
-   "category": "Music"
-  },
-  {
-   "name": "New York Comedy Club Presents",
-   "start": "2026-11-23T20:00:00-05:00",
-   "end": null,
-   "venue": "NEW YORK COMEDY CLUB EAST VILLAGE",
-   "address": "",
-   "url": "https://donyc.com/events/2026/11/23/new-york-comedy-club-presents-tickets",
-   "source": "DoNYC",
-   "near": "East Village",
-   "category": "Comedy"
-  },
-  {
    "name": "Annalise & The Mother Underground",
    "start": "2026-11-23T21:00:00-05:00",
    "end": null,
@@ -212,6 +49,17 @@
    "url": "https://mercuryeastpresents.com/tm-event/annalise-the-mother-underground/",
    "source": "Mercury Lounge",
    "near": "4 min walk"
+  },
+  {
+   "name": "A True York Comedy Experience",
+   "start": "2026-11-23T21:00:00-05:00",
+   "end": null,
+   "venue": "St. Marks Comedy Club",
+   "address": "",
+   "url": "https://donyc.com/events/2026/11/23/a-true-york-comedy-experience-tickets",
+   "source": "DoNYC",
+   "near": "East Village",
+   "category": "Comedy"
   },
   {
    "name": "Code Red",
@@ -3412,6 +3260,16 @@
    "venue": "Bowery Ballroom",
    "address": "6 Delancey St",
    "url": "https://mercuryeastpresents.com/tm-event/mack-keane/",
+   "source": "Bowery Ballroom",
+   "near": "2 min walk"
+  },
+  {
+   "name": "Christmas in New York with EJAE: A Holiday Show!",
+   "start": "2026-12-14T19:00:00-05:00",
+   "end": null,
+   "venue": "Bowery Ballroom",
+   "address": "6 Delancey St",
+   "url": "https://mercuryeastpresents.com/tm-event/christmas-in-new-york-with-ejae-a-holiday-show/",
    "source": "Bowery Ballroom",
    "near": "2 min walk"
   }
