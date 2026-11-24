@@ -21,6 +21,7 @@
       <a href="index.html">HOME</a>
       <a href="map.html" class="active">FULL MAP</a>
       <a href="calendar.html">CALENDAR</a>
+      <a href="roll.html">ROLL</a>
       <a href="roundup.html">ROUNDUP</a>
     </div>
   </nav>
@@ -33,7 +34,6 @@
     </div>
 
     <div class="map-filters" id="map-filters"></div>
-    <label class="show-all"><input type="checkbox" id="show-all"> Show everything, including less certain listings</label>
 
     <div id="map-full"></div>
 
@@ -63,7 +63,7 @@
 <script src="js/robot.js"></script>
 <script>
 const list = Robot.initList({ listId: 'place-list', searchId: 'place-search', moreId: 'place-more', countId: 'list-count' });
-Robot.initMap({ mapId: 'map-full', chipsId: 'map-filters', countId: 'map-count', showAllId: 'show-all', scrollZoom: true,
+Robot.initMap({ mapId: 'map-full', chipsId: 'map-filters', countId: 'map-count', scrollZoom: true,
   onReady: (d, on, showAll) => list.ready(d, on, showAll), onFilter: (on, showAll) => list.filter(on, showAll) });
 </script>
 

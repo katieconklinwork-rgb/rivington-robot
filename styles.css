@@ -112,6 +112,25 @@ a { color: inherit; text-decoration: none; }
 }
 @media (max-width: 680px) { .hero-title { font-size: 30px; } }
 
+.roundup-cta {
+  display: flex; align-items: center; gap: 16px;
+  margin: 20px 0 22px;
+  padding: 16px 20px;
+  background: linear-gradient(135deg, var(--orange-50) 0%, #FFF4DE 100%);
+  border: 1px solid #F0D8A3;
+  border-radius: 16px;
+  text-decoration: none;
+  color: var(--ink);
+  transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
+  box-shadow: 0 1px 2px rgba(44, 42, 36, 0.04);
+}
+.roundup-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(239, 159, 39, 0.18); }
+.roundup-cta-body { flex: 1; min-width: 0; }
+.roundup-cta-eyebrow { font-size: 10px; letter-spacing: 1.8px; color: var(--orange-800); font-weight: 600; text-transform: uppercase; margin-bottom: 4px; }
+.roundup-cta-title { font-family: var(--serif); font-size: 20px; font-weight: 500; line-height: 1.15; letter-spacing: -0.01em; color: var(--ink); }
+.roundup-cta-sub { font-size: 12.5px; color: var(--ink-2); margin-top: 4px; line-height: 1.45; }
+.roundup-cta-arrow { font-size: 26px; color: var(--orange-800); flex: none; }
+
 /* ============ BRIEFING ============ */
 .briefing {
   padding: 16px 0 20px;

@@ -22,6 +22,7 @@
       <a href="index.html">HOME</a>
       <a href="map.html">FULL MAP</a>
       <a href="calendar.html">CALENDAR</a>
+      <a href="roll.html">ROLL</a>
       <a href="roundup.html">ROUNDUP</a>
     </div>
   </nav>
@@ -31,8 +32,17 @@
     <div class="hero-head">
       <div class="hero-eyebrow">WELCOME HOME</div>
       <h1 class="hero-title">Hi Paul &amp; Tina 👋</h1>
-      <p class="hero-sub">Here's your corner of the Lower East Side — the ring around your door, this week's local calendar, and the subway reach from your stop. Below is the quick rundown for right now.</p>
+      <p class="hero-sub">Here's your corner of the Lower East Side — the ring around your door, today's local events, and the subway reach from your stop. Below is the quick rundown for right now.</p>
     </div>
+
+    <a class="roundup-cta" href="roundup.html">
+      <div class="roundup-cta-body">
+        <div class="roundup-cta-eyebrow">EVERY SUNDAY MORNING</div>
+        <div class="roundup-cta-title">Read this week's Roundup</div>
+        <div class="roundup-cta-sub">A short neighborhood newspaper edition — what's new, what's gone, what to do.</div>
+      </div>
+      <div class="roundup-cta-arrow">→</div>
+    </a>
 
     <div class="b-grid">
       <div class="b-card">
@@ -150,11 +160,11 @@
   <section id="events">
     <div class="section-head">
       <div class="section-bar blue"></div>
-      <h2>This week in your neighborhood</h2>
-      <a href="calendar.html" class="sub cal-link">full calendar →</a>
+      <h2>Today &amp; tomorrow</h2>
+      <a href="calendar.html" class="sub cal-link">full week →</a>
     </div>
-    <p class="section-intro">The next seven days, grouped by day. Tap any event for tickets or info, or drop it straight into your calendar.</p>
-    <div class="week-cal" id="week-cal"><p class="event-empty">Loading this week's events…</p></div>
+    <p class="section-intro">What's on close by, today and tomorrow. Tap any event for tickets or info, or drop it into your calendar. Tap "full week →" for the next seven days.</p>
+    <div class="week-cal" id="week-cal"><p class="event-empty">Loading events…</p></div>
   </section>
 
   <!-- ================ ROLL THE DICE ================ -->
@@ -234,7 +244,7 @@
 function safely(fn) { try { fn(); } catch (e) { console.error(e); } }
 safely(() => RobotBriefing.init());
 safely(() => RobotBriefing.initApartment());
-safely(() => RobotEvents.initWeek({ listId: 'week-cal', days: 7, perDay: 4 }));
+safely(() => RobotEvents.initWeek({ listId: 'week-cal', days: 2, perDay: 20 }));
 safely(() => Robot.initMap({ mapId: 'map', chipsId: 'map-filters', countId: 'ring-count' }));
 safely(() => Robot.initDice({ btnId: 'roll-btn', vibesId: 'vibes', hintId: 'roll-hint', nameId: 'rr-name', metaId: 'rr-meta', resultId: 'roll-result' }));
 </script>

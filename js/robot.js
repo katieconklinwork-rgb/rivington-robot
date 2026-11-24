@@ -189,12 +189,14 @@
 
     load().then(d => {
       const layer = L.layerGroup().addTo(map);
-      const state = { showAll: false };
+      // showAll is now always true — every place is always shown. There is no
+      // "less certain listings" toggle anymore.
+      const state = { showAll: true };
       let on;
       function draw() {
         layer.clearLayers();
         // smaller dots first so picks sit on top
-        const list = d.places.filter(p => on.has(p.c) && (state.showAll || p.t !== 'm'));
+        const list = d.places.filter(p => on.has(p.c));
         list.sort((a, b) => (a.t === 'p') - (b.t === 'p'));
         list.forEach(p => {
           const pick = p.t === 'p';
@@ -209,21 +211,13 @@
         }
       }
       on = buildChips(document.getElementById(opts.chipsId), d, () => { draw(); if (opts.onFilter) opts.onFilter(on, state.showAll); }, state);
-      const all = opts.showAllId && document.getElementById(opts.showAllId);
-      if (all) all.addEventListener('change', () => {
-        state.showAll = all.checked;
-        // Rebuild chips so new categories that only exist in the "more" tier show up.
-        on = buildChips(document.getElementById(opts.chipsId), d, () => { draw(); if (opts.onFilter) opts.onFilter(on, state.showAll); }, state);
-        draw();
-        if (opts.onFilter) opts.onFilter(on, state.showAll);
-      });
       draw();
       // make the shared `on` set reachable for chip re-renders
       state.on = on;
       // home on top of everything
       L.circleMarker(CENTER, { radius: 9, color: '#E24B4A', weight: 3, fillColor: '#2C2A24', fillOpacity: 1 })
         .addTo(map).bindPopup('<div class="pop-name">8 Rivington St</div><div class="pop-sub">Home base</div>');
-      if (opts.onReady) opts.onReady(d, on, () => showAll);
+      if (opts.onReady) opts.onReady(d, on, () => state.showAll);
     }).catch(err => {
       el.insertAdjacentHTML('afterend', '<p class="load-err">The place list didn\'t load. Pull down to refresh.</p>');
       console.error(err);
@@ -240,7 +234,7 @@
     function render() {
       if (!state.d) return;
       const q = (search && search.value || '').trim().toLowerCase();
-      const rows = state.d.places.filter(p => state.on.has(p.c) && (state.showAll || p.t !== 'm') &&
+      const rows = state.d.places.filter(p => state.on.has(p.c) &&
         (!q || (p.n + ' ' + (p.k || '') + ' ' + p.cat + ' ' + (p.a || '') + ' ' + (p.v || []).join(' ')).toLowerCase().includes(q)));
       box.innerHTML = rows.slice(0, state.limit).map(p =>
         '<div class="place-row">' +
