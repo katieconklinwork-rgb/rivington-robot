@@ -19,17 +19,21 @@
     </div>
     <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
     <div class="nav-links">
-      <a href="#walk">THE RING</a>
-      <a href="#subway">SUBWAY</a>
-      <a href="#events">EVENTS</a>
-      <a href="#roll">ROLL</a>
+      <a href="index.html">HOME</a>
       <a href="map.html">FULL MAP</a>
+      <a href="calendar.html">CALENDAR</a>
       <a href="roundup.html">ROUNDUP</a>
     </div>
   </nav>
 
-  <!-- ================ BRIEFING (weather + subway only) ================ -->
-  <div class="briefing" id="briefing">
+  <!-- ================ HERO GREETING + BRIEFING ================ -->
+  <section class="hero">
+    <div class="hero-head">
+      <div class="hero-eyebrow">WELCOME HOME</div>
+      <h1 class="hero-title">Hi Paul &amp; Tina 👋</h1>
+      <p class="hero-sub">Here's your corner of the Lower East Side — the ring around your door, this week's local calendar, and the subway reach from your stop. Below is the quick rundown for right now.</p>
+    </div>
+
     <div class="b-grid">
       <div class="b-card">
         <div class="b-icon" id="b-wx-icon">🌡️</div>
@@ -48,31 +52,9 @@
       <div class="b-card">
         <div class="b-icon">🚇</div>
         <div class="b-body">
-          <div class="b-main">F · J · 6 your lines</div>
-          <div class="b-sub"><a href="https://new.mta.info/" target="_blank" rel="noopener">check live status →</a></div>
+          <div class="b-main">F · J · 6</div>
+          <div class="b-sub"><a href="https://new.mta.info/" target="_blank" rel="noopener">your lines · live status →</a></div>
         </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ================ AT THE APARTMENT ================ -->
-  <section id="home" class="home-sec">
-    <div class="section-head">
-      <div class="section-bar yellow"></div>
-      <h2>At the apartment</h2>
-      <span class="sub">8 Rivington St</span>
-    </div>
-    <div class="ap-grid">
-      <div class="ap-card">
-        <div class="ap-icon">🗑️</div>
-        <div class="ap-title">Trash &amp; recycling</div>
-        <div class="ap-main" id="ap-trash">—</div>
-        <div class="ap-sub" id="ap-trash-sub">Mon / Wed / Fri trash · Thu recycling · set out after 6pm the night before</div>
-      </div>
-      <div class="ap-card ap-stub">
-        <div class="ap-icon">➕</div>
-        <div class="ap-title">More to add</div>
-        <div class="ap-sub">Wi-Fi, laundry room hours, super's number, package room, building rules — drop them in and they'll live here.</div>
       </div>
     </div>
   </section>
@@ -213,6 +195,28 @@
     </div>
   </section>
 
+  <!-- ================ AT THE APARTMENT (moved to bottom) ================ -->
+  <section id="home" class="home-sec">
+    <div class="section-head">
+      <div class="section-bar yellow"></div>
+      <h2>At the apartment</h2>
+      <span class="sub">8 Rivington St</span>
+    </div>
+    <div class="ap-grid">
+      <div class="ap-card">
+        <div class="ap-icon">🗑️</div>
+        <div class="ap-title">Trash &amp; recycling</div>
+        <div class="ap-main" id="ap-trash">—</div>
+        <div class="ap-sub" id="ap-trash-sub">Mon / Wed / Fri trash · Thu recycling · set out after 6pm the night before</div>
+      </div>
+      <div class="ap-card ap-stub">
+        <div class="ap-icon">➕</div>
+        <div class="ap-title">More to add</div>
+        <div class="ap-sub">Wi-Fi, laundry room hours, super's number, package room, building rules — drop them in and they'll live here.</div>
+      </div>
+    </div>
+  </section>
+
   <footer class="footer">
     <div class="footer-gradient"></div>
     Made with care for Paul &amp; Tina · 8 Rivington St · Updated every Sunday
@@ -225,11 +229,14 @@
 <script src="js/events.js"></script>
 <script src="js/briefing.js"></script>
 <script>
-RobotBriefing.init();
-RobotBriefing.initApartment();
-RobotEvents.initWeek({ listId: 'week-cal', days: 7, perDay: 4 });
-Robot.initMap({ mapId: 'map', chipsId: 'map-filters', countId: 'ring-count' });
-Robot.initDice({ btnId: 'roll-btn', vibesId: 'vibes', hintId: 'roll-hint', nameId: 'rr-name', metaId: 'rr-meta', resultId: 'roll-result' });
+// Each init is wrapped so a hiccup in one (e.g. briefing.js not uploaded)
+// doesn't stop the others from running.
+function safely(fn) { try { fn(); } catch (e) { console.error(e); } }
+safely(() => RobotBriefing.init());
+safely(() => RobotBriefing.initApartment());
+safely(() => RobotEvents.initWeek({ listId: 'week-cal', days: 7, perDay: 4 }));
+safely(() => Robot.initMap({ mapId: 'map', chipsId: 'map-filters', countId: 'ring-count' }));
+safely(() => Robot.initDice({ btnId: 'roll-btn', vibesId: 'vibes', hintId: 'roll-hint', nameId: 'rr-name', metaId: 'rr-meta', resultId: 'roll-result' }));
 </script>
 
 </body>
